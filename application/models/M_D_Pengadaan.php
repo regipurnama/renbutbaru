@@ -48,6 +48,8 @@ class M_D_Pengadaan extends CI_Model {
                 LEFT JOIN kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan 
                 LEFT JOIN program on program.id_program = kegiatan.id_program 
                 LEFT JOIN Uraian on a.id_uraian = Uraian.id_uraian
+                LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
+                LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
                 where a.id_detail_pengadaan =".$id;
         
         return $this->db->query($sql)->result();
@@ -58,7 +60,7 @@ class M_D_Pengadaan extends CI_Model {
     {
         //$post = $this->input->post();
         $post = $this->input->post();
-        // var_dump($post);die;
+        //  var_dump($post);die;
      
         //ppn = 10
         $ppn = 0.1;
@@ -69,6 +71,8 @@ class M_D_Pengadaan extends CI_Model {
        
          $id = $post["e_id_detail"];
          $this->nama_barang = $post["e_nama_barang"];
+         $this->jenis_barang = $post["e_id_jenis_barang"];
+         $this->tipe_barang = $post["e_id_tipe_barang"];
          $this->kuantitas = $post["e_kuantitas"];
          $this->satuan = $post["e_satuan"];
          $this->catatan = $post["e_catatan"];
@@ -153,6 +157,9 @@ class M_D_Pengadaan extends CI_Model {
         $this->jml_realisasi = 0;
         $this->status_realisasi = 0;
         $this->isdeleted = 0;
+        $this->jenis_barang = $data->jenis_barang;
+        $this->tipe_barang = $data->tipe_barang;
+        
         $this->last_user_edited = $this->session->userdata('id_user');
         
     	 $this->db->insert($this->_table, $this);
@@ -193,6 +200,8 @@ class M_D_Pengadaan extends CI_Model {
         $this->spesifikasi = $post["e_spesifikasi"];
         $this->catatan = $post["e_catatan"];
         $this->jenis_belanja = $post["e_jenis_belanja"];
+        $this->jenis_barang = $post["e_jenis_barang"];
+        $this->tipe_barang = $post["e_tipe_barang"];
         $this->total_harga = $post["e_harga_satuan"] * $post["e_kuantitas"];
         // $this->total_harga = ($post["harga_satuan"]*$post["kuantitas"])+(($post["harga_satuan"]*$post["kuantitas"])*$ppn)+(($post["harga_satuan"]*$post["kuantitas"])*$inflasi)+(($post["harga_satuan"]*$post["kuantitas"])*$keuntungan) ;
         $this->jml_realisasi = 0;
