@@ -43,9 +43,9 @@ class M_H_Pengadaan extends CI_Model {
         FROM head_pengadaan 
         JOIN users on head_pengadaan.id_user = users.id_user
         JOIN detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
-        where head_pengadaan.jenis_belanja = ".$jenis_belanja." and detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0 and head_pengadaan.tahun_anggaran = ".$tahun."
+        where head_pengadaan.jenis_belanja = ".$jenis_belanja."  and detail_pengadaan.id_uraian != 0 and head_pengadaan.tahun_anggaran = ".$tahun."
         GROUP BY head_pengadaan.id_pengadaan,head_pengadaan.kode_pengadaan,head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user";
-        
+        // and detail_pengadaan.id_subkegiatan != 0
     	return $this->db->query($sql)->result();
     }
     public function get_pengadaan_user($id,$jenis_belanja)
@@ -63,10 +63,11 @@ class M_H_Pengadaan extends CI_Model {
           FROM head_pengadaan 
           JOIN users on head_pengadaan.id_user = users.id_user
           JOIN detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
-          where head_pengadaan.jenis_belanja = ".$jenis_belanja." and head_pengadaan.id_user = ".$id." and detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0 and head_pengadaan.tahun_anggaran = ".$tahun."
+          where head_pengadaan.jenis_belanja = ".$jenis_belanja." and head_pengadaan.id_user = ".$id." and detail_pengadaan.id_uraian != 0 and head_pengadaan.tahun_anggaran = ".$tahun."
           GROUP BY head_pengadaan.id_pengadaan,head_pengadaan.kode_pengadaan,head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
           ";
-  
+    // and detail_pengadaan.id_subkegiatan != 0
+    	
 
     	return $this->db->query($sql)->result();
     }
@@ -84,6 +85,7 @@ class M_H_Pengadaan extends CI_Model {
     
     public function save_pengadaan($tgl_usulan,$jenis_belanja)
     {
+        $tahun = $_SESSION['tahun'];
         // var_dump($id);die;
         // mengambil data barang dengan kode paling besar
             $query = "SELECT if(max(id_pengadaan) is null, 0, max(id_pengadaan) ) as kodeTerbesar FROM head_pengadaan";
@@ -119,6 +121,7 @@ class M_H_Pengadaan extends CI_Model {
         $this->tgl_usulan = $tgl_usulan;
         $this->status = 1;
         $this->jenis_belanja = $jenis_belanja;
+        $this->tahun_anggaran = $tahun;
     	$this->db->insert($this->_table, $this);
     }
     public function delete($id)

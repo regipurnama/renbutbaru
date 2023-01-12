@@ -13,11 +13,11 @@ class M_T_Pengadaan extends CI_Model {
     
     function temp_list($id_user,$jenis_belanja){
         $sql = "SELECT * FROM temp_pengadaan a
-                JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
-                JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
-                JOIN program on program.id_program = kegiatan.id_program
-                JOIN uraian on a.id_uraian = uraian.id_uraian
-                JOIN users on a.id_user = users.id_user
+                LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
+                LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
+                LEFT JOIN program on program.id_program = kegiatan.id_program
+                LEFT JOIN uraian on a.id_uraian = uraian.id_uraian
+                LEFT JOIN users on a.id_user = users.id_user
                 where a.id_user = ".$id_user." and a.jenis_belanja= ".$jenis_belanja;
 
 
@@ -38,10 +38,10 @@ class M_T_Pengadaan extends CI_Model {
         $post = $this->input->post();
         $id = $post['id'];
         $sql = "SELECT * FROM temp_pengadaan a
-                JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
-                JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
-                JOIN program on program.id_program = kegiatan.id_program
-                JOIN uraian on a.id_uraian = uraian.id_uraian
+                LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
+                LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
+                LEFT  JOIN program on program.id_program = kegiatan.id_program
+                LEFT JOIN uraian on a.id_uraian = uraian.id_uraian
                 where a.id_temp_pengadaan = ".$id;
 
 
@@ -74,6 +74,11 @@ class M_T_Pengadaan extends CI_Model {
     {
         // var_dump($id);die;
         $post = $this->input->post();
+         if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
+            $id_subkegiatan = 0; 
+        }else {
+            $id_subkegiatan = $post["id_subkegiatan"];
+        }
         //var_dump($post);die;
         //ppn = 10%
         $ppn = 0.1;
@@ -88,7 +93,7 @@ class M_T_Pengadaan extends CI_Model {
         $this->kuantitas = $post["kuantitas"];
         $this->satuan = $post["satuan"];
         // $this->keterangan = $post["keterangan"];
-        $this->id_subkegiatan = $post["id_subkegiatan"];
+        $this->id_subkegiatan = $id_subkegiatan;
         $this->id_uraian = $post["id_uraian"];
         $this->sumber_dana = $post["sumber_dana"];
         $this->spesifikasi = $post["spesifikasi"];
@@ -107,7 +112,11 @@ class M_T_Pengadaan extends CI_Model {
     {
         // var_dump($id);die;
         $post = $this->input->post();
-     
+        if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
+            $id_subkegiatan = 0; 
+        }else {
+            $id_subkegiatan = $post["id_subkegiatan"];
+        }
         //ppn = 10%
         $ppn = 0.1;
         //inflasi = 2%
@@ -120,7 +129,7 @@ class M_T_Pengadaan extends CI_Model {
         $id = $post["id_temp"];
         $this->id_temp_pengadaan = $post["id_temp"];
         $this->kode_barang = "-";
-        $this->id_subkegiatan = $post["id_subkegiatan"];
+        $this->id_subkegiatan = $id_subkegiatan;
         $this->id_uraian = $post["id_uraian"];
         $this->sumber_dana = $post["sumber_dana"];
         $this->spesifikasi = $post["spesifikasi"];

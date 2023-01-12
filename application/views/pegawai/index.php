@@ -111,11 +111,11 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="0" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" required></select> 
+                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  onChange="bukasubkegiatan(this);" required></select>
+                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  onChange="bukasubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
@@ -266,15 +266,15 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="0" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="e_id_program" id="e_id_program" class="form-control js-data-example-basic-multiple" onChange="bukaekegiatan(this);" required></select> 
+                                <select name="e_id_program" id="e_id_program" class="form-control js-data-example-basic-multiple" onChange="bukaekegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="e_id_kegiatan" id="e_id_kegiatan" class="form-control "  onChange="bukaesubkegiatan(this);" required></select>
+                                <select type="text" name="e_id_kegiatan" id="e_id_kegiatan" class="form-control "  onChange="bukaesubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
-                                <select type="text" name="e_id_subkegiatan" id="e_id_subkegiatan" class="form-control" required></select>
+                                <select type="text" name="e_id_subkegiatan" id="e_id_subkegiatan" class="form-control" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Uraian</label>

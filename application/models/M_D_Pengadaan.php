@@ -8,12 +8,12 @@ class M_D_Pengadaan extends CI_Model {
         $post = $this->input->post();
         $id = $post['id'];
         $sql = "SELECT * FROM head_pengadaan a
-                JOIN detail_pengadaan b on a.id_pengadaan = b.id_pengadaan 
-                JOIN Subkegiatan on b.id_subkegiatan = Subkegiatan.id_subkegiatan 
-                JOIN kegiatan on kegiatan.id_kegiatan = Subkegiatan.id_kegiatan 
-                JOIN Program on program.id_program = Kegiatan.id_program 
-                JOIN Uraian on Uraian.id_uraian = b.id_uraian 
-                JOIN users on a.id_user = users.id_user
+                LEFT JOIN detail_pengadaan b on a.id_pengadaan = b.id_pengadaan 
+                LEFT JOIN Subkegiatan on b.id_subkegiatan = Subkegiatan.id_subkegiatan 
+                LEFT JOIN kegiatan on kegiatan.id_kegiatan = Subkegiatan.id_kegiatan 
+                LEFT JOIN Program on program.id_program = Kegiatan.id_program 
+                LEFT JOIN Uraian on Uraian.id_uraian = b.id_uraian 
+                LEFT JOIN users on a.id_user = users.id_user
                 where a.id_pengadaan = ".$id."";
 
 
@@ -44,10 +44,10 @@ class M_D_Pengadaan extends CI_Model {
         $id = $post['id'];
         // $this->db->where(["id_detail_pengadaan" => $id]);
         $sql = "SELECT * FROM detail_pengadaan a
-                JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan 
-                JOIN kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan 
-                JOIN program on program.id_program = kegiatan.id_program 
-                JOIN Uraian on a.id_uraian = Uraian.id_uraian
+                LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan 
+                LEFT JOIN kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan 
+                LEFT JOIN program on program.id_program = kegiatan.id_program 
+                LEFT JOIN Uraian on a.id_uraian = Uraian.id_uraian
                 where a.id_detail_pengadaan =".$id;
         
         return $this->db->query($sql)->result();
