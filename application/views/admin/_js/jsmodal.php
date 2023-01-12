@@ -25,7 +25,10 @@
         $('#id_uraian').select2({'width': '-webkit-fill-available'});
         $('#sumber_dana').select2({'width': '-webkit-fill-available'});
         $('#prioritas').select2({'width': '-webkit-fill-available'});
-
+        
+        $('#id_tipe_barang').select2({'width': '-webkit-fill-available'});
+        $('#id_jenis_barang').select2({'width': '-webkit-fill-available'});
+        
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         $('#p_unit_kerja').html((unit_kerja).toUpperCase());
@@ -33,6 +36,10 @@
         
         ambilprogram();
         ambiluraian();
+
+
+        ambiltipebarang();
+        ambiljenisbarang();
         
             
         
@@ -524,6 +531,9 @@
                             $('[name="e_prioritas"]').val(0).trigger('change');
                             $('[name="e_catatan"]').val("");
                             $('[name="e_nama_barang"]').val("");
+                             $('[name="e_id_tipe_barang"]').val(0).trigger('change');
+                            $('[name="e_id_jenis_barang"]').val(0).trigger('change');
+                           
                             $('[name="e_kuantitas"]').val("");
                             $('[name="e_satuan"]').val("");
                             $('[name="e_catatan"]').val("");
@@ -699,8 +709,14 @@
                 $('#e_sumber_dana').select2({'width': '-webkit-fill-available'});
                 $('#e_prioritas').select2({'width': '-webkit-fill-available'});
 
+                 $('#e_tipe_barang').select2({'width': '-webkit-fill-available'});
+                $('#e_jenis_barang').select2({'width': '-webkit-fill-available'});
+
                 ambileprogram();
                 ambileuraian();
+                
+                ambiletipebarang();
+                ambilejenisbarang();
 
                 dptable.destroy();
                 dptable = $('#DetailPengadaanTable').DataTable( {
@@ -732,6 +748,8 @@
                                 'kodering_uraian'  : response.data[x].kodering_uraian,
                                 'nama_uraian'           : response.data[x].nama_uraian,
                                 'nama_barang'           : response.data[x].nama_barang,
+                                'tipe_barang'           : response.data[x].tipe_barang,
+                                'jenis_barang'           : response.data[x].jenis_barang,
                                 'spesifikasi'           : response.data[x].spesifikasi,
                                 'kuantitas'             : response.data[x].kuantitas,   
                                 'satuan'                : response.data[x].satuan,
@@ -948,8 +966,29 @@
                         });        
                         }
          });
-       
+        }
+         function bukakegiatan(id){
+    //    console.log(id.value);
+             $.ajax ({
+                    type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_kegiatan')?>',
+                    dataType: 'json',
+                    data : {id:id.value},
+                    
+                    success: function(response){
+                        $('#id_kegiatan').empty();
 
+                        $('#id_kegiatan').append('<option value="0">- Pilih Nama Kegiatan -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_kegiatan').append(
+                                    $('<option></option>').val(value['id_kegiatan']).html(value['kodering_kegiatan'] +"-"+ value['nama_kegiatan'])
+                                );
+                        });        
+                        }
+         });
+       
+         
 
         }
         function bukasubkegiatan(id){
@@ -1057,6 +1096,7 @@
         
        
         }
+        
         function ambileprogram(){
             $.ajax ({
                     // type: 'POST',
@@ -1143,6 +1183,88 @@
          });
         }
 
+        function ambiltipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_tipe_barang').append(
+                                    $('<option></option>').val(value['id']).html(value['nama'])
+                                );
+                        });        
+                        }
+            });
+       }
+        
+       function ambiljenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_jenis_barang').append(
+                                    $('<option></option>').val(value['id']).html(value['nama'])
+                                );
+                        });        
+                        }
+            });
+       }
+
+        function ambiletipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_tipe_barang').append(
+                                    $('<option></option>').val(value['id']).html(value['nama'])
+                                );
+                        });        
+                        }
+            });
+       
+        }
+
+        function ambilejenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_jenis_barang').append(
+                                    $('<option></option>').val(value['id']).html(value['nama'])
+                                );
+                        });        
+                        }
+            });
+       
+        }
+       
+
+
+
+
+
+
+
+
+
+
+
+
          /* Fungsi formatRupiah */
         function formatRupiah(angka, prefix) {
             var number_string = angka.replace(/[^,\d]/g, "").toString(),
@@ -1167,6 +1289,8 @@
             }
             return val;
         }
+
+    
  
 </script>
 

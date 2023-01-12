@@ -138,6 +138,14 @@
                                 <label class="col-md-12 col-form-label mini-text">Nama Barang Modal</label>
                                 <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang Modal" required>
                               </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" required></select>
+                              </div>
                              
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
@@ -285,6 +293,14 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Barang Modal</label>
                                 <input type="text" name="e_nama_barang" id="e_nama_barang" class="form-control" placeholder="Nama Barang Modal" required>
+                              </div>
+                             <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" required></select>
                               </div>
                              
                               <div class="col-md-4">

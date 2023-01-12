@@ -8,6 +8,23 @@ class M_Master extends CI_Model {
 
    
 
+    public function ambil_jenis_barang(){
+        
+        $sql = "SELECT * FROM jenis_barang";
+
+
+    	return $this->db->query($sql)->result();
+        
+    }
+    
+    public function ambil_tipe_barang(){
+        
+        $sql = "SELECT * FROM tipe_barang";
+
+
+    	return $this->db->query($sql)->result();
+        
+    }
     public function ambil_program(){
 
         $sql = "SELECT * FROM Program where isdeleted = 0";

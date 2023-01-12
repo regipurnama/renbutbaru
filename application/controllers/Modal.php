@@ -164,7 +164,16 @@ class Modal extends CI_Controller {
         $data=$this->M_D_Pengadaan->save_pengadaan_from_edit();
         echo json_encode($data);
 			}
-			
+			function ambil_tipe_barang(){
+				
+				$data['data']=$this->M_Master->ambil_tipe_barang();
+				echo json_encode($data);
+			}
+				function ambil_jenis_barang(){
+				
+				$data['data']=$this->M_Master->ambil_jenis_barang();
+				echo json_encode($data);
+			}
 			function ambil_program(){
 				
 				$data['data']=$this->M_Master->ambil_program();
