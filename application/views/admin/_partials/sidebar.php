@@ -72,7 +72,13 @@
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Rekening' ? 'active': '' ?>" href="<?php echo base_url('Rekening/Index') ?>"><i class="far fa-file-alt"></i> <span>Kode Rekening</span></a>
             
         </div>
-    </li>
+    </li> 
+    <li class="nav-item <?php echo $this->uri->segment(1) == 'Status' ? 'active': '' ?>">
+        <a class="nav-link" href="<?php echo base_url('Rkbu/Status'); ?>">
+        <i class="far fa-file-alt"></i>
+            <span>Status Usulan</span>
+        </a>
+    </li>   
     <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Rkbu/Rekapitulasi'); ?>">
         <i class="far fa-file-alt"></i>

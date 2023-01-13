@@ -20,11 +20,14 @@ class Modal extends CI_Controller {
 	 */
   public function __construct(){
 		parent::__construct();
-	   	$this->load->helper('url', 'form');	   	
+	   	// $this->load->helper('url', 'form');	   
+		   $this->load->helper(array('form', 'url'));	
+
 		$this->load->database();
 		$this->load->model('M_User');
 
 		$this->load->library('session');
+		// $this->load->library('upload');
 
 		/* MODEL */
 		//temp_pemeliharaan
@@ -95,7 +98,52 @@ class Modal extends CI_Controller {
 			
     }
     	function save_temp_pengadaan(){
-		
+			$config['file_type']           = $_POST['image']['type'] . "BROTYPE";
+			$config['file_name']           = $_FILES['image']['name'] . "BRONAME";
+		$config['upload_path']          = './uploadfile/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			
+			var_dump("isian FILES "); echo"<br/>";
+			print_r($_FILES['image']);
+			// $this->upload->data('file_name'); 
+			echo"<br/>";
+			var_dump("isian Konfig");echo"<br/>";
+			var_dump($config);
+			echo"<br/>";
+			var_dump("isian konfig type");echo"<br/>";
+			
+			var_dump($config['type']);
+			var_dump("isian konfig name");echo"<br/>";
+			var_dump($config['name']);
+			echo"<br/>";
+			var_dump("isian Konfig");echo"<br/>";
+			
+			$apaini = $this->load->library('upload', $config);
+			var_dump($apaini);
+			
+			if (!$this->upload->do_upload('upload_pembanding'))
+			{
+				echo"<br/>";
+				var_dump("kalau kosong/error");
+				// var_dump('no');
+					$error = array('error' => $this->upload->display_errors());
+					var_dump($error);
+					// $this->load->view('upload_form', $error);
+			}
+			else
+			{
+				echo"<br/>";
+				var_dump("kalau ada");
+				
+					$data = array('upload_data' => $this->upload->data());
+					var_dump($data);
+					
+					// $this->load->view('upload_success', $data);
+			}
+			die;
         $data=$this->M_T_Pengadaan->save();
         echo json_encode($data);
     }

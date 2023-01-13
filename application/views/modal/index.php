@@ -103,7 +103,8 @@
                             </table>
                           </div>
                   </div>
-                        <form id="form-tambah-barang" method="POST">            
+
+                        <form method="POST" enctype="multipart/form-data" id="form-tambah-barang" >            
                           <div class="form-group row">
                                 <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
@@ -154,6 +155,10 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="file" name="image" id="image">
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -253,7 +258,7 @@
                             </table>
                           </div>
                   </div>
-                  <form id="form-edit-barang">           
+                  <form id="form-edit-barang"  method="POST" enctype="multipart/form-data">           
                         <div class="modal-body">
                           <div class="form-group row">
                                 <div class="col-md-12">
@@ -310,6 +315,10 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="e_satuan" id="e_satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="file" name="e_upload_pembanding" id="e_upload_pembanding" class="form-control" placeholder="Satuan" required>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>

@@ -74,7 +74,8 @@ class M_T_Pengadaan extends CI_Model {
     {
         // var_dump($id);die;
         $post = $this->input->post();
-         if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
+        var_dump($post);
+             if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
             $id_subkegiatan = 0; 
         }else {
             $id_subkegiatan = $post["id_subkegiatan"];

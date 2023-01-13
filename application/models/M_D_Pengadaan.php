@@ -73,6 +73,7 @@ class M_D_Pengadaan extends CI_Model {
          $this->nama_barang = $post["e_nama_barang"];
          $this->jenis_barang = $post["e_id_jenis_barang"];
          $this->tipe_barang = $post["e_id_tipe_barang"];
+         $this->sumber_dana = $post["e_sumber_dana"];
          $this->kuantitas = $post["e_kuantitas"];
          $this->satuan = $post["e_satuan"];
          $this->catatan = $post["e_catatan"];

@@ -451,13 +451,13 @@
 
             }else{
                 //tambah
-                //console.log(data);
+                // console.log(data);die;
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Modal/save_temp_pengadaan')?>",
                     data : data,
                     success: function(response){
-                  //      console.log(response);
+                        console.log(response);
                         $('[name="id_program"]').val(0).trigger('change');
                         $('[name="id_kegiatan"]').val(0).trigger('change');
                         $('[name="id_subkegiatan"]').val(0).trigger('change');
@@ -467,6 +467,7 @@
                         $('[name="prioritas"]').val(0).trigger('change');
                         $('[name="catatan"]').val("");
                         $('[name="nama_barang"]').val("");
+                        // $('[name="image"]').val("");
                         $('[name="kuantitas"]').val("");
                         $('[name="satuan"]').val("");
                         $('[name="catatan"]').val("");
