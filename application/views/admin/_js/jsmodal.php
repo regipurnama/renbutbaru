@@ -387,33 +387,35 @@
         });
          //Save barang temp
             $('#form-tambah-barang').submit(function() {
+        //  $('#form-tambah-barang').on("submit", "form", function(event){
+            // alert("coy");   
+
+            // event.preventDefault();
             
             $('#btn_save_brg_temp_pengadaan').attr('disabled','disabled');    
-            var harga_satuan  = $('#hs').val();
-            var e_harga_satuan  = $('#ehs').val();
-            harga_satuan = harga_satuan.replace(/\./g,'');
-            e_harga_satuan = e_harga_satuan.replace(/\./g,'');
+            // var harga_satuan  = $('#hs').val();
+            // var e_harga_satuan  = $('#ehs').val();
+            // harga_satuan = harga_satuan.replace(/\./g,'');
+            // e_harga_satuan = e_harga_satuan.replace(/\./g,'');
+            // console.log($('#form-tambah-barang'));die;
+            // +'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
+            var form = $('#form-tambah-barang')[0];
+            var formData = new FormData(form);
+            // var data =  +'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
             
-            var data =$('#form-tambah-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-            //alert(data);
-            //console.log(data);
-                    //kondisi add
-            // var tgl_usulan = $('#tgl_usulan').val();
-             //var nama_barang = $('#nama_barang').val();
-            // var kode_barang = $('#kode_barang').val();
-            // var unit_kerja = $('#unit_kerja').val();
-            // var kuantitas  = $('#kuantitas').val();
-            // var satuan  = $('#satuan').val();
-            // var keterangan  = $('#keterangan').val();
             if(edit){
                 var id_temp  = $('#id_temp').val();
                 //edit
-                //console.log("saveedit");
+                // console.log("saveedit");
+                alert("bro");
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Modal/update_temp_pengadaan')?>",
                     //dataType : "JSON",
-                    data : data,
+                    // data : data,
+                    data :formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response){
                         //console.log('masuk');
                         
@@ -452,10 +454,14 @@
             }else{
                 //tambah
                 // console.log(data);die;
+                alert("bros");
+                
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Modal/save_temp_pengadaan')?>",
-                    data : data,
+                    data : formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response){
                         console.log(response);
                         $('[name="id_program"]').val(0).trigger('change');
@@ -467,7 +473,7 @@
                         $('[name="prioritas"]').val(0).trigger('change');
                         $('[name="catatan"]').val("");
                         $('[name="nama_barang"]').val("");
-                        // $('[name="image"]').val("");
+                         $('[name="image"]').val("");
                         $('[name="kuantitas"]').val("");
                         $('[name="satuan"]').val("");
                         $('[name="catatan"]').val("");
@@ -488,7 +494,8 @@
                 return false;
                 
             }
-        
+            alert("brod");
+                
             
                 
             })

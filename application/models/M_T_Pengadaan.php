@@ -74,7 +74,9 @@ class M_T_Pengadaan extends CI_Model {
     {
         // var_dump($id);die;
         $post = $this->input->post();
-        var_dump($post);
+        $harga_satuan = str_replace(".", "", $post['hs']);
+        // var_dump($harga_satuan);
+        // var_dump($post);die;
              if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
             $id_subkegiatan = 0; 
         }else {
@@ -98,10 +100,10 @@ class M_T_Pengadaan extends CI_Model {
         $this->id_uraian = $post["id_uraian"];
         $this->sumber_dana = $post["sumber_dana"];
         $this->spesifikasi = $post["spesifikasi"];
-        $this->harga_satuan = $post["harga_satuan"];
+        $this->harga_satuan =      $harga_satuan;
         $this->prioritas = $post["prioritas"];
         $this->catatan = $post["catatan"];
-        $this->total_harga = $post["harga_satuan"]*$post["kuantitas"];
+        $this->total_harga =      $harga_satuan*$post["kuantitas"];
         //$this->total_harga = ($post["harga_satuan"]*$post["kuantitas"])+(($post["harga_satuan"]*$post["kuantitas"])*$ppn)+(($post["harga_satuan"]*$post["kuantitas"])*$inflasi)+(($post["harga_satuan"]*$post["kuantitas"])*$keuntungan) ;
         $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["id_tipe_barang"];

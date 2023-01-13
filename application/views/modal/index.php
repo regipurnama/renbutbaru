@@ -104,7 +104,7 @@
                           </div>
                   </div>
 
-                        <form method="POST" enctype="multipart/form-data" id="form-tambah-barang" >            
+                        <form id="form-tambah-barang" method="POST"   enctype="multipart/form-data">            
                           <div class="form-group row">
                                 <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
