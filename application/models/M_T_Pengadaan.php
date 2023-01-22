@@ -18,6 +18,9 @@ class M_T_Pengadaan extends CI_Model {
                 LEFT JOIN program on program.id_program = kegiatan.id_program
                 LEFT JOIN uraian on a.id_uraian = uraian.id_uraian
                 LEFT JOIN users on a.id_user = users.id_user
+                LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
+                LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
+
                 where a.id_user = ".$id_user." and a.jenis_belanja= ".$jenis_belanja;
 
 
@@ -42,6 +45,8 @@ class M_T_Pengadaan extends CI_Model {
                 LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
                 LEFT  JOIN program on program.id_program = kegiatan.id_program
                 LEFT JOIN uraian on a.id_uraian = uraian.id_uraian
+                LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
+                LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
                 where a.id_temp_pengadaan = ".$id;
 
 
@@ -76,6 +81,8 @@ class M_T_Pengadaan extends CI_Model {
         $post = $this->input->post();
         $harga_satuan = str_replace(".", "", $post['hs']);
         // var_dump($harga_satuan);
+        // echo "cekdata";
+        // var_dump($_FILES);
         // var_dump($post);die;
              if($post["id_subkegiatan"]==NULL || $post["id_subkegiatan"] == 'NULL'){
             $id_subkegiatan = 0; 
@@ -108,6 +115,7 @@ class M_T_Pengadaan extends CI_Model {
         $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["id_tipe_barang"];
         $this->jenis_barang = $post["id_jenis_barang"];
+        $this->nama_file = $_FILES["image"]["name"];
 
         
         $this->session_id = uniqid();
@@ -149,6 +157,7 @@ class M_T_Pengadaan extends CI_Model {
         $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["id_tipe_barang"];
         $this->jenis_barang = $post["id_jenis_barang"];
+        $this->nama_file = $_FILES["image"]["name"];
 
          $this->nama_barang = $post["nama_barang"];
          $this->kuantitas = $post["kuantitas"];

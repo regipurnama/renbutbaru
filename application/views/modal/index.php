@@ -159,6 +159,7 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
                                 <input type="file" name="image" id="image">
+                                <input type="text" name="e_image" id="e_image">
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -208,6 +209,7 @@
                         <th>Total Harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -318,7 +320,9 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
-                                <input type="file" name="e_upload_pembanding" id="e_upload_pembanding" class="form-control" placeholder="Satuan" required>
+                                <input type="text" name="e_nama_file" id="e_nama_file" class="form-control" placeholder="Satuan" required>
+                                
+                                <input type="file" name="e_image" id="e_image" class="form-control" placeholder="Satuan" required>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>

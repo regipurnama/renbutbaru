@@ -194,7 +194,7 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen">Download Dokumen <i class="fa fa-download"></i></a>';
                         row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -206,6 +206,8 @@
                           'kodering_uraian'       : response.data[x].kodering_uraian,
                           'nama_uraian'       : response.data[x].nama_uraian,
                           'nama_barang'       : response.data[x].nama_barang,
+                          'nama_jenis_barang'       : response.data[x].nama_jenis_barang,
+                          'nama_tipe_barang'       : response.data[x].nama_tipe_barang,
                           'spesifikasi'       : response.data[x].spesifikasi,
                           'catatan'       : response.data[x].catatan,
                           'sumber_dana'       : response.data[x].sumber_dana,
@@ -214,6 +216,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
+                          'nama_file'            : download,
                           'aksi'              : button,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                           'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -241,7 +244,7 @@
               {'data': 'nomen_uraian'},
               {'data': 'nama_barang','render':
                   function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
+                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
                 }
               
               },
@@ -253,7 +256,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+full.prioritas +"<br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
+                    return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -264,6 +267,7 @@
               },
               {'data': 'prioritas'},
               {'data': 'catatan'},
+              {'data': 'nama_file'},
               {'data': 'aksi'}
               
              ],
@@ -282,7 +286,8 @@
                     {  targets: 6, width: '20%' }, 
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
+                    {  targets: 10, width: '15%' }, 
+                    {  targets: 11, width: '15%' } 
                 
                  ] ,
                  footerCallback: function ( row, data, start, end, display ) {
@@ -407,7 +412,7 @@
                 var id_temp  = $('#id_temp').val();
                 //edit
                 // console.log("saveedit");
-                alert("bro");
+                // alert("bro");
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Modal/update_temp_pengadaan')?>",
@@ -425,7 +430,10 @@
                         $('[name="id_uraian"]').val(0).trigger('change');
                         $('[name="spesifikasi"]').val("");
                         $('[name="sumber_dana"]').val(0).trigger('change');
+                        $('[name="e_id_tipe_barang"]').val(0).trigger('change');
+                        $('[name="e_id_jenis_barang"]').val(0).trigger('change');
                         $('[name="prioritas"]').val(0).trigger('change');
+                        $('[name="e_image"]').val("");
                         $('[name="catatan"]').val("");
                         $('[name="harga_satuan"]').val("");
                         $('[name="hs"]').val("");
@@ -454,7 +462,7 @@
             }else{
                 //tambah
                 // console.log(data);die;
-                alert("bros");
+                // alert("bros");
                 
                 $.ajax({
                     type : "POST",
@@ -657,6 +665,8 @@
                               $('#id_program').append('<option value="'+data[0].id_program+'" selected>'+data[0].kodering_program+'-'+data[0].nama_program+'</option>');
                               $('#id_kegiatan').append('<option value="'+data[0].id_kegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_kegiatan+'</option>');
                               $('#id_subkegiatan').append('<option value="'+data[0].id_subkegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_subkegiatan+'</option>');
+                              $('#id_jenis_barang').append('<option value="'+data[0].id_jenis_barang+'" selected>'+data[0].nama_jenis_barang+'</option>');
+                              $('#id_tipe_barang').append('<option value="'+data[0].id_tipe_barang+'" selected>'+data[0].nama_tipe_barang+'</option>');
                       
                            
                             $('#id_uraian').val(data[0].id_uraian).trigger('change');
@@ -674,6 +684,7 @@
                             $('#harga_satuan').val(data[0].harga_satuan);
                             $('#hs').val(data[0].harga_satuan);
                             $('#keterangan').val(data[0].keterangan);
+                            $('#e_image').val(data[0].nama_file);
                             $('#btn_save_brg_temp_pengadaan').html("Ubah Barang");
     //              
                              
