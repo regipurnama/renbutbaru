@@ -194,7 +194,7 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen">Download Dokumen <i class="fa fa-download"></i></a>';
+                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
                         row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -754,7 +754,8 @@
                         if (hitung>0) {
                             for(var x in response.data){
                             var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                            var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                        
                             row.push({
                                 'no'                    : i,
                                 'id_pengadaan'          : response.data[x].id_pengadaan,
@@ -779,6 +780,7 @@
                                 'catatan'               : response.data[x].catatan,
                                 'unit_kerja'            : response.data[x].unit_kerja,
                                 'kode_pengadaan'        : response.data[x].kode_pengadaan,
+                                'nama_file'        : download,
                                 'aksi'                  : button,
                                 'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                                 'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -821,8 +823,8 @@
             // },
               {'data': 'nama_barang','render':
                   function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
-                }
+                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
+               }
               
               },
               {'data': 'volume', 'render':
@@ -833,7 +835,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+ full.prioritas +" <br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+ commaSeparateNumber(full.harga_satuan) +"<br><b>Harga Total : "+ commaSeparateNumber(full.total_harga) +"</b><p>";
+                   return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -845,6 +847,7 @@
 
               {'data': 'prioritas'},
               {'data': 'catatan'},
+              {'data': 'nama_file'},
               {'data': 'aksi'}
               
              ],
@@ -863,7 +866,8 @@
                     {  targets: 6, width: '20%' },                   
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
+                    {  targets: 10, width: '15%' },
+                    {  targets: 11, width: '15%' }
                     
                    
                 

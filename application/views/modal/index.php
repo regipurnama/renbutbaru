@@ -83,11 +83,13 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Modal</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
-                      <!-- <span aria-hidden="true">&times;</span> -->
-                      Batal
-                      </button>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                     <i class="fa fa-times"></i>
+                 
+                      </button>
+                      
                     </div>
                   </div>
                   <div class="modal-body">
@@ -159,7 +161,7 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
                                 <input type="file" name="image" id="image">
-                                <input type="text" name="e_image" id="e_image">
+                                <input type="hidden" name="e_image" id="e_image">
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -235,9 +237,9 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Modal</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                      TUTUP (X)
+                      <i class="fa fa-times"></i>
                       </button>
                       <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
                     </div>
@@ -320,9 +322,9 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
-                                <input type="text" name="e_nama_file" id="e_nama_file" class="form-control" placeholder="Satuan" required>
+                                <input type="hidden" name="e_image" id="e_image" class="form-control" required>
                                 
-                                <input type="file" name="e_image" id="e_image" class="form-control" placeholder="Satuan" required>
+                                <input type="file" name="edit_image" id="edit_image" class="form-control"  required>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -363,16 +365,17 @@
                   <table class="table table-striped" id="DetailPengadaanTable" style="width:100%">
                     <thead>
                       <tr>
-                        <th>Nama Program</th>
+                          <th>Nama Program</th>
                         <th>Nama Kegiatan</th>
                         <th>Nama Subkegiatan</th>
                         <th>Nama Uraian</th>
-                        <th >Nama Barang</th>
+                        <th>Nama Barang</th>
                         <th>Kuantitas</th>
                         <th>Harga</th>
                         <th>Total Harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -399,9 +402,9 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Pengadaan</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                      Batal
+                       <i class="fa fa-times"></i>
                       </button>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
                     </div>
@@ -462,12 +465,16 @@
                   <table class="table table-striped" id="DetailpengadaanTable" style="min-width:100% !important;">
                     <thead>
                       <tr>
-                        <th>No</th>
+                        <th>Nama Program</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Nama Subkegiatan</th>
+                        <th>Nama Uraian</th>
                         <th>Nama Barang</th>
                         <th>Kuantitas</th>
-                        <th>Satuan</th>
-                        <th>Realisasi</th>
-                        <th>Status</th>
+                        <th>Harga</th>
+                        <th>Total Harga</th>
+                        <th>Prioritas</th>
+                        <th>Catatan</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>

@@ -14,6 +14,9 @@ class M_D_Pengadaan extends CI_Model {
                 LEFT JOIN Program on program.id_program = Kegiatan.id_program 
                 LEFT JOIN Uraian on Uraian.id_uraian = b.id_uraian 
                 LEFT JOIN users on a.id_user = users.id_user
+                  LEFT JOIN jenis_barang on b.jenis_barang = jenis_barang.id_jenis_barang
+                LEFT JOIN tipe_barang on b.tipe_barang = tipe_barang.id_tipe_barang
+
                 where a.id_pengadaan = ".$id."";
 
 
