@@ -64,6 +64,16 @@ class M_D_Pengadaan extends CI_Model {
         //$post = $this->input->post();
         $post = $this->input->post();
         //  var_dump($post);die;
+         $harga_satuan = str_replace(".", "", $post['e_hs']);
+        // var_dump($harga_satuan);
+        // echo "cekdata";
+        // var_dump($_FILES);
+        // var_dump($post);die;
+             if($post["e_id_subkegiatan"]==NULL || $post["e_id_subkegiatan"] == 'NULL'){
+            $id_subkegiatan = 0; 
+        }else {
+            $id_subkegiatan = $post["e_id_subkegiatan"];
+        }
      
         //ppn = 10
         $ppn = 0.1;
@@ -80,13 +90,18 @@ class M_D_Pengadaan extends CI_Model {
          $this->kuantitas = $post["e_kuantitas"];
          $this->satuan = $post["e_satuan"];
          $this->catatan = $post["e_catatan"];
-         $this->id_subkegiatan = $post["e_id_subkegiatan"];
+         $this->id_subkegiatan = $id_subkegiatan;
          $this->id_uraian = $post["e_id_uraian"];
          $this->spesifikasi = $post["e_spesifikasi"];
-         $this->harga_satuan = $post["e_harga_satuan"];
+         $this->harga_satuan = $harga_satuan;
          $this->prioritas = $post["e_prioritas"];
-         $this->total_harga = $post["e_harga_satuan"] * $post["e_kuantitas"];
+         $this->total_harga = $harga_satuan * $post["e_kuantitas"];
         //  $this->total_harga = ($post["e_harga_satuan"]*$post["e_kuantitas"])+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$ppn)+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$inflasi)+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$keuntungan) ;
+         $this->jenis_belanja = $post["jenis_belanja"];
+        $this->tipe_barang = $post["id_tipe_barang"];
+        $this->jenis_barang = $post["id_jenis_barang"];
+        $this->nama_file = $_FILES["edit_image"]["name"];
+
         $this->jml_realisasi = 0;
         $this->status_realisasi = 0;
         $this->isdeleted = 0;
@@ -183,6 +198,16 @@ class M_D_Pengadaan extends CI_Model {
         
         //var_dump($y);die;
         $post = $this->input->post();
+         $harga_satuan = str_replace(".", "", $post['e_hs']);
+        // var_dump($harga_satuan);
+        // echo "cekdata";
+        // var_dump($_FILES);
+        // var_dump($post);die;
+             if($post["e_id_subkegiatan"]==NULL || $post["e_id_subkegiatan"] == 'NULL'){
+            $id_subkegiatan = 0; 
+        }else {
+            $id_subkegiatan = $post["e_id_subkegiatan"];
+        }
         //var_dump($post->nama_barang);die;
         //ppn = 10%
         $ppn = 0.1;
@@ -196,9 +221,9 @@ class M_D_Pengadaan extends CI_Model {
         $this->nama_barang = $post["e_nama_barang"];
         $this->kuantitas = $post["e_kuantitas"];
         $this->satuan = $post["e_satuan"];
-        $this->id_subkegiatan = $post["e_id_subkegiatan"];
+        $this->id_subkegiatan = $id_subkegiatan;
         $this->id_uraian = $post["e_id_uraian"];
-        $this->harga_satuan = $post["e_harga_satuan"];
+        $this->harga_satuan = $harga_satuan;
         $this->sumber_dana = $post["e_sumber_dana"];
         $this->prioritas = $post["e_prioritas"];
         $this->spesifikasi = $post["e_spesifikasi"];
@@ -206,8 +231,13 @@ class M_D_Pengadaan extends CI_Model {
         $this->jenis_belanja = $post["e_jenis_belanja"];
         $this->jenis_barang = $post["e_jenis_barang"];
         $this->tipe_barang = $post["e_tipe_barang"];
-        $this->total_harga = $post["e_harga_satuan"] * $post["e_kuantitas"];
+        $this->total_harga = $harga_satuan * $post["e_kuantitas"];
         // $this->total_harga = ($post["harga_satuan"]*$post["kuantitas"])+(($post["harga_satuan"]*$post["kuantitas"])*$ppn)+(($post["harga_satuan"]*$post["kuantitas"])*$inflasi)+(($post["harga_satuan"]*$post["kuantitas"])*$keuntungan) ;
+            $this->jenis_belanja = $post["jenis_belanja"];
+        $this->tipe_barang = $post["id_tipe_barang"];
+        $this->jenis_barang = $post["id_jenis_barang"];
+        $this->nama_file = $_FILES["edit_image"]["name"];
+
         $this->jml_realisasi = 0;
         $this->status_realisasi = 0;
         $this->isdeleted = 0;

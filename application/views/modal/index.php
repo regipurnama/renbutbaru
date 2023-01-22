@@ -339,7 +339,7 @@
                               
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Harga Satuan</label>
-                                <input type="text" name="ehs" id="ehs" class="form-control" placeholder="Harga Satuan">
+                                <input type="text" name="e_hs" id="e_hs" class="form-control" placeholder="Harga Satuan">
                               </div>
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Spesifikasi</label>

@@ -9,7 +9,7 @@
     var edit="";
     var idpermohonan="";
     var rupiah = document.getElementById("hs");
-    var e_rupiah = document.getElementById("ehs");
+    var e_rupiah = document.getElementById("e_hs");
 
     $(document).ready(function(){
             rupiah.addEventListener("keyup", function(e) {
@@ -502,7 +502,6 @@
                 return false;
                 
             }
-            alert("brod");
                 
             
                 
@@ -511,13 +510,15 @@
             //kondisi edit
             $('#form-edit-barang').submit(function() {
                 $('#e_btn_save_brg_pengadaan').attr('disabled','disabled');
-                var harga_satuan  = $('#hs').val();
-                var e_harga_satuan  = $('#ehs').val();
-                harga_satuan = harga_satuan.replace(/\./g,'');
-                e_harga_satuan = e_harga_satuan.replace(/\./g,'');
+                // var harga_satuan  = $('#hs').val();
+                // var e_harga_satuan  = $('#ehs').val();
+                // harga_satuan = harga_satuan.replace(/\./g,'');
+                // e_harga_satuan = e_harga_satuan.replace(/\./g,'');
 
-                var data =$('#form-edit-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-                
+                // var data =$('#form-edit-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
+                var form = $('#form-edit-barang')[0];
+                var formData = new FormData(form);
+        
                 // var tgl_usulan = $('#tgl_usulan').val();
                 // var nama_barang = $('#e_nama_barang').val();
                 // var unit_kerja = $('#e_unit_kerja').val();
@@ -530,12 +531,18 @@
                 if(edit){
                     var id_detail  = $('#e_id_detail').val();
                     //edit
+                    // alert("brod");
+            
                     //console.log(data);
                     $.ajax({
                         type : "POST",
                         url  : "<?php echo base_url('Modal/update_pengadaan')?>",
-                        dataType : "JSON",
-                        data : data,
+                        // dataType : "JSON",
+                    //    data : data,
+                        data :formData,
+                        processData: false,
+                        contentType: false,
+                        
                         success: function(response){
                       //      console.log(response);
                             $('[name="e_id_program"]').val(0).trigger('change');
@@ -554,7 +561,8 @@
                             $('[name="e_satuan"]').val("");
                             $('[name="e_catatan"]').val("");
                             $('[name="e_harga_satuan"]').val("");
-                            $('[name="ehs"]').val("");
+                            $('[name="e_hs"]').val("");
+                            $('[name="e_image"]').val("");
                             $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
                             dptable.ajax.reload(null,false);
                             ptable.ajax.reload(null,false);
@@ -574,12 +582,18 @@
 
             }else{
                 //tambah
+                // alert("brods");
+            
                 //console.log("tambah")
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Modal/save_detail_pengadaan')?>",
-                    dataType : "JSON",
-                    data : data,
+                    // dataType : "JSON",
+                       data :formData,
+                    processData: false,
+                    contentType: false,
+                    
+                    // data : data,
                     // data : {nama_barang:nama_barang ,
                     //         tgl_usulan:tgl_usulan , 
                     //         unit_kerja:unit_kerja, 
@@ -715,10 +729,10 @@
 
                 var id = x;
                 e_rupiah.addEventListener("keyup", function(e) {
-            // tambahkan 'Rp.' pada saat form di ketik
-            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            e_rupiah.value = formatRupiah(this.value, "Rp. ");
-            });
+                // tambahkan 'Rp.' pada saat form di ketik
+                // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                e_rupiah.value = formatRupiah(this.value, "Rp. ");
+                });
             
                 //dptable.ajax.reload(null,false);
                 $('#e_id_program').select2({'width': '-webkit-fill-available'});
