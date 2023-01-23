@@ -96,6 +96,39 @@ class Pegawai extends CI_Controller {
 			
     }
     	function save_temp_pengadaan(){
+					// print_r($_POST);
+      $config['file_type']           = $_FILES['image']['type'];
+			$config['file_name']           = $_FILES['image']['name'] ;
+			$config['upload_path']          = './uploadfile/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			
+			
+			
+			$apaini = $this->load->library('upload', $config);
+			
+			if (!$this->upload->do_upload('image'))
+			{
+				// echo"<br/>";
+				// var_dump("kalau kosong/error");
+				// var_dump('no');
+					$error = array('error' => $this->upload->display_errors());
+					var_dump($error);
+					// $this->load->view('upload_form', $error);
+			}
+			else
+			{
+				// echo"<br/>";
+				// var_dump("kalau ada");
+				
+					$data = array('upload_data' => $this->upload->data());
+					var_dump($data);
+					
+					// $this->load->view('upload_success', $data);
+			}
+			// die;
 		
         $data=$this->M_T_Pengadaan->save();
         echo json_encode($data);
@@ -111,10 +144,73 @@ class Pegawai extends CI_Controller {
 			
     }
     function update_temp_pengadaan(){
+				$config['file_type']           = $_FILES['image']['type'];
+				$config['file_name']           = $_FILES['image']['name'] ;
+				$config['upload_path']          = './uploadfile/';
+				$config['allowed_types']        = 'gif|jpg|png|pdf';
+				// $config['max_size']             = 100;
+				// $config['max_width']            = 1024;
+				// $config['max_height']           = 768;
+				
+				
+				
+				$apaini = $this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('image'))
+				{
+					// echo"<br/>";
+					// var_dump("kalau kosong/error");
+					// var_dump('no');
+						$error = array('error' => $this->upload->display_errors());
+						var_dump($error);
+						// $this->load->view('upload_form', $error);
+				}
+				else
+				{
+					// echo"<br/>";
+					// var_dump("kalau ada");
+					
+						$data = array('upload_data' => $this->upload->data());
+						var_dump($data);
+						
+						// $this->load->view('upload_success', $data);
+				}
         $data=$this->M_T_Pengadaan->update_temp();
         echo json_encode($data);
     }
   	function update_pengadaan(){
+				$config['file_type']           = $_FILES['edit_image']['type'];
+				$config['file_name']           = $_FILES['edit_image']['name'] ;
+				$config['upload_path']          = './uploadfile/';
+				$config['allowed_types']        = 'gif|jpg|png|pdf';
+				// $config['max_size']             = 100;
+				// $config['max_width']            = 1024;
+				// $config['max_height']           = 768;
+				
+				
+				
+				$apaini = $this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('edit_image'))
+				{
+					// echo"<br/>";
+					// var_dump("kalau kosong/error");
+					// var_dump('no');
+						$error = array('error' => $this->upload->display_errors());
+						var_dump($error);
+						// $this->load->view('upload_form', $error);
+				}
+				else
+				{
+					// echo"<br/>";
+					// var_dump("kalau ada");
+					
+						$data = array('upload_data' => $this->upload->data());
+						var_dump($data);
+						
+						// $this->load->view('upload_success', $data);
+				}
+				
         $data=$this->M_D_Pengadaan->update_pengadaan();
         echo json_encode($data);
 		}
@@ -161,7 +257,38 @@ class Pegawai extends CI_Controller {
 			
     }
 			function save_detail_pengadaan(){
-		
+					$config['file_type']           = $_FILES['edit_image']['type'];
+				$config['file_name']           = $_FILES['edit_image']['name'] ;
+				$config['upload_path']          = './uploadfile/';
+				$config['allowed_types']        = 'gif|jpg|png|pdf';
+				// $config['max_size']             = 100;
+				// $config['max_width']            = 1024;
+				// $config['max_height']           = 768;
+				
+				
+				
+				$apaini = $this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('edit_image'))
+				{
+					// echo"<br/>";
+					// var_dump("kalau kosong/error");
+					// var_dump('no');
+						$error = array('error' => $this->upload->display_errors());
+						var_dump($error);
+						// $this->load->view('upload_form', $error);
+				}
+				else
+				{
+					// echo"<br/>";
+					// var_dump("kalau ada");
+					
+						$data = array('upload_data' => $this->upload->data());
+						var_dump($data);
+						
+						// $this->load->view('upload_success', $data);
+				}
+				
         $data=$this->M_D_Pengadaan->save_pengadaan_from_edit();
         echo json_encode($data);
 			}

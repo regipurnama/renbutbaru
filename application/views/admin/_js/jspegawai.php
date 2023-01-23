@@ -407,28 +407,9 @@
          //Save barang temp
             $('#form-tambah-barang').submit(function() {
                 $('#btn_save_brg_temp_pengadaan').attr('disabled','disabled');
-            var harga_satuan  = $('#hs').val();
-            var e_harga_satuan  = $('#ehs').val();
-            harga_satuan = harga_satuan.replace(/\./g,'');
-            e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-            var data =$('#form-tambah-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-            //data.push(hs);
-
-
-            //alert(data);
-            //console.log(data);
-                    //kondisi add
-            // var tgl_usulan = $('#tgl_usulan').val();
-             //var nama_barang = $('#nama_barang').val();
-            // var kode_barang = $('#kode_barang').val();
-            // var unit_kerja = $('#unit_kerja').val();
-            //var harga_satuan  = $('#harga_satuan').val();
-            //harga_satuan = harga_satuan.replace(/\./g,'');
-            //array_push(data,harga_satuan);
-            // var satuan  = $('#satuan').val();
-            // var keterangan  = $('#keterangan').val();
-            console.log(hs);
-       
+                var form = $('#form-tambah-barang')[0];
+                var formData = new FormData(form);
+            
             if(edit){
                 var id_temp  = $('#id_temp').val();
                 //edit
@@ -436,9 +417,10 @@
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Pegawai/update_temp_pengadaan')?>",
-                    //dataType : "JSON",
-                    data : data,
-                    success: function(response){
+                     data :formData,
+                    processData: false,
+                    contentType: false,
+                   success: function(response){
                         //console.log('masuk');
                         
                         $('[name="id_program"]').val(0).trigger('change');
@@ -479,8 +461,10 @@
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Pegawai/save_temp_pengadaan')?>",
-                    data : data,
-                    success: function(response){
+                     data :formData,
+                    processData: false,
+                    contentType: false,
+                   success: function(response){
                        //console.log(response.data);
                         // $('[name="id_program"]').val(0).trigger('change');
                         // $('[name="id_kegiatan"]').val(0).trigger('change');
@@ -519,22 +503,9 @@
             //kondisi edit
             $('#form-edit-barang').submit(function() {
                 $('#e_btn_save_brg_pengadaan').attr('disabled','disabled');
-                var harga_satuan  = $('#hs').val();
-                var e_harga_satuan  = $('#ehs').val();
-                harga_satuan = harga_satuan.replace(/\./g,'');
-                e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-                var data =$('#form-edit-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-     
-                    //kondisi add
-                // var tgl_usulan = $('#tgl_usulan').val();
-                // var nama_barang = $('#e_nama_barang').val();
-                // var unit_kerja = $('#e_unit_kerja').val();
-                // var kuantitas  = $('#e_kuantitas').val();
-                // var satuan  = $('#e_satuan').val();
-                // var keterangan  = $('#e_keterangan').val();
-                // var id_pengadaan  = $('#e_id_pengadaan').val();
-                //console.log('e);
-                //console.log(edit);
+                 var form = $('#form-edit-barang')[0];
+                var formData = new FormData(form);
+        
                 if(edit){
                     var id_detail  = $('#e_id_detail').val();
                     //edit
@@ -542,8 +513,11 @@
                     $.ajax({
                         type : "POST",
                         url  : "<?php echo base_url('Pegawai/update_pengadaan')?>",
-                        dataType : "JSON",
-                        data : data,
+                        data :formData,
+                        processData: false,
+                        contentType: false,
+                        
+                       
                         success: function(response){
                       //      console.log(response);
                             $('[name="e_id_program"]').val(0).trigger('change');
@@ -582,15 +556,11 @@
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Pegawai/save_detail_pengadaan')?>",
-                    dataType : "JSON",
-                    data : data,
-                    // data : {nama_barang:nama_barang ,
-                    //         tgl_usulan:tgl_usulan , 
-                    //         unit_kerja:unit_kerja, 
-                    //         kuantitas:kuantitas,
-                    //         satuan:satuan,
-                    //         id_pengadaan:id_pengadaan,
-                    //         keterangan:keterangan},
+                    data :formData,
+                    processData: false,
+                    contentType: false,
+                        
+                       
                     success: function(response){
                         //console.log('masuk');
                             $('[name="e_id_program"]').val(0).trigger('change');
