@@ -8,7 +8,8 @@
     var edit="";
     var idpermohonan="";
     var rupiah = document.getElementById("hs");
-    var e_rupiah = document.getElementById("ehs");
+    var e_rupiah = document.getElementById("e_hs");
+
 
     $(document).ready(function(){
         rupiah.addEventListener("keyup", function(e) {
@@ -27,6 +28,10 @@
         $('#sumber_dana').select2({'width': '-webkit-fill-available'});
         $('#prioritas').select2({'width': '-webkit-fill-available'});
 
+              
+        $('#id_tipe_barang').select2({'width': '-webkit-fill-available'});
+        $('#id_jenis_barang').select2({'width': '-webkit-fill-available'});
+        
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         $('#p_unit_kerja').html((unit_kerja).toUpperCase());
@@ -34,6 +39,9 @@
         
         ambilprogram();
         ambiluraian();
+
+        ambiltipebarang();
+        ambiljenisbarang();
         
             
         
@@ -1145,6 +1153,75 @@
                         });        
                         }
          });
+        }
+         function ambiltipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_tipe_barang').append(
+                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
+                                );
+                        });        
+                        }
+            });
+       }
+        
+       function ambiljenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_jenis_barang').append(
+                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
+                                );
+                        });        
+                        }
+            });
+       }
+
+        function ambiletipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_tipe_barang').append(
+                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
+                                );
+                        });        
+                        }
+            });
+       
+        }
+
+        function ambilejenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_jenis_barang').append(
+                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
+                                );
+                        });        
+                        }
+            });
+       
         }
         
         /* Fungsi formatRupiah */

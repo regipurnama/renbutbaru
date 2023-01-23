@@ -84,12 +84,13 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Pegawai</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
-                      <!-- <span aria-hidden="true">&times;</span> -->
-                      Batal
-                      </button>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
-                    </div>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                       <i class="fa fa-times"></i>
+                      </button>
+                  
+                  </div>
                   </div>
                   <div class="modal-body">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
@@ -104,7 +105,7 @@
                             </table>
                           </div>
                   </div>
-                        <form id="form-tambah-barang" method="POST">            
+                        <form id="form-tambah-barang" method="POST"  enctype="multipart/form-data">            
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
@@ -139,6 +140,15 @@
                                 <label class="col-md-12 col-form-label mini-text">Nama Rincian Belanja Pegawai</label>
                                 <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Rincian Belanja Pegawai" required>
                               </div>
+                               <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" required></select>
+                              </div>
+                             
                             
                               
                               <div class="col-md-4">
@@ -148,6 +158,11 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                               <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="file" name="image" id="image">
+                                <input type="hidden" name="e_image" id="e_image">
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -228,11 +243,11 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Pegawai</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                       <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                      TUTUP (X)
+                       <i class="fa fa-times"></i>
                       </button>
-                      <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
+                   <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
                     </div>
                   </div>
                   <div class="modal-body">
@@ -253,7 +268,7 @@
                             </table>
                           </div>
                   </div>
-                  <form id="form-edit-barang">           
+                  <form id="form-edit-barang" Method="POST"  enctype="multipart/form-data">           
                         <div class="modal-body" style="padding: 0.3rem !important;">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <div class="col-md-12">
@@ -294,6 +309,14 @@
                                 <label class="col-md-12 col-form-label mini-text">Nama Barang</label>
                                 <input type="text" name="e_nama_barang" id="e_nama_barang" class="form-control" placeholder="Nama Barang" required>
                               </div>
+                                 <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" required></select>
+                              </div>
                              
                              
                               <div class="col-md-4">
@@ -303,6 +326,12 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="e_satuan" id="e_satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="hidden" name="e_image" id="e_image" class="form-control">
+                                
+                                <input type="file" name="edit_image" id="edit_image" class="form-control" >
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -384,12 +413,12 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Pengadaan</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                      Batal
+                       <i class="fa fa-times"></i>
                       </button>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
-                    </div>
+                      </div>
                   </div>
                   <div class="modal-body">
                           <div class="form-group row">

@@ -322,9 +322,9 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
-                                <input type="hidden" name="e_image" id="e_image" class="form-control" required>
+                                <input type="hidden" name="e_image" id="e_image" class="form-control">
                                 
-                                <input type="file" name="edit_image" id="edit_image" class="form-control"  required>
+                                <input type="file" name="edit_image" id="edit_image" class="form-control" >
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
