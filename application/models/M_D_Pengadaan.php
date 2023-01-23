@@ -201,8 +201,8 @@ class M_D_Pengadaan extends CI_Model {
          $harga_satuan = str_replace(".", "", $post['e_hs']);
         // var_dump($harga_satuan);
         // echo "cekdata";
-        // var_dump($_FILES);
-        // var_dump($post);die;
+        //  var_dump($_FILES);
+        //  var_dump($post);die;
              if($post["e_id_subkegiatan"]==NULL || $post["e_id_subkegiatan"] == 'NULL'){
             $id_subkegiatan = 0; 
         }else {
@@ -229,13 +229,11 @@ class M_D_Pengadaan extends CI_Model {
         $this->spesifikasi = $post["e_spesifikasi"];
         $this->catatan = $post["e_catatan"];
         $this->jenis_belanja = $post["e_jenis_belanja"];
-        $this->jenis_barang = $post["e_jenis_barang"];
-        $this->tipe_barang = $post["e_tipe_barang"];
         $this->total_harga = $harga_satuan * $post["e_kuantitas"];
         // $this->total_harga = ($post["harga_satuan"]*$post["kuantitas"])+(($post["harga_satuan"]*$post["kuantitas"])*$ppn)+(($post["harga_satuan"]*$post["kuantitas"])*$inflasi)+(($post["harga_satuan"]*$post["kuantitas"])*$keuntungan) ;
-            $this->jenis_belanja = $post["jenis_belanja"];
-        $this->tipe_barang = $post["id_tipe_barang"];
-        $this->jenis_barang = $post["id_jenis_barang"];
+            // $this->jenis_belanja = $post["jenis_belanja"];
+        $this->tipe_barang = $post["e_id_tipe_barang"];
+        $this->jenis_barang = $post["e_id_jenis_barang"];
         $this->nama_file = $_FILES["edit_image"]["name"];
 
         $this->jml_realisasi = 0;

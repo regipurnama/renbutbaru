@@ -230,7 +230,7 @@ class Modal extends CI_Controller {
 				
 				$apaini = $this->load->library('upload', $config);
 				
-				if (!$this->upload->do_upload('image'))
+				if (!$this->upload->do_upload('edit_image'))
 				{
 					// echo"<br/>";
 					// var_dump("kalau kosong/error");
