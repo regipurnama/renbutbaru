@@ -65,7 +65,8 @@
                             // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
                             //|| id_user ==16
                             // if(role == 'Admin' ){
-                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>';
+                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button>';
+                                // <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>
                             // }else{
                                 // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
 
@@ -110,36 +111,36 @@
                     return "Rp " + commaSeparateNumber(full.total_anggaran);
                 }
               },
-              {'data': 'status_usulan','render' : 
-                        function (data, type, full) {
-                            var x;
-                            if(full.status_usulan == 4){
-                                x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
-                                return x;
-                            }else if(full.status_usulan == 3){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
-                                return x; 
+            //   {'data': 'status_usulan','render' : 
+            //             function (data, type, full) {
+            //                 var x;
+            //                 if(full.status_usulan == 4){
+            //                     x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
+            //                     return x;
+            //                 }else if(full.status_usulan == 3){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
+            //                     return x; 
 
-                            }else if(full.status_usulan == 2){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
-                                return x; 
+            //                 }else if(full.status_usulan == 2){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
+            //                     return x; 
 
-                            }else{
-                                x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
-                                return x; 
+            //                 }else{
+            //                     x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
+            //                     return x; 
 
-                            }
-                        }},
+            //                 }
+            //             }},
               {'data': 'aksi'}
               
              ],
              columnDefs: [ 
                     {  targets: 0, width: '5%' }, 
-                    {  targets: 1, width: '15%' }, 
+                    {  targets: 1, width: '25%' }, 
                     {  targets: 2, width: '15%' },                   
                     {  targets: 3, width: '10%' }, 
                     {  targets: 4, width: '5%' }, 
-                    {  targets: 5, width: '15%' }, 
+                    // {  targets: 5, width: '15%' }, 
                     // {  targets: 6, width: '15%' },
                     // {  targets: 7, width: '15%' } 
                     
@@ -199,7 +200,8 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                     
                      row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -211,6 +213,9 @@
                           'kodering_uraian'       : response.data[x].kodering_uraian,
                           'nama_uraian'       : response.data[x].nama_uraian,
                           'nama_barang'       : response.data[x].nama_barang,
+                          'nama_jenis_barang'       : response.data[x].nama_jenis_barang,
+                          'nama_tipe_barang'       : response.data[x].nama_tipe_barang,
+                          
                           'spesifikasi'       : response.data[x].spesifikasi,
                           'catatan'       : response.data[x].catatan,
                           'sumber_dana'       : response.data[x].sumber_dana,
@@ -219,6 +224,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
+                          'nama_file'              : nama_file,
                           'aksi'              : button,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                           'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -246,9 +252,9 @@
               {'data': 'nomen_uraian'},
               {'data': 'nama_barang','render':
                   function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
+                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
                 }
-              
+                  
               },
               {'data': 'volume', 'render':
                 function (data, type, full) {
@@ -258,7 +264,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+full.prioritas +"<br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
+                    return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -270,6 +276,7 @@
 
               {'data': 'prioritas'},
               {'data': 'catatan'},
+              {'data': 'nama_file'},
               {'data': 'aksi'}
               
              ],
@@ -288,7 +295,8 @@
                     {  targets: 6, width: '20%' },                   
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
+                    {  targets: 10, width: '15%' }, 
+                    {  targets: 11, width: '15%' } 
                     
                    
                 
@@ -695,9 +703,14 @@
                 $('#e_id_uraian').select2({'width': '-webkit-fill-available'});
                 $('#e_sumber_dana').select2({'width': '-webkit-fill-available'});
                 $('#e_prioritas').select2({'width': '-webkit-fill-available'});
+                
+                $('#e_id_tipe_barang').select2({'width': '-webkit-fill-available'});
+                $('#e_id_jenis_barang').select2({'width': '-webkit-fill-available'});
 
                 ambileprogram();
                 ambileuraian();
+                ambiletipebarang();
+                ambilejenisbarang();
 
                 dptable.destroy();
                 dptable = $('#DetailPengadaanTable').DataTable( {
@@ -715,7 +728,8 @@
                         if (hitung>0) {
                             for(var x in response.data){
                             var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                            var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                        
                      row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -727,6 +741,8 @@
                           'kodering_uraian'       : response.data[x].kodering_uraian,
                           'nama_uraian'       : response.data[x].nama_uraian,
                           'nama_barang'       : response.data[x].nama_barang,
+                            'tipe_barang'           : response.data[x].nama_tipe_barang,
+                          'jenis_barang'           : response.data[x].nama_jenis_barang,
                           'spesifikasi'       : response.data[x].spesifikasi,
                           'catatan'       : response.data[x].catatan,
                           'sumber_dana'       : response.data[x].sumber_dana,
@@ -735,6 +751,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
+                          'nama_file'              : download,
                           'aksi'              : button,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                           'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -766,9 +783,10 @@
               {'data': 'nomen_subkegiatan'},
               {'data': 'nomen_uraian'},
               {'data': 'nama_barang','render':
-                  function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
-                }
+                        function (data, type, full) {
+                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
+               }
+            
               
               },
               {'data': 'volume', 'render':
@@ -779,7 +797,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+full.prioritas +"<br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
+                   return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -791,6 +809,7 @@
 
               {'data': 'prioritas'},
               {'data': 'catatan'},
+              {'data': 'nama_file'},
               {'data': 'aksi'}
               
              ],
@@ -809,8 +828,9 @@
                     {  targets: 6, width: '20%' },                   
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
-                    
+                      {  targets: 10, width: '15%' },
+                    {  targets: 11, width: '15%' }
+                   
                    
                 
                  ] ,
@@ -889,7 +909,7 @@
                             $('#id_temp').val(data[0].id_temp_pengadaan);
                             $('#e_catatan').val(data[0].catatan);
                             $('#e_harga_satuan').val(data[0].harga_satuan);
-                            $('#ehs').val(data[0].harga_satuan);
+                            $('#e_hs').val(data[0].harga_satuan);
                             // $('#keterangan').val(data[0].keterangan);
                            
                             $('#e_nama_barang').val(data[0].nama_barang);

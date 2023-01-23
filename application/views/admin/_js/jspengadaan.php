@@ -1179,7 +1179,7 @@
                     $('#id_temp').val(data[0].id_temp_pengadaan);
                             $('#e_catatan').val(data[0].catatan);
                             $('#e_harga_satuan').val(data[0].harga_satuan);
-                            $('#ehs').val(data[0].harga_satuan);
+                            $('#e_hs').val(data[0].harga_satuan);
                             // $('#keterangan').val(data[0].keterangan);
                             
                             $('#e_nama_barang').val(data[0].nama_barang);

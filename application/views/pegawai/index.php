@@ -64,7 +64,7 @@
                         <!-- <th>Tanggal Usulan</th> -->
                         <th>Jumlah Usulan</th>
                         <th>Total Anggaran</th>
-                        <th>Status Usulan</th>
+                        <!-- <th>Status Usulan</th> -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -218,6 +218,7 @@
                         <th>Total harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -387,6 +388,7 @@
                         <th>Total harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
