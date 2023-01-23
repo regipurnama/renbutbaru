@@ -9,7 +9,7 @@
     var edit="";
     var idpermohonan="";
     var rupiah = document.getElementById("hs");
-    var e_rupiah = document.getElementById("ehs");
+    var e_rupiah = document.getElementById("e_hs");
 
     $(document).ready(function(){
         rupiah.addEventListener("keyup", function(e) {
@@ -28,6 +28,9 @@
         $('#sumber_dana').select2({'width': '-webkit-fill-available'});
         $('#prioritas').select2({'width': '-webkit-fill-available'});
 
+         $('#id_tipe_barang').select2({'width': '-webkit-fill-available'});
+        $('#id_jenis_barang').select2({'width': '-webkit-fill-available'});
+        
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         $('#p_unit_kerja').html((unit_kerja).toUpperCase());
@@ -35,6 +38,8 @@
         
         ambilprogram();
         ambiluraian();
+        ambiltipebarang();
+        ambiljenisbarang();
         
             
         
@@ -59,8 +64,9 @@
                             var link = response.data[x].id_pengadaan;
                             //|| id_user ==16
                             // if(role == 'Admin' ){
-                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>';
-                            // }else{
+                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button>';
+                            // <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>
+                                // }else{
                                 // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
 
                             // }
@@ -106,36 +112,36 @@
                     return "Rp " + commaSeparateNumber(full.total_anggaran);
                 }
               },
-              {'data': 'status_usulan','render' : 
-                        function (data, type, full) {
-                            var x;
-                            if(full.status_usulan == 4){
-                                x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
-                                return x;
-                            }else if(full.status_usulan == 3){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
-                                return x; 
+            //   {'data': 'status_usulan','render' : 
+            //             function (data, type, full) {
+            //                 var x;
+            //                 if(full.status_usulan == 4){
+            //                     x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
+            //                     return x;
+            //                 }else if(full.status_usulan == 3){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
+            //                     return x; 
 
-                            }else if(full.status_usulan == 2){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
-                                return x; 
+            //                 }else if(full.status_usulan == 2){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
+            //                     return x; 
 
-                            }else{
-                                x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
-                                return x; 
+            //                 }else{
+            //                     x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
+            //                     return x; 
 
-                            }
-                        }},
+            //                 }
+            //             }},
               {'data': 'aksi'}
               
              ],
              columnDefs: [ 
                     {  targets: 0, width: '5%' }, 
-                    {  targets: 1, width: '15%' }, 
+                    {  targets: 1, width: '25%' }, 
                     {  targets: 2, width: '15%' },                   
                     {  targets: 3, width: '10%' }, 
-                    {  targets: 4, width: '5%' }, 
-                    {  targets: 5, width: '15%' }, 
+                    {  targets: 4, width: '5%' }
+                    // {  targets: 5, width: '15%' }, 
                     // {  targets: 6, width: '15%' },
                     // {  targets: 7, width: '15%' } 
                     
@@ -196,7 +202,8 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                      
                         row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -208,6 +215,8 @@
                           'kodering_uraian'       : response.data[x].kodering_uraian,
                           'nama_uraian'       : response.data[x].nama_uraian,
                           'nama_barang'       : response.data[x].nama_barang,
+                          'tipe_barang'           : response.data[x].tipe_barang,
+                          'jenis_barang'           : response.data[x].jenis_barang,  
                           'spesifikasi'       : response.data[x].spesifikasi,
                           'catatan'       : response.data[x].catatan,
                           'sumber_dana'       : response.data[x].sumber_dana,
@@ -216,6 +225,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
+                          'nama_file'            : download,
                           'aksi'              : button,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                           'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -242,9 +252,11 @@
               {'data': 'nomen_subkegiatan'},
               {'data': 'nomen_uraian'},
               {'data': 'nama_barang','render':
-                  function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
-                }
+                    function (data, type, full) {
+                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
+               }
+              
+              
               
               },
               {'data': 'volume', 'render':
@@ -255,7 +267,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+full.prioritas +"<br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total (PPH+Inflasi): "+ commaSeparateNumber(full.total_harga) +"</b><p>";
+                    return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -267,7 +279,8 @@
 
               {'data': 'prioritas'},
               {'data': 'catatan'},
-              {'data': 'aksi'}
+             {'data': 'nama_file'},
+             {'data': 'aksi'}
               
              ],
              order: [[0, 'asc'],[1, 'asc'],[2, 'asc'],[3, 'asc']],
@@ -285,8 +298,9 @@
                     {  targets: 6, width: '20%' },                   
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
-                    
+                    {  targets: 10, width: '15%' },
+                    {  targets: 11, width: '15%' } 
+                
                    
                 
                  ] ,
@@ -411,28 +425,9 @@
             $('#form-tambah-barang').submit(function() {
             
             $('#btn_save_brg_temp_pengadaan').attr('disabled','disabled');
-            var harga_satuan  = $('#hs').val();
-            var e_harga_satuan  = $('#ehs').val();
-            harga_satuan = harga_satuan.replace(/\./g,'');
-            e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-            var data =$('#form-tambah-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-            //data.push(hs);
-
-
-            //alert(data);
-            //console.log(data);
-                    //kondisi add
-            // var tgl_usulan = $('#tgl_usulan').val();
-             //var nama_barang = $('#nama_barang').val();
-            // var kode_barang = $('#kode_barang').val();
-            // var unit_kerja = $('#unit_kerja').val();
-            //var harga_satuan  = $('#harga_satuan').val();
-            //harga_satuan = harga_satuan.replace(/\./g,'');
-            //array_push(data,harga_satuan);
-            // var satuan  = $('#satuan').val();
-            // var keterangan  = $('#keterangan').val();
-            //console.log(hs);
-       
+                var form = $('#form-tambah-barang')[0];
+                var formData = new FormData(form);
+         
             if(edit){
                 var id_temp  = $('#id_temp').val();
                 //edit
@@ -441,7 +436,9 @@
                     type : "POST",
                     url  : "<?php echo base_url('Pengadaan/update_temp_pengadaan')?>",
                     //dataType : "JSON",
-                    data : data,
+                    data :formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response){
                         //console.log('masuk');
                         
@@ -483,7 +480,9 @@
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Pengadaan/save_temp_pengadaan')?>",
-                    data : data,
+                    data :formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response){
                        //console.log(response.data);
                         // $('[name="id_program"]').val(0).trigger('change');
@@ -525,22 +524,9 @@
             //kondisi edit
             $('#form-edit-barang').submit(function() {
                 $('#e_btn_save_brg_pengadaan').attr('disabled','disabled');
-                var harga_satuan  = $('#hs').val();
-                var e_harga_satuan  = $('#ehs').val();
-                harga_satuan = harga_satuan.replace(/\./g,'');
-                e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-                var data =$('#form-edit-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-                    //var data = $('#form-edit-barang').serialize();
-                    //kondisi add
-                // var tgl_usulan = $('#tgl_usulan').val();
-                // var nama_barang = $('#e_nama_barang').val();
-                // var unit_kerja = $('#e_unit_kerja').val();
-                // var kuantitas  = $('#e_kuantitas').val();
-                // var satuan  = $('#e_satuan').val();
-                // var keterangan  = $('#e_keterangan').val();
-                // var id_pengadaan  = $('#e_id_pengadaan').val();
-                //console.log('e);
-                //console.log(edit);
+                var form = $('#form-edit-barang')[0];
+                var formData = new FormData(form);
+        
                 if(edit){
                     var id_detail  = $('#e_id_detail').val();
                     //edit
@@ -548,8 +534,10 @@
                     $.ajax({
                         type : "POST",
                         url  : "<?php echo base_url('Pengadaan/update_pengadaan')?>",
-                        dataType : "JSON",
-                        data : data,
+                        data :formData,
+                        processData: false,
+                        contentType: false,
+                     
                         success: function(response){
                       //      console.log(response);
                             $('[name="e_id_program"]').val(0).trigger('change');
@@ -564,7 +552,12 @@
                             $('[name="e_kuantitas"]').val("");
                             $('[name="e_satuan"]').val("");
                             $('[name="e_catatan"]').val("");
-                            $('[name="ehs"]').val("");
+                            $('[name="e_hs"]').val("");
+                            $('[name="edit_image"]').val("");
+                            $('[name="e_image"]').val("");
+                             $('[name="e_id_tipe_barang"]').val(0).trigger('change');
+                            $('[name="e_id_jenis_barang"]').val(0).trigger('change');
+                           
                             $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
                
                             dptable.ajax.reload(null,false);
@@ -589,15 +582,10 @@
                 $.ajax({
                     type : "POST",
                     url  : "<?php echo base_url('Pengadaan/save_detail_pengadaan')?>",
-                    dataType : "JSON",
-                    data : data,
-                    // data : {nama_barang:nama_barang ,
-                    //         tgl_usulan:tgl_usulan , 
-                    //         unit_kerja:unit_kerja, 
-                    //         kuantitas:kuantitas,
-                    //         satuan:satuan,
-                    //         id_pengadaan:id_pengadaan,
-                    //         keterangan:keterangan},
+                    data :formData,
+                    processData: false,
+                    contentType: false,
+                    
                     success: function(response){
                         //console.log('masuk');
                         // $('[name="e_id_program"]').val(0).trigger('change');
@@ -612,7 +600,10 @@
                             $('[name="e_kuantitas"]').val("");
                             $('[name="e_satuan"]').val("");
                             $('[name="e_catatan"]').val("");
-                            $('[name="ehs"]').val("");
+                            $('[name="e_hs"]').val("");
+                             $('[name="e_id_tipe_barang"]').val(0).trigger('change');
+                            $('[name="e_id_jenis_barang"]').val(0).trigger('change');
+                           
                             $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
                
                             
@@ -770,9 +761,14 @@
                 $('#e_id_uraian').select2({'width': '-webkit-fill-available'});
                 $('#e_sumber_dana').select2({'width': '-webkit-fill-available'});
                 $('#e_prioritas').select2({'width': '-webkit-fill-available'});
+                $('#e_id_tipe_barang').select2({'width': '-webkit-fill-available'});
+                $('#e_id_jenis_barang').select2({'width': '-webkit-fill-available'});
 
                 ambileprogram();
                 ambileuraian();
+                ambiletipebarang();
+                ambilejenisbarang();
+
 
                 dptable.destroy();
                 dptable = $('#DetailPengadaanTable').DataTable( {
@@ -793,7 +789,8 @@
                         if (hitung>0) {
                             for(var x in response.data){
                             var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                            var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                        
                             row.push({
                                 'no'                    : i,
                                 'id_pengadaan'          : response.data[x].id_pengadaan,
@@ -806,6 +803,8 @@
                                 'kodering_uraian'  : response.data[x].kodering_uraian,
                                 'nama_uraian'           : response.data[x].nama_uraian,
                                 'nama_barang'           : response.data[x].nama_barang,
+                                'tipe_barang'           : response.data[x].nama_tipe_barang,
+                                'jenis_barang'           : response.data[x].nama_jenis_barang,
                                 'spesifikasi'           : response.data[x].spesifikasi,
                                 'kuantitas'             : response.data[x].kuantitas,   
                                 'satuan'                : response.data[x].satuan,
@@ -816,6 +815,7 @@
                                 'catatan'               : response.data[x].catatan,
                                 'unit_kerja'            : response.data[x].unit_kerja,
                                 'kode_pengadaan'        : response.data[x].kode_pengadaan,
+                                'nama_file'                  : download,
                                 'aksi'                  : button,
                                 'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                                 'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
@@ -857,9 +857,9 @@
             //     }
             // },
               {'data': 'nama_barang','render':
-                  function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi;
-                }
+                   function (data, type, full) {
+                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
+               }
               
               },
               {'data': 'volume', 'render':
@@ -870,7 +870,7 @@
               },
               {'data': 'harga', 'render': 
                 function (data, type, full) {
-                    return "<p>Prioritas : "+ full.prioritas +" <br>Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total : "+ commaSeparateNumber(full.total_harga)+"</b><p>";
+                   return "Sumber Dana : "+full.sumber_dana.toUpperCase()+"<br>Harga Satuan : "+commaSeparateNumber(full.harga_satuan)+"<br><b>Harga Total: "+ commaSeparateNumber(full.total_harga) +"</b><p>";
 
                 }
             },
@@ -880,7 +880,8 @@
                 }  
               },
               {'data': 'prioritas'},
-              {'data': 'catatan'},
+              {'data': 'catatan'},              
+              {'data': 'nama_file'},
               {'data': 'aksi'}
               
              ],  
@@ -899,7 +900,8 @@
                     {  targets: 6, width: '20%' },                   
                     {  targets: 8, width: '5%' }, 
                     {  targets: 9, width: '15%' }, 
-                    {  targets: 10, width: '15%' } 
+                    {  targets: 10, width: '15%' },
+                       {  targets: 11, width: '15%' } 
                     
                     ] ,
                 footerCallback: function ( row, data, start, end, display ) {
@@ -1162,6 +1164,8 @@
                     $('#e_id_program').append('<option value="'+data[0].id_program+'" selected>'+data[0].kodering_program+'-'+data[0].nama_program+'</option>');
                     $('#e_id_kegiatan').append('<option value="'+data[0].id_kegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_kegiatan+'</option>');
                     $('#e_id_subkegiatan').append('<option value="'+data[0].id_subkegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_subkegiatan+'</option>');
+                     $('#e_id_tipe_barang').append('<option value="'+data[0].id_tipe_barang+'" selected>'+data[0].nama_tipe_barang+'</option>');
+                    $('#e_id_jenis_barang').append('<option value="'+data[0].id_jenis_barang+'" selected>'+data[0].nama_jenis_barang+'</option>');
                     
                     
                     $('#e_id_uraian').val(data[0].id_uraian).trigger('change');
@@ -1419,6 +1423,77 @@
                         }
          });
         }
+         function ambiltipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_tipe_barang').append(
+                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
+                                );
+                        });        
+                        }
+            });
+       }
+        
+       function ambiljenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#id_jenis_barang').append(
+                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
+                                );
+                        });        
+                        }
+            });
+       }
+
+        function ambiletipebarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_tipe_barang').append(
+                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
+                                );
+                        });        
+                        }
+            });
+       
+        }
+
+        function ambilejenisbarang(){
+            $.ajax ({
+                    // type: 'POST',
+                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#e_id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
+                        
+                        $.each(response.data, function(key,value){
+                                $('#e_id_jenis_barang').append(
+                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
+                                );
+                        });        
+                        }
+            });
+       
+        }
+       
+
         
         
         

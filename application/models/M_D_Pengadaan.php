@@ -14,7 +14,7 @@ class M_D_Pengadaan extends CI_Model {
                 LEFT JOIN Program on program.id_program = Kegiatan.id_program 
                 LEFT JOIN Uraian on Uraian.id_uraian = b.id_uraian 
                 LEFT JOIN users on a.id_user = users.id_user
-                  LEFT JOIN jenis_barang on b.jenis_barang = jenis_barang.id_jenis_barang
+                LEFT JOIN jenis_barang on b.jenis_barang = jenis_barang.id_jenis_barang
                 LEFT JOIN tipe_barang on b.tipe_barang = tipe_barang.id_tipe_barang
 
                 where a.id_pengadaan = ".$id."";
@@ -63,7 +63,7 @@ class M_D_Pengadaan extends CI_Model {
     {
         //$post = $this->input->post();
         $post = $this->input->post();
-        //  var_dump($post);die;
+        //   var_dump($post);die;
          $harga_satuan = str_replace(".", "", $post['e_hs']);
         // var_dump($harga_satuan);
         // echo "cekdata";
@@ -97,9 +97,9 @@ class M_D_Pengadaan extends CI_Model {
          $this->prioritas = $post["e_prioritas"];
          $this->total_harga = $harga_satuan * $post["e_kuantitas"];
         //  $this->total_harga = ($post["e_harga_satuan"]*$post["e_kuantitas"])+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$ppn)+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$inflasi)+(($post["e_harga_satuan"]*$post["e_kuantitas"])*$keuntungan) ;
-         $this->jenis_belanja = $post["jenis_belanja"];
-        $this->tipe_barang = $post["id_tipe_barang"];
-        $this->jenis_barang = $post["id_jenis_barang"];
+         $this->jenis_belanja = $post["e_jenis_belanja"];
+        $this->tipe_barang = $post["e_id_tipe_barang"];
+        $this->jenis_barang = $post["e_id_jenis_barang"];
         $this->nama_file = $_FILES["edit_image"]["name"];
 
         $this->jml_realisasi = 0;

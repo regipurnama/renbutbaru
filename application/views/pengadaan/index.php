@@ -63,7 +63,7 @@
                         <!-- <th>Tanggal Usulan</th> -->
                         <th>Jumlah Usulan</th>
                         <th>Total Anggaran</th>
-                        <th>Status Usulan</th>
+                        <!-- <th>Status Usulan</th> -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -133,12 +133,13 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
-                      <!-- <span aria-hidden="true">&times;</span> -->
-                      Batal
-                      </button>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
-                    </div>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                       <i class="fa fa-times"></i>
+                      </button>
+                    
+                   </div>
                   </div>
                   <div class="modal-body">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
@@ -153,7 +154,7 @@
                             </table>
                           </div>
                   </div>
-                        <form id="form-tambah-barang" method="POST">            
+                        <form id="form-tambah-barang" method="POST" enctype="multipart/form-data">            
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
@@ -189,6 +190,14 @@
                                 <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang / Jasa" required>
                               </div>
                               
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" required></select>
+                              </div>
                             
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
@@ -197,6 +206,11 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                                <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="file" name="image" id="image">
+                                <input type="hidden" name="e_image" id="e_image">
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
@@ -250,6 +264,7 @@
                         <th>Total harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -334,10 +349,11 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                      TUTUP (X)
+                       <i class="fa fa-times"></i>
                       </button>
+                  
                       <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
                     </div>
                   </div>
@@ -359,7 +375,7 @@
                             </table>
                           </div>
                   </div>
-                  <form id="form-edit-barang">           
+                  <form id="form-edit-barang" method="POST" enctype="multipart/form-data">           
                         <div class="modal-body" style="padding: 0.3rem !important;">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <div class="col-md-12">
@@ -401,12 +417,27 @@
                                 <input type="text" name="e_nama_barang" id="e_nama_barang" class="form-control" placeholder="Nama Barang / Jasa" required>
                               </div>
                               <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
+                                <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
+                                <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" required></select>
+                              </div>
+                              <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
                                 <input type="number" name="e_kuantitas" id="e_kuantitas" class="form-control" placeholder="Kuantitas" required>
                               </div>
+                               
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="e_satuan" id="e_satuan" class="form-control" placeholder="Satuan" required>
+                              </div>
+                               <div class="col-md-4">
+                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <input type="hidden" name="e_image" id="e_image" class="form-control" required>
+                                
+                                <input type="file" name="edit_image" id="edit_image" class="form-control"  required>
                               </div>
 
                              
@@ -422,7 +453,7 @@
                               </div>
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Harga Satuan</label>
-                                <input type="text" name="ehs" id="ehs" class="form-control" placeholder="Harga Satuan" required>
+                                <input type="text" name="e_hs" id="e_hs" class="form-control" placeholder="Harga Satuan" required>
                               </div>
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Spesifikasi</label>
@@ -464,6 +495,7 @@
                         <th>Total Harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
+                        <th>File Pembanding</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>

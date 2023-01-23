@@ -64,7 +64,8 @@
                             // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
                             //  || id_user ==16
                             // if(role == 'Admin'){
-                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>';
+                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button>';
+                                //  <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>';
                             // }else{
                                 // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
 
@@ -73,7 +74,8 @@
                         }else if(response.data[x].status == 2){
                             button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_info" class="btn btn-info btn-xs btn-flat" title="Info"><i class="fas fa-info-circle"></i></button>';
                             if(role=='Admin'){
-                                button +='&nbsp<button onClick="BukaPersetujuan('+response.data[x].id_pengadaan+')" name="btn_persetujuan" class="btn btn-info btn-xs btn-flat" title="Halaman Persetujuan"><i class="fas fa-tasks"></i></button>';
+                                //  button +='&nbsp<button onClick="BukaPersetujuan('+response.data[x].id_pengadaan+')" name="btn_persetujuan" class="btn btn-info btn-xs btn-flat" title="Halaman Persetujuan"><i class="fas fa-tasks"></i></button>';
+                                 button +='';
                             }   
                         }
                         row.push({
@@ -83,7 +85,7 @@
                           'tanggal_usulan'    : response.data[x].tgl_usulan,
                           'jumlah_usulan'    : response.data[x].jumlah_usulan,
                           'total_anggaran'    : response.data[x].total_anggaran,
-                          'status_usulan'     : response.data[x].status,
+                        //   'status_usulan'     : response.data[x].status,
                           'aksi'              : button
                         });
                         i = i + 1;
@@ -108,36 +110,36 @@
                     return "Rp " + commaSeparateNumber(full.total_anggaran);
                 }
               },
-              {'data': 'status_usulan','render' : 
-                function (data, type, full) {
-                            var x;
-                            if(full.status_usulan == 4){
-                                x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
-                                return x;
-                            }else if(full.status_usulan == 3){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
-                                return x; 
+            //   {'data': 'status_usulan','render' : 
+            //     function (data, type, full) {
+            //                 var x;
+            //                 if(full.status_usulan == 4){
+            //                     x = "<span class='badge badge-dark'>Tidak Diakomodir</span>";
+            //                     return x;
+            //                 }else if(full.status_usulan == 3){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke Perencanaan</span>";
+            //                     return x; 
 
-                            }else if(full.status_usulan == 2){
-                                x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
-                                return x; 
+            //                 }else if(full.status_usulan == 2){
+            //                     x = "<span class='badge badge-info'>Sudah Dikirim ke RTP</span>";
+            //                     return x; 
 
-                            }else{
-                                x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
-                                return x; 
+            //                 }else{
+            //                     x = "<span class='badge badge-warning'>Usulan Belum Valid</span>";
+            //                     return x; 
 
-                            }
-                        }},
+            //                 }
+            //             }},
               {'data': 'aksi'}
               
              ],
              columnDefs: [ 
                     {  targets: 0, width: '5%' }, 
-                    {  targets: 1, width: '15%' }, 
+                    {  targets: 1, width: '25%' }, 
                     {  targets: 2, width: '15%' },                   
                     {  targets: 3, width: '10%' }, 
                     {  targets: 4, width: '5%' }, 
-                    {  targets: 5, width: '15%' }, 
+                    // {  targets: 5, width: '15%' }, 
                     // {  targets: 6, width: '15%' },
                     // {  targets: 7, width: '15%' } 
              
@@ -782,8 +784,8 @@
                                 'kodering_uraian'  : response.data[x].kodering_uraian,
                                 'nama_uraian'           : response.data[x].nama_uraian,
                                 'nama_barang'           : response.data[x].nama_barang,
-                                'tipe_barang'           : response.data[x].tipe_barang,
-                                'jenis_barang'           : response.data[x].jenis_barang,
+                                'tipe_barang'           : response.data[x].nama_tipe_barang,
+                                'jenis_barang'           : response.data[x].nama_jenis_barang,
                                 'spesifikasi'           : response.data[x].spesifikasi,
                                 'kuantitas'             : response.data[x].kuantitas,   
                                 'satuan'                : response.data[x].satuan,
@@ -837,7 +839,7 @@
             // },
               {'data': 'nama_barang','render':
                   function (data, type, full) {
-                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
+                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
                }
               
               },

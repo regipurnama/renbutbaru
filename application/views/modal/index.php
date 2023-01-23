@@ -63,7 +63,7 @@
                         <!-- <th>Tanggal Usulan</th> -->
                         <th>Jumlah Usulan</th>
                         <th>Total Anggaran</th>
-                        <th>Status Usulan</th>
+                        <!-- <th>Status Usulan</th> -->
                         <th>Aksi</th>
                     </tr>
                 </thead>
