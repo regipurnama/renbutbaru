@@ -21,8 +21,8 @@ class Pengadaan extends CI_Controller {
   public function __construct(){
 		parent::__construct();
 	   	$this->load->helper('url', 'form');	   	
-		$this->load->database();
-		$db2 = $this->load->database('database_kedua', TRUE);
+		// $this->load->database();
+		// $db2 = $this->load->database('database_kedua', TRUE);
 		$this->load->model('M_User');
 
 		$this->load->library('session');

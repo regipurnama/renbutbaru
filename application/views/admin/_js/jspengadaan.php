@@ -202,8 +202,13 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
-                      
+                        if(!!response.data[x].nama_file){
+                                var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+
+                            }else{
+                                var download ='<span class="badge badge-dark">Tidak ada File Pembanding</span>';
+
+                            }
                         row.push({
                           'no'                : i,
                           'kodering_program'       : response.data[x].kodering_program,
@@ -789,7 +794,13 @@
                         if (hitung>0) {
                             for(var x in response.data){
                             var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-                            var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                            if(!!response.data[x].nama_file){
+                                var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+
+                            }else{
+                                var download ='<span class="badge badge-dark">Tidak ada File Pembanding</span>';
+
+                            }
                         
                             row.push({
                                 'no'                    : i,
@@ -879,7 +890,17 @@
                         return full.total_harga;
                 }  
               },
-              {'data': 'prioritas'},
+              {'data': 'prioritas','render': 
+                function (data, type, full) {
+                        if(full.prioritas == 'tinggi'){
+                            return "<span class='badge badge-danger'>"+full.prioritas+"</span>";
+                        }else if(full.prioritas == 'sedang'){
+                            return "<span class='badge badge-warning'>"+full.prioritas+"</span>";
+                        }else{
+                            return "<span class='badge badge-info'>"+full.prioritas+"</span>";                           
+                        }
+                }  
+              },
               {'data': 'catatan'},              
               {'data': 'nama_file'},
               {'data': 'aksi'}
