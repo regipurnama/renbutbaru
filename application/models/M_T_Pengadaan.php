@@ -75,7 +75,7 @@ class M_T_Pengadaan extends CI_Model {
         return $this->db->get()->result();
     }
     
-    public function save()
+    public function save($name)
     {
         // var_dump($id);die;
         $post = $this->input->post();
@@ -115,7 +115,7 @@ class M_T_Pengadaan extends CI_Model {
         $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["id_tipe_barang"];
         $this->jenis_barang = $post["id_jenis_barang"];
-        $this->nama_file = $_FILES["image"]["name"];
+        $this->nama_file = $name;
 
         
         $this->session_id = uniqid();
@@ -123,7 +123,7 @@ class M_T_Pengadaan extends CI_Model {
         // //$this->datetime = $date->format('Y-m-d H:i:s');
         $this->db->insert($this->_table, $this);
     }
-    public function update_temp()
+    public function update_temp($name)
     {
         // var_dump($id);die;
         $post = $this->input->post();
@@ -159,7 +159,7 @@ class M_T_Pengadaan extends CI_Model {
         $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["id_tipe_barang"];
         $this->jenis_barang = $post["id_jenis_barang"];
-        $this->nama_file = $_FILES["image"]["name"];
+        $this->nama_file = $name;
 
          $this->nama_barang = $post["nama_barang"];
          $this->kuantitas = $post["kuantitas"];

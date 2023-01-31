@@ -59,8 +59,9 @@ class M_D_Pengadaan extends CI_Model {
         // return $this->db->get($this->_table)->result();    
         
     }
-    public function update_pengadaan()
+    public function update_pengadaan($name)
     {
+        
         //$post = $this->input->post();
         $post = $this->input->post();
         //   var_dump($post);die;
@@ -100,7 +101,7 @@ class M_D_Pengadaan extends CI_Model {
          $this->jenis_belanja = $post["e_jenis_belanja"];
         $this->tipe_barang = $post["e_id_tipe_barang"];
         $this->jenis_barang = $post["e_id_jenis_barang"];
-        $this->nama_file = $_FILES["edit_image"]["name"];
+        $this->nama_file = $name;
 
         $this->jml_realisasi = 0;
         $this->status_realisasi = 0;
@@ -192,7 +193,7 @@ class M_D_Pengadaan extends CI_Model {
         return $this->db->delete($this->_table, array("id_detail_pengadaan" => $id));
     }
 
-    public function save_pengadaan_from_edit()
+    public function save_pengadaan_from_edit($name)
     {
         //print_r("masuk gaes");
         
@@ -234,7 +235,7 @@ class M_D_Pengadaan extends CI_Model {
             // $this->jenis_belanja = $post["jenis_belanja"];
         $this->tipe_barang = $post["e_id_tipe_barang"];
         $this->jenis_barang = $post["e_id_jenis_barang"];
-        $this->nama_file = $_FILES["edit_image"]["name"];
+        $this->nama_file = $name;
 
         $this->jml_realisasi = 0;
         $this->status_realisasi = 0;

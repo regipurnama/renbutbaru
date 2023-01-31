@@ -208,7 +208,7 @@
                                 <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
                               </div>
                                 <div class="col-md-4">
-                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <label class="col-md-12 col-form-label mini-text">Upload Dokumen Pendukung (PDF)</label>
                                 <input type="file" name="image" id="image">
                                 <input type="hidden" name="e_image" id="e_image">
                               </div>
@@ -264,7 +264,7 @@
                         <th>Total harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
-                        <th>File Pembanding</th>
+                        <th>Dokumen Pendukung</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -434,7 +434,7 @@
                                 <input type="text" name="e_satuan" id="e_satuan" class="form-control" placeholder="Satuan" required>
                               </div>
                                <div class="col-md-4">
-                                <label class="col-md-12 col-form-label mini-text">Upload Pembanding</label>
+                                <label class="col-md-12 col-form-label mini-text">Upload Dokumen Pendukung (PDF)</label>
                                 <input type="hidden" name="e_image" id="e_image" class="form-control">
                                 
                                 <input type="file" name="edit_image" id="edit_image" class="form-control" >
@@ -495,7 +495,7 @@
                         <th>Total Harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
-                        <th>File Pembanding</th>
+                        <th>Dokumen Pendukung</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>

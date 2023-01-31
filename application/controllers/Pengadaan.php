@@ -107,13 +107,28 @@ class Pengadaan extends CI_Controller {
 			
     }
     	function save_temp_pengadaan(){
-				 $config['file_type']           = $_FILES['image']['type'];
-			$config['file_name']           = $_FILES['image']['name'] ;
-			$config['upload_path']          = './uploadfile/';
-			$config['allowed_types']        = 'gif|jpg|png|pdf';
-			// $config['max_size']             = 100;
-			// $config['max_width']            = 1024;
-			// $config['max_height']           = 768;
+				// print_r($_POST);
+			if($_FILES['image']['name']!=''){
+				$allowed_ext = array("pdf"); // extension file yang di ijinkan
+				$ext = end(explode('.', $_FILES["image"]["name"])); // upload file ext
+				if(in_array($ext, $allowed_ext))// check untuk validextension extension
+				{
+					$date = strtotime("now");
+					$size = $_FILES["image"]["size"];
+					$ext = explode('/',$_FILES["image"]["type"]);
+					
+					$name = $date.$size.'.'.$ext[1];
+					//  print_r($ext[1]);die;
+					$config['file_type']           = $_FILES['image']['type'];	
+					$config['file_name']           =   $name;
+					$config['upload_path']          = './uploadfile/';
+					$config['allowed_types']        = 'pdf';
+					// $config['max_size']             = 100;
+					// $config['max_width']            = 1024;
+					// $config['max_height']           = 768;
+				}
+	
+			}
 			
 			
 			
@@ -140,7 +155,7 @@ class Pengadaan extends CI_Controller {
 			}
 		
 		
-        $data=$this->M_T_Pengadaan->save();
+        $data=$this->M_T_Pengadaan->save($name);
         echo json_encode($data);
     }
     	function get_id_temp(){
@@ -154,14 +169,28 @@ class Pengadaan extends CI_Controller {
 			
     }
     function update_temp_pengadaan(){
-				$config['file_type']           = $_FILES['image']['type'];
-				$config['file_name']           = $_FILES['image']['name'] ;
-				$config['upload_path']          = './uploadfile/';
-				$config['allowed_types']        = 'gif|jpg|png|pdf';
-				// $config['max_size']             = 100;
-				// $config['max_width']            = 1024;
-				// $config['max_height']           = 768;
-				
+				// print_r($_POST);
+			if($_FILES['image']['name']!=''){
+				$allowed_ext = array("pdf"); // extension file yang di ijinkan
+				$ext = end(explode('.', $_FILES["image"]["name"])); // upload file ext
+				if(in_array($ext, $allowed_ext))// check untuk validextension extension
+				{
+					$date = strtotime("now");
+					$size = $_FILES["image"]["size"];
+					$ext = explode('/',$_FILES["image"]["type"]);
+					
+					$name = $date.$size.'.'.$ext[1];
+					//  print_r($ext[1]);die;
+					$config['file_type']           = $_FILES['image']['type'];	
+					$config['file_name']           =   $name;
+					$config['upload_path']          = './uploadfile/';
+					$config['allowed_types']        = 'pdf';
+					// $config['max_size']             = 100;
+					// $config['max_width']            = 1024;
+					// $config['max_height']           = 768;
+				}
+	
+			}
 				
 				
 				$apaini = $this->load->library('upload', $config);
@@ -185,17 +214,31 @@ class Pengadaan extends CI_Controller {
 						
 						// $this->load->view('upload_success', $data);
 				}
-        $data=$this->M_T_Pengadaan->update_temp();
+        $data=$this->M_T_Pengadaan->update_temp($name);
         echo json_encode($data);
     }
   	function update_pengadaan(){
-				$config['file_type']           = $_FILES['edit_image']['type'];
-				$config['file_name']           = $_FILES['edit_image']['name'] ;
+		if($_FILES['edit_image']['name']!=''){
+			$allowed_ext = array("pdf"); // extension file yang di ijinkan
+			$ext = end(explode('.', $_FILES["edit_image"]["name"])); // upload file ext
+			if(in_array($ext, $allowed_ext))// check untuk validextension extension
+			{
+				$date = strtotime("now");
+				$size = $_FILES["edit_image"]["size"];
+				$ext = explode('/',$_FILES["edit_image"]["type"]);
+				
+				$name = $date.$size.'.'.$ext[1];
+				//  print_r($ext[1]);die;
+				$config['file_type']           = $_FILES['edit_image']['type'];	
+				$config['file_name']           =   $name;
 				$config['upload_path']          = './uploadfile/';
-				$config['allowed_types']        = 'gif|jpg|png|pdf';
+				$config['allowed_types']        = 'pdf';
 				// $config['max_size']             = 100;
 				// $config['max_width']            = 1024;
 				// $config['max_height']           = 768;
+			}
+
+		}
 				
 				
 				
@@ -222,7 +265,7 @@ class Pengadaan extends CI_Controller {
 				}
 				
 				
-        $data=$this->M_D_Pengadaan->update_pengadaan();
+        $data=$this->M_D_Pengadaan->update_pengadaan($name);
         echo json_encode($data);
 		}
 	function save_pengadaan(){
@@ -302,7 +345,7 @@ class Pengadaan extends CI_Controller {
 						// $this->load->view('upload_success', $data);
 				}
 				
-        $data=$this->M_D_Pengadaan->save_pengadaan_from_edit();
+        $data=$this->M_D_Pengadaan->save_pengadaan_from_edit($name);
         echo json_encode($data);
 			}
 			

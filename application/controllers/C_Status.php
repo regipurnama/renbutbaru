@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Modal extends CI_Controller {
+class C_Status extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -98,27 +98,15 @@ class Modal extends CI_Controller {
 			
     }
     	function save_temp_pengadaan(){
-			if($_FILES['image']['name']!=''){
-				$allowed_ext = array("pdf"); // extension file yang di ijinkan
-				$ext = end(explode('.', $_FILES["image"]["name"])); // upload file ext
-				if(in_array($ext, $allowed_ext))// check untuk validextension extension
-				{
-					$date = strtotime("now");
-					$size = $_FILES["image"]["size"];
-					$ext = explode('/',$_FILES["image"]["type"]);
-					
-					$name = $date.$size.'.'.$ext[1];
-					//  print_r($ext[1]);die;
-					$config['file_type']           = $_FILES['image']['type'];	
-					$config['file_name']           =  $name;
-					$config['upload_path']          = './uploadfile/';
-					$config['allowed_types']        = 'pdf';
-					// $config['max_size']             = 100;
-					// $config['max_width']            = 1024;
-					// $config['max_height']           = 768;
-				}
-	
-			}
+	// print_r($_POST);
+      $config['file_type']           = $_FILES['image']['type'];
+			$config['file_name']           = $_FILES['image']['name'] ;
+			$config['upload_path']          = './uploadfile/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			
 			
 			
 			$apaini = $this->load->library('upload', $config);
@@ -143,7 +131,7 @@ class Modal extends CI_Controller {
 					// $this->load->view('upload_success', $data);
 			}
 			// die;
-        $data=$this->M_T_Pengadaan->save($name);
+        $data=$this->M_T_Pengadaan->save();
         echo json_encode($data);
     }
     	function get_id_temp(){
@@ -157,27 +145,14 @@ class Modal extends CI_Controller {
 			
     }
     function update_temp_pengadaan(){
-		if($_FILES['image']['name']!=''){
-			$allowed_ext = array("pdf"); // extension file yang di ijinkan
-			$ext = end(explode('.', $_FILES["image"]["name"])); // upload file ext
-			if(in_array($ext, $allowed_ext))// check untuk validextension extension
-			{
-				$date = strtotime("now");
-				$size = $_FILES["image"]["size"];
-				$ext = explode('/',$_FILES["image"]["type"]);
-				
-				$name = $date.$size.'.'.$ext[1];
-				//  print_r($ext[1]);die;
-				$config['file_type']           = $_FILES['image']['type'];	
-				$config['file_name']           =   $name;
-				$config['upload_path']          = './uploadfile/';
-				$config['allowed_types']        = 'pdf';
-				// $config['max_size']             = 100;
-				// $config['max_width']            = 1024;
-				// $config['max_height']           = 768;
-			}
-
-		}
+			$config['file_type']           = $_FILES['image']['type'];
+			$config['file_name']           = $_FILES['image']['name'] ;
+			$config['upload_path']          = './uploadfile/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
+			
 			
 			
 			$apaini = $this->load->library('upload', $config);
@@ -202,32 +177,17 @@ class Modal extends CI_Controller {
 					// $this->load->view('upload_success', $data);
 			}
 			
-        $data=$this->M_T_Pengadaan->update_temp($name);
+        $data=$this->M_T_Pengadaan->update_temp();
         echo json_encode($data);
     }
   	function update_pengadaan(){
-		if($_FILES['edit_image']['name']!=''){
-			$allowed_ext = array("pdf"); // extension file yang di ijinkan
-			$ext = end(explode('.', $_FILES["edit_image"]["name"])); // upload file ext
-			if(in_array($ext, $allowed_ext))// check untuk validextension extension
-			{
-				$date = strtotime("now");
-				$size = $_FILES["edit_image"]["size"];
-				$ext = explode('/',$_FILES["edit_image"]["type"]);
-				
-				$name = $date.$size.'.'.$ext[1];
-				//  print_r($ext[1]);die;
-				$config['file_type']           = $_FILES['edit_image']['type'];	
-				$config['file_name']           =   $name;
-				$config['upload_path']          = './uploadfile/';
-				$config['allowed_types']        = 'pdf';
-				// $config['max_size']             = 100;
-				// $config['max_width']            = 1024;
-				// $config['max_height']           = 768;
-			}
-
-		}
-			
+			$config['file_type']           = $_FILES['edit_image']['type'];
+			$config['file_name']           = $_FILES['edit_image']['name'] ;
+			$config['upload_path']          = './uploadfile/';
+			$config['allowed_types']        = 'gif|jpg|png|pdf';
+			// $config['max_size']             = 100;
+			// $config['max_width']            = 1024;
+			// $config['max_height']           = 768;
 			
 			
 			
@@ -254,31 +214,17 @@ class Modal extends CI_Controller {
 			}
 			
       
-        $data=$this->M_D_Pengadaan->update_pengadaan($name);
+        $data=$this->M_D_Pengadaan->update_pengadaan();
         echo json_encode($data);
 		}
 		function save_detail_pengadaan(){
-			if($_FILES['edit_image']['name']!=''){
-				$allowed_ext = array("pdf"); // extension file yang di ijinkan
-				$ext = end(explode('.', $_FILES["edit_image"]["name"])); // upload file ext
-				if(in_array($ext, $allowed_ext))// check untuk validextension extension
-				{
-					$date = strtotime("now");
-					$size = $_FILES["edit_image"]["size"];
-					$ext = explode('/',$_FILES["edit_image"]["type"]);
-					
-					$name = $date.$size.'.'.$ext[1];
-					//  print_r($ext[1]);die;
-					$config['file_type']           = $_FILES['edit_image']['type'];	
-					$config['file_name']           =   $name;
-					$config['upload_path']          = './uploadfile/';
-					$config['allowed_types']        = 'pdf';
-					// $config['max_size']             = 100;
-					// $config['max_width']            = 1024;
-					// $config['max_height']           = 768;
-				}
-	
-			}
+			$config['file_type']           = $_FILES['edit_image']['type'];
+				$config['file_name']           = $_FILES['edit_image']['name'] ;
+				$config['upload_path']          = './uploadfile/';
+				$config['allowed_types']        = 'gif|jpg|png|pdf';
+				// $config['max_size']             = 100;
+				// $config['max_width']            = 1024;
+				// $config['max_height']           = 768;
 				
 				
 				
@@ -304,7 +250,7 @@ class Modal extends CI_Controller {
 						// $this->load->view('upload_success', $data);
 				}
 				
-					$data=$this->M_D_Pengadaan->save_pengadaan_from_edit($name);
+					$data=$this->M_D_Pengadaan->save_pengadaan_from_edit();
         echo json_encode($data);
 		}
 
