@@ -74,7 +74,7 @@
         </div>
     </li> 
     <li class="nav-item <?php echo $this->uri->segment(1) == 'Status' ? 'active': '' ?>">
-        <a class="nav-link" href="<?php echo base_url('Rkbu/Status'); ?>">
+        <a class="nav-link" href="<?php echo base_url('Status/Index'); ?>">
         <i class="far fa-file-alt"></i>
             <span>Status Usulan</span>
         </a>

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_Status extends CI_Controller {
+class Status extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,13 +24,14 @@ class C_Status extends CI_Controller {
 		   $this->load->helper(array('form', 'url'));	
 
 		$this->load->database();
-		$this->load->model('M_User');
+		$this->load->model('M_Status');
 
 		$this->load->library('session');
 		// $this->load->library('upload');
 
 		/* MODEL */
 		//temp_pemeliharaan
+		$this->load->model('M_User');
 		$this->load->model('M_T_Pengadaan');
 		//head_pemeliharaan
 		$this->load->model('M_H_Pengadaan');
@@ -58,7 +59,7 @@ class C_Status extends CI_Controller {
       $data['profile'] = $result;
       
       // var_dump($data);
-      $this->load->view('Modal/index',$data);
+      $this->load->view('Status/index',$data);
     
   }
 	function session_check(){
@@ -68,6 +69,19 @@ class C_Status extends CI_Controller {
 		}
   }
   
+	function data_status_pengadaan(){
+				$role =  $this->session->userdata('role');
+				$id_user =  $this->session->userdata('id_user');
+				if($role =='Admin'){
+					$baru=$this->M_Status->data_status_admin();
+				}else{
+					$baru=$this->M_Status->data_status_user($id_user);
+				}
+				$data['data']=$baru;
+				echo json_encode($data);
+				
+    }
+
   function data_temp_pengadaan(){
 				$id_user =  $this->session->userdata('id_user');
 				$jenis_belanja = 2;

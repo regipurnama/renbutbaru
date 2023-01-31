@@ -26,45 +26,41 @@
 <div class="container">
     <!-- Page Heading -->
     <div class="row">
-    
       <div class="col-8">
-      </div>
-      <div class="col-4">
-     
-          <div class="alert alert-info" role="alert" style="text-align: right;">
-            Total Belanja Pegawai : <b><span id='totalpegawai'></span></b>
-          </div>
-      </div>
-           
-        <div class="col-12">
-           
+        </div>
             
+        <div class="col-12">
             <div class="col-md-12">
-                <h3>Belanja Pegawai
+                <h3>Status Usulan
                     <small></small>
                     <?php 
                       $id_user =  $this->session->userdata('id_user');
                       $role =  $this->session->userdata('role'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ ?>
-                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i> Tambah Usulan</a></div>
+                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div>
 
-                      <!-- <?php    // }  ?> -->
-                     <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
+                      <?php 
+                      // }
+                    ?>
+                    <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
                 </h3>
             </div>
             <hr/>
                            
-            <table class="table table-striped" id="PengadaanTable" style="min-width:100% !important;">
+            <table class="table table-striped" id="StatusTable" style="min-width:100% !important;">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <!-- <th>Kode Belanja Pegawai</th> -->
-                        <th>Unit Pengusul</th>
-                        <!-- <th>Tanggal Usulan</th> -->
-                        <th>Jumlah Usulan</th>
+                        <th>Unit Kerja Pengusul</th>
+                        <th>Nama Barang</th>
+                        <th>Volume</th>
+                        <th>Harga Satuan</th>
                         <th>Total Anggaran</th>
-                        <!-- <th>Status Usulan</th> -->
+                        <th>Prioritas</th>
+                        <th>Dokumen Pendukung</th>
+                        <th>Status Usulan</th>
+                        
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -76,21 +72,71 @@
     </div>
          
 </div>
+
+              
+          <!--MODAL KONFIRMASI VALIDASI-->
+         <form id="validasi"> 
+            <div class="modal fade" id="Modal_Validasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kirim Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                       <strong>Apakah Data Usulan sudah benar ? </strong>
+                       <p>Jika Benar, Usulan Anda tidak dapat diedit lagi dan akan dikirim serta diproses oleh Admin.</p>  
+                  </div>
+                  <div class="modal-footer">
+                    <input type="hidden" name="id_pengadaan" id="id_pengadaan" class="form-control">  
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <button type="button" type="submit" id="btn_valid" class="btn btn-primary">Ya</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form> 
+           <!--MODAL KONFIRMASI DELETE di AWAL-->
+         <form id="validasi"> 
+            <div class="modal fade" id="Modal_Validasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kirim Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                       <strong>Apakah Data Usulan sudah benar ? </strong>
+                       <p>Jika Benar, Usulan Anda tidak dapat diedit lagi dan akan dikirim serta diproses oleh Admin.</p>  
+                  </div>
+                  <div class="modal-footer">
+                    <input type="text" name="id_pengadaan" id="id_pengadaan" class="form-control">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                    <button type="button" type="submit" id="btn_valid" class="btn btn-primary">Ya</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form> 
  
         <!--MODAL ADD-->
             <div class="modal fade" id="Modal_Add" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Pegawai</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Barang & Jasa</h5>
                     <div>
                       <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
                        <i class="fa fa-times"></i>
                       </button>
-                  
-                  </div>
+                    
+                   </div>
                   </div>
                   <div class="modal-body">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
@@ -105,11 +151,11 @@
                             </table>
                           </div>
                   </div>
-                        <form id="form-tambah-barang" method="POST"  enctype="multipart/form-data">            
+                        <form id="form-tambah-barang" method="POST" enctype="multipart/form-data">            
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
-                                <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="0" class="form-control" >
+                                <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
                                 <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" ></select> 
@@ -120,7 +166,7 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
-                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control" required></select>
+                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Uraian</label>
@@ -137,10 +183,11 @@
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <label class="col-md-12 col-form-label mini-text">Nama Rincian Belanja Pegawai</label>
-                                <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Rincian Belanja Pegawai" required>
+                                <label class="col-md-12 col-form-label mini-text">Nama Barang / Jasa</label>
+                                <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang / Jasa" required>
                               </div>
-                               <div class="col-md-4">
+                              
+                              <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
                                 <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" required></select>
                               </div>
@@ -148,9 +195,7 @@
                                 <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
                                 <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" required></select>
                               </div>
-                             
                             
-                              
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
                                 <input type="number" name="kuantitas" id="kuantitas" class="form-control" placeholder="Kuantitas" required>
@@ -159,7 +204,7 @@
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
                               </div>
-                               <div class="col-md-4">
+                                <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Dokumen Pendukung (PDF)</label>
                                 <input type="file" name="image" id="image">
                                 <input type="hidden" name="e_image" id="e_image">
@@ -178,17 +223,15 @@
                                 <label class="col-md-12 col-form-label mini-text">Harga Satuan</label>
                                 <input type="text" name="hs" id="hs" class="form-control" placeholder="Harga Satuan" required>
                               </div>
+                              <!-- <div class="col-md-6">
+                                <label class="col-md-12 col-form-label mini-text">Upload Bukti Harga</label>
+                                <input type="file" name="upload_harga" id="upload_harga" class="form-control"  required>
+                              </div> -->                         
+
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Spesifikasi</label>
                                 <input type="text" name="spesifikasi" id="spesifikasi" class="form-control" placeholder="Merk, Ukuran, Rincian, dll" required>
                               </div>
-                              <!-- <div class="col-md-6">
-                                <label class="col-md-12 col-form-label mini-text">Upload Bukti Harga</label>
-                                <input type="file" name="upload_harga" id="upload_harga" class="form-control" >
-                              </div>
-                               -->
-                             
-                              
                               <div class="col-md-10">
                                 <label class="col-md-12 col-form-label mini-text">Catatan</label>
                                 <textarea name="catatan" id="catatan" cols="40" rows="3" class="form-control"></textarea>
@@ -205,9 +248,9 @@
                   <div class="modal-footer">
                   </div>
                   <div class="modal-body">
-                  <table class="table table-striped" id="DetailPengadaantempTable" style="min-width:100% !important;">
+                  <table class="table table-striped" id="DetailPengadaantempTable" style="width:100%" >
                     <thead>
-                       <tr>
+                      <tr>
                         <th>Nama Program</th>
                         <th>Nama Kegiatan</th>
                         <th>Nama Subkegiatan</th>
@@ -224,12 +267,71 @@
                     </thead>
                     <tbody>                      
                     </tbody>
-                     <tfoot>
+                    <tfoot>
                           <tr>
-                              <th colspan="9" style="text-align:right">Total:</th>
+                              <th colspan="5" style="text-align:right">Total:</th>
                               <th></th>
                           </tr>
-                    </tfoot>
+                      </tfoot>
+                    </table>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <!--MODAL ADD-->
+            <div class="modal fade" id="Modal_Persetujuan" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Persetujuan Usulan Belanja Barang & Jasa</h5>
+                    <div>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                      TUTUP (X)
+                      </button>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                          <div class="form-group row" style="margin-bottom: 0px !important;">
+                            
+                          <div class="col-md-12">
+                            <table class="table table-striped">
+                              <tr>
+                                <td class="pad-2">Unit Kerja</td>
+                                <td class="pad-2">:</td>
+                                <th class="pad-2" style="width:80%;"><p id="p_unit_kerja">coba</p></th>
+                              </tr>
+                              <tr>
+                                <td class="pad-2">Kode Pengadaan RKBU</td>
+                                <td class="pad-2">:</td>
+                                <th class="pad-2" style="width:80%;"><p id="p_unit_kerja">coba</p></th>
+                              </tr>
+                            </table>
+                          </div>
+                      </div>                        
+                  </div>
+                
+                  <div class="modal-body">
+                  <table class="table table-striped" id="PersetujuanTable" style="width:100%" >
+                    <thead>
+                      <tr>
+                        <th>Nama Program</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Nama Subkegiatan</th>
+                        <th>Nama Uraian</th>
+                        <th>Nama Barang</th>
+                        <th>Kuantitas</th>
+                        <th>Deskripsi</th>
+                        <th>Hasil Integrasi</th>
+                        <!-- <th>Setujui</th> -->
+                        <th>Jumlah Disetujui</th>
+                        <th>Catatan RTP</th>
+                      </tr>
+                    </thead>
+                    <tbody>                      
+                    </tbody>
                     </table>
                   </div>
                   
@@ -242,13 +344,14 @@
               <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Pegawai</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Barang & Jasa</h5>
                     <div>
-                       <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                       <i class="fas fa-save"></i> Simpan Data
+                       <i class="fa fa-times"></i>
                       </button>
-                   <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
+                  
+                      <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
                     </div>
                   </div>
                   <div class="modal-body">
@@ -269,7 +372,7 @@
                             </table>
                           </div>
                   </div>
-                  <form id="form-edit-barang" Method="POST"  enctype="multipart/form-data">           
+                  <form id="form-edit-barang" method="POST" enctype="multipart/form-data">           
                         <div class="modal-body" style="padding: 0.3rem !important;">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <div class="col-md-12">
@@ -279,7 +382,7 @@
                               </div>
                                 <!-- <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" > -->
                                 <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
-                                <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="0" class="form-control" >
+                                <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
                                 <select name="e_id_program" id="e_id_program" class="form-control js-data-example-basic-multiple" onChange="bukaekegiatan(this);" ></select> 
@@ -307,10 +410,10 @@
                                 </select>
                               </div>
                               <div class="col-md-4">
-                                <label class="col-md-12 col-form-label mini-text">Nama Barang</label>
-                                <input type="text" name="e_nama_barang" id="e_nama_barang" class="form-control" placeholder="Nama Barang" required>
+                                <label class="col-md-12 col-form-label mini-text">Nama Barang / Jasa</label>
+                                <input type="text" name="e_nama_barang" id="e_nama_barang" class="form-control" placeholder="Nama Barang / Jasa" required>
                               </div>
-                                 <div class="col-md-4">
+                              <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
                                 <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" required></select>
                               </div>
@@ -318,22 +421,23 @@
                                 <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
                                 <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" required></select>
                               </div>
-                             
-                             
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
                                 <input type="number" name="e_kuantitas" id="e_kuantitas" class="form-control" placeholder="Kuantitas" required>
                               </div>
+                               
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Satuan</label>
                                 <input type="text" name="e_satuan" id="e_satuan" class="form-control" placeholder="Satuan" required>
                               </div>
-                              <div class="col-md-4">
+                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Upload Dokumen Pendukung (PDF)</label>
                                 <input type="hidden" name="e_image" id="e_image" class="form-control">
                                 
                                 <input type="file" name="edit_image" id="edit_image" class="form-control" >
                               </div>
+
+                             
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
                                 <!-- <input type="text" name="prioritas" id="prioritas" class="form-control" placeholder="Prioritas" required> -->
@@ -344,18 +448,18 @@
                                   <option value="rendah">Rendah</option>
                                 </select>
                               </div>
-                             
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Harga Satuan</label>
                                 <input type="text" name="e_hs" id="e_hs" class="form-control" placeholder="Harga Satuan" required>
                               </div>
                               <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Spesifikasi</label>
-                                <input type="text" name="e_spesifikasi" id="e_spesifikasi" class="form-control" placeholder="Spesifikasi" required>
+                                <input type="text" name="e_spesifikasi" id="e_spesifikasi" class="form-control" placeholder="Merk, Rincian, Dll" required>
                               </div>
+                              
                                <!-- <div class="col-md-6">
                                 <label class="col-md-12 col-form-label mini-text">Upload Bukti Harga</label>
-                                <input type="file" name="e_upload_harga" id="e_upload_harga" class="form-control">
+                                <input type="file" name="e_upload_harga" id="e_upload_harga" class="form-control" >
                               </div> -->
                               
                               <div class="col-md-10">
@@ -377,7 +481,7 @@
                   <div class="modal-body">
                   <table class="table table-striped" id="DetailPengadaanTable" style="min-width:100% !important;">
                     <thead>
-                       <tr>
+                      <tr>
                         <th>Nama Program</th>
                         <th>Nama Kegiatan</th>
                         <th>Nama Subkegiatan</th>
@@ -385,7 +489,7 @@
                         <th>Nama Barang</th>
                         <th>Kuantitas</th>
                         <th>Harga</th>
-                        <th>Total harga</th>
+                        <th>Total Harga</th>
                         <th>Prioritas</th>
                         <th>Catatan</th>
                         <th>Dokumen Pendukung</th>
@@ -394,12 +498,12 @@
                     </thead>
                     <tbody>                      
                     </tbody>
-                     <tfoot>
+                    <tfoot>
                           <tr>
-                              <th colspan="9" style="text-align:right">Total:</th>
+                              <th colspan="5" style="text-align:right">Total:</th>
                               <th></th>
                           </tr>
-                    </tfoot>
+                      </tfoot>
                     </table>
                   </div>
                 </div>
@@ -407,99 +511,8 @@
             </div>
             </form>
         
-        <!--MODAL REALISASI ADMIN-->
-         <form id="form-real">
-            <div class="modal fade" id="Modal_Realisasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Pengadaan</h5>
-                    <div>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
-                      <!-- <span aria-hidden="true">&times;</span> -->
-                       <i class="fa fa-times"></i>
-                      </button>
-                      <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">
-                        <i class="fas fa-save"></i> 
-                         Simpan Usulan</button> 
-                      </div>
-                  </div>
-                  <div class="modal-body">
-                          <div class="form-group row">
-                          <div class="col-md-3">
-                            <label class="col-md-12 col-form-label mini-text" style="margin-left:0px !important;">Kode Permohonan</label>
-                              <input type="text" name="kode_permohonan" id="kode_permohonan" class="form-control" placeholder="Kode Permohonan" readonly="readonly">
-                            </div>
-                            <div class="col-md-3">
-                              <label class="col-md-12 col-form-label mini-text">Tgl Usulan</label>
-                              <input type="date" name="tgl_usulan" id="tgl_usulan" class="form-control" placeholder="Tgl Usulan">
-                            </div>
-                            <div class="col-md-3">
-                              <label class="col-md-12 col-form-label mini-text">Unit Kerja</label>
-                              <input type="text" name="unit_kerja" id="unit_kerja" class="form-control" value="<?php echo $profile->unit_kerja; ?>" readonly>
-                            </div>
-                            
-                        </div>
-                        <div class="form-group row">
-                          <div class="col-md-12">
-                            <hr>
-                              <p class="modal-title" id="exampleModalLabel"><i>Isikan Data Barang</i></p>
-                            <hr>
-                        </div>
-                        </div>
-                          
-                        <div class="form-group row">
-                              <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" >
-                              <input type="hidden" name="id_temp" id="id_temp" class="form-control" >
-                            <div class="col-md-2">
-                              <label class="col-md-12 col-form-label mini-text">Nama Barang</label>
-                              <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Nama Barang" required>
-                            </div>
-                            <div class="col-md-2">
-                              <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
-                              <input type="text" name="kuantitas" id="kuantitas" class="form-control" placeholder="Kuantitas" required>
-                            </div>
-                            <div class="col-md-2">
-                              <label class="col-md-12 col-form-label mini-text">Satuan</label>
-                              <input type="text" name="satuan" id="satuan" class="form-control" placeholder="Satuan" required>
-                            </div>
-                            <div class="col-md-2">
-                              <label class="col-md-12 col-form-label mini-text">Keterangan</label>
-                              <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan" required>
-                            </div>
-                            <div class="col-md-2">
-                              <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                              <button type="button" type="submit" id="btn_save_brg_pengadaan" class="btn btn-primary">Tambah Barang</button>
-                            </div>
-                            
-                          </div>
-                  </div>
-                  <div class="modal-footer">
-                  </div>
-                  <div class="modal-body">
-                  <table class="table table-striped" id="DetailpengadaanTable" style="min-width:100% !important;">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Barang</th>
-                        <th>Kuantitas</th>
-                        <th>Satuan</th>
-                        <th>Realisasi</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>                      
-                    </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </form>
-
-        <!--MODAL DELETE-->
-         <form>
+       <!--MODAL DELETE-->
+          <form>
             <div class="modal fade" id="Modal_Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -521,11 +534,13 @@
                 </div>
               </div>
             </div>
-            </form>
+          </form>
+
+       
        
         <!--Modal Konfirmasi-->
          <form>
-            <div class="modal fade" id="Modal_Konfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="Modal_Konfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -564,7 +579,7 @@
 
 <!-- SCRIPT UPDATE ADD DELETE DATATABLES ADA DI DALAM JS  -->
 <?php $this->load->view("admin/_partials/js.php") ?>
-<?php $this->load->view("admin/_js/jspegawai.php") ?>
+<?php $this->load->view("admin/_js/jsstatus.php") ?>
     
 </body>
 </html>

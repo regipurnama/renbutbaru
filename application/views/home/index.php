@@ -71,6 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</span>
 					<select name="tahun" id="tahun" class="form-control">
 						<option disabled>- Pilih Tahun Anggaran -</option>
+						<option >2024</option>
 						<option selected>2023</option>
 						<option>2022</option>
 					</select>

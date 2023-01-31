@@ -44,8 +44,8 @@
                       $role =  $this->session->userdata('role'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ ?>
-                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div>
 
+<div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i> Tambah Usulan</a></div>
                       <?php 
                       // }
                     ?>
@@ -133,7 +133,8 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan">Simpan Usulan</button> 
+                      <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan"> <i class="fas fa-save"></i>
+                       Simpan Usulan</button> 
                       <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
                        <i class="fa fa-times"></i>
@@ -349,9 +350,9 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                       <i class="fa fa-times"></i>
+                          <i class="fas fa-save"></i> Simpan Data
                       </button>
                   
                       <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->

@@ -64,7 +64,7 @@
                             // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
                             //  || id_user ==16
                             // if(role == 'Admin'){
-                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button>';
+                                button = '<button onClick="BukaEdit('+response.data[x].id_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
                                 //  <a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-download"></i></a>';
                             // }else{
                                 // button = '<a href="<?php base_url();?>CetakUsulan/'+link+'" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></a>';
@@ -195,7 +195,7 @@
                   var hitung = response.data.length;
                     if (hitung>0) {
                       for(var x in response.data){
-                        var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                        var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
                         if(!!response.data[x].nama_file){
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
@@ -774,7 +774,7 @@
                         var hitung = response.data.length;
                         if (hitung>0) {
                             for(var x in response.data){
-                            var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                            var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
                             if(!!response.data[x].nama_file){
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
