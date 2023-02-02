@@ -120,7 +120,7 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
-                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control" required></select>
+                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control"></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Uraian</label>
