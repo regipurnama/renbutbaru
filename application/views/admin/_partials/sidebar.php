@@ -69,7 +69,10 @@
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Pegawai' ? 'active': '' ?>" href="<?php echo base_url('Pegawai/Index') ?>"><i class="far fa-file-alt"></i> <span>Belanja Pegawai</span></a>
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Pengadaan' ? 'active': '' ?>" href="<?php echo base_url('Pengadaan/Index') ?>"><i class="far fa-file-alt"></i> <span>Belanja Barang & Jasa</span></a>
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Modal' ? 'active': '' ?>" href="<?php echo base_url('Modal/Index') ?>"><i class="far fa-file-alt"></i> <span>Belanja Modal</span></a>
-            <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Rekening' ? 'active': '' ?>" href="<?php echo base_url('Rekening/Index') ?>"><i class="far fa-file-alt"></i> <span>Kode Rekening</span></a>
+            <?php if($_SESSION['tahun']==2023){ ?>
+                <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(1) == 'Rekening' ? 'active': '' ?>" href="<?php echo base_url('Rekening/Index') ?>"><i class="far fa-file-alt"></i> <span>Kode Rekening</span></a>
+
+            <?php } ?>
             
         </div>
     </li> 
