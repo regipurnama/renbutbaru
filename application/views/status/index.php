@@ -38,7 +38,7 @@
                       $tahun =  $this->session->userdata('tahun'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ ?>
-                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary tambah-status" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Status</a></div>
+                        <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary tambah-status" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Status</a></div> -->
 
                       <?php 
                       // }
@@ -383,11 +383,11 @@
                             </table>
                           </div>
                   </div>
-                  <form id="form-edit-barang" method="POST" enctype="multipart/form-data">           
+                  <form id="form-status" method="POST" enctype="multipart/form-data">           
                         <div class="modal-body" style="padding: 0.3rem !important;">
                           <div class="form-group row" style="margin-bottom: 0px !important;">
                                 <div class="col-md-12">
-                                  <input type="hidden" name="e_id_detail_pengadaan" id="e_id_detail_pengadaan" class="form-control" >
+                                  <input type="hidden" name="detail_pengadaan" id="detail_pengadaan" class="form-control" >
                                 </div>
                                 <!-- <input type="hidden" name="kode_barang" id="kode_barang" class="form-control" placeholder="Kode Barang" > -->
                                 <div class="container">
@@ -396,38 +396,39 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="Diakomodir"  class="form-check-input" required>Diakomodir
+                                      <input type="radio" id="tindakan" name="tindakan" value="diakomodir" class="form-check-input" required>Diakomodir
                                       
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="Pending"  class="form-check-input" required>Pending
+                                      <input type="radio" id="tindakan" name="tindakan" value="pending" class="form-check-input" required>Pending
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="Tolak"   class="form-check-input" required>Tolak
+                                      <input type="radio" id="tindakan" name="tindakan" value="tolak"  class="form-check-input" required>Tolak
                                     </div>
                                   </div>
                               </div>
-                              <div class="container">
+                              <div class="container" id="hidden-div">
+                                <fieldset>
                                   <div class="row">
                                       <label class="col-md-12 form-check-label mini-text"><b>Jika Di Akomodir</b></label>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-4 form-check align-center">
-                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 1"  class="form-check-input" required>Prioritas 1
+                                  <div class="row" >
+                                    <div class="col-4 form-check align-center" >
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas_1"  class="form-check-input" required>Prioritas 1
                                       
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 2"  class="form-check-input" required>Prioritas 2
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas_2"  class="form-check-input" required>Prioritas 2
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 3"   class="form-check-input" required>Prioritas 3
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas_3"   class="form-check-input" required>Prioritas 3
                                     </div>
                                   </div>
                               </div>
                               
                               <div class="col-md-12">
                                 <label class="col-md-12 form-check-label mini-text"><b>Catatan / Deskripsi</b></label>
-                                <textarea name="catatan" id="catatan" class="form-control " required></textarea>
+                                <textarea name="deskripsi" id="deskripsi" class="form-control " required></textarea>
                               </div>
                              
                                 <div class="col-md-4">
@@ -441,6 +442,8 @@
                                 <div class="col-md-4">
                                   <label class="col-md-12 form-check-label mini-text"><b>Bidang/Bagian yang Mengisi Usulan</b></label>
                                   <input type="text" name="bidang" id="bidang" class="form-control "  readonly="readonly">
+                                  <input type="hidden" name="user" id="user" class="form-control "  readonly="readonly">
+                                  <input type="hidden" name="id_status" id="id_status" class="form-control "  readonly="readonly">
                                 </div>
                                <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
@@ -530,7 +533,7 @@
 <!-- SCRIPT UPDATE ADD DELETE DATATABLES ADA DI DALAM JS  -->
 <?php $this->load->view("admin/_partials/js.php") ?>
 <?php $this->load->view("admin/_js/jsstatus.php") ?>
-    
+
 
 </body>
 </html>

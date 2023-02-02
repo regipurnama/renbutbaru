@@ -5,7 +5,7 @@
     var id_user = "<?= $profile->id_user ?>";
     //console.log(id_role);
 
-    var dpttable="",dptable="",ptable="";
+    var dpttable="",dptable="",ptable="",statustable="";
     var edit="";
     var idpermohonan="";
     var rupiah = document.getElementById("hs");
@@ -18,31 +18,13 @@
             rupiah.value = formatRupiah(this.value, "Rp. ");
         });
         
-        //$('#id_program').select2({tags: true, 'width': 50%});
-        $('#id_program').select2({'width': '-webkit-fill-available'});
-        $('#id_kegiatan').select2({'width': '-webkit-fill-available'});
-        $('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
-        $('#id_uraian').select2({'width': '-webkit-fill-available'});
-        $('#sumber_dana').select2({'width': '-webkit-fill-available'});
-        $('#prioritas').select2({'width': '-webkit-fill-available'});
-        
-        $('#id_tipe_barang').select2({'width': '-webkit-fill-available'});
-        $('#id_jenis_barang').select2({'width': '-webkit-fill-available'});
         
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         $('#p_unit_kerja').html((unit_kerja).toUpperCase());
                           
-        
-        ambilprogram();
-        ambiluraian();
-
-
-        ambiltipebarang();
-        ambiljenisbarang();
-        
                
-      dpttable = $('#StatusTable').DataTable( {
+      statustable = $('#StatusTable').DataTable( {
             'processing'	: true,
             'sScrollX'      : '100%',
             //'serverSide'	: true,
@@ -60,7 +42,19 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         var button = '<button onClick="Editstatus('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
-                        var status = '<span class="badge badge-info">Masih Tahap Usulan</span>';
+                        if(!!response.data[x].status){
+                            if(response.data[x].status=='diakomodir'){
+                                status = '<span class="badge badge-success">Usulan Diakomodir</span>';
+                            }else if(response.data[x].status=='pending'){
+                                status = '<span class="badge badge-warning">Usulan Dipending</span>';
+                            }else if(response.data[x].status=='tolak'){
+                                status = '<span class="badge badge-danger">Usulan Ditolak</span>';
+                            }
+
+                        }else{
+                            var status = '<span class="badge badge-info">Masih Tahap Usulan</span>';
+
+                        }
                         if(!!response.data[x].nama_file){
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
@@ -275,153 +269,15 @@
         });
 
      
-         //Save barang temp
-            $('#form-tambah-barang').submit(function() {
-        //  $('#form-tambah-barang').on("submit", "form", function(event){
-            // alert("coy");   
 
-            // event.preventDefault();
-            
-            $('#btn_save_brg_temp_pengadaan').attr('disabled','disabled');    
-            // var harga_satuan  = $('#hs').val();
-            // var e_harga_satuan  = $('#ehs').val();
-            // harga_satuan = harga_satuan.replace(/\./g,'');
-            // e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-            // console.log($('#form-tambah-barang'));die;
-            // +'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-            var form = $('#form-tambah-barang')[0];
-            var formData = new FormData(form);
-            // var data =  +'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-            
-            if(edit){
-                var id_temp  = $('#id_temp').val();
-                //edit
-                // console.log("saveedit");
-                // alert("bro");
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('Modal/update_temp_pengadaan')?>",
-                    //dataType : "JSON",
-                    // data : data,
-                    data :formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response){
-                        //console.log('masuk');
-                        
-                        $('[name="id_program"]').val(0).trigger('change');
-                        $('[name="id_kegiatan"]').val(0).trigger('change');
-                        $('[name="id_subkegiatan"]').val(0).trigger('change');
-                        $('[name="id_uraian"]').val(0).trigger('change');
-                        $('[name="spesifikasi"]').val("");
-                        $('[name="sumber_dana"]').val(0).trigger('change');
-                        $('[name="e_id_tipe_barang"]').val(0).trigger('change');
-                        $('[name="e_id_jenis_barang"]').val(0).trigger('change');
-                        $('[name="prioritas"]').val(0).trigger('change');
-                        $('[name="e_image"]').val("");
-                        $('[name="catatan"]').val("");
-                        $('[name="harga_satuan"]').val("");
-                        $('[name="hs"]').val("");
-                        $('[name="nama_barang"]').val("");
-                        $('[name="kuantitas"]').val("");
-                        $('[name="satuan"]').val("");
-                        $('[name="catatan"]').val("");
-                        $('#btn_save_brg_temp_pengadaan').removeAttr('disabled');    
-            
-                        
-                        dpttable.ajax.reload(null,false);
-                        ptable.ajax.reload(null,false);
-                        
-                        
-                        //$('#Modal_Edit').modal('hide');
-                    }, 
-                    error: function(response){
-                        console.log(response);
-                    }
-                });
-                edit="";
-                $('#btn_save_brg_temp_pengadaan').html("Tambah Barang");
-                return false;
-                
-
-            }else{
-                //tambah
-                // console.log(data);die;
-                // alert("bros");
-                
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('Modal/save_temp_pengadaan')?>",
-                    data : formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response){
-                        console.log(response);
-                        $('[name="id_program"]').val(0).trigger('change');
-                        $('[name="id_kegiatan"]').val(0).trigger('change');
-                        $('[name="id_subkegiatan"]').val(0).trigger('change');
-                        $('[name="id_uraian"]').val(0).trigger('change');
-                        $('[name="spesifikasi"]').val("");
-                        $('[name="sumber_dana"]').val(0).trigger('change');
-                        $('[name="prioritas"]').val(0).trigger('change');
-                        $('[name="catatan"]').val("");
-                        $('[name="nama_barang"]').val("");
-                         $('[name="image"]').val("");
-                        $('[name="kuantitas"]').val("");
-                        $('[name="satuan"]').val("");
-                        $('[name="catatan"]').val("");
-                        $('[name="harga_satuan"]').val("");
-                        $('[name="hs"]').val("");
-                        $('#btn_save_brg_temp_pengadaan').removeAttr('disabled');    
-            
-    //                    show_brg_Pengadaan();
-                        dpttable.ajax.reload(null,false);
-                        ptable.ajax.reload(null,false);
-                        
-                        //$('#Modal_Edit').modal('hide');
-                    }, 
-                    error: function(response){
-                        console.log(response);
-                    }
-                });
-                return false;
-                
-            }
-                
-            
-                
-            })
-
-            //kondisi edit
-            $('#form-edit-barang').submit(function() {
-                $('#e_btn_save_brg_pengadaan').attr('disabled','disabled');
-                // var harga_satuan  = $('#hs').val();
-                // var e_harga_satuan  = $('#ehs').val();
-                // harga_satuan = harga_satuan.replace(/\./g,'');
-                // e_harga_satuan = e_harga_satuan.replace(/\./g,'');
-
-                // var data =$('#form-edit-barang').serialize()+'&harga_satuan='+ harga_satuan+'&e_harga_satuan='+ e_harga_satuan;
-                var form = $('#form-edit-barang')[0];
+            $('#form-status').submit(function() {
+                $('#e_btn_save_status').attr('disabled','disabled');
+                var form = $('#form-status')[0];
                 var formData = new FormData(form);
-        
-                // var tgl_usulan = $('#tgl_usulan').val();
-                // var nama_barang = $('#e_nama_barang').val();
-                // var unit_kerja = $('#e_unit_kerja').val();
-                // var kuantitas  = $('#e_kuantitas').val();
-                // var satuan  = $('#e_satuan').val();
-                // var keterangan  = $('#e_keterangan').val();
-                // var id_pengadaan  = $('#e_id_pengadaan').val();
-                //console.log('e);
-                //console.log(edit);
-                if(edit){
-                    var id_detail  = $('#e_id_detail').val();
-                    //edit
-                    // alert("brod");
-            
                     //console.log(data);
                     $.ajax({
                         type : "POST",
-                        url  : "<?php echo base_url('Modal/update_pengadaan')?>",
+                        url  : "<?php echo base_url('status/save_status')?>",
                         // dataType : "JSON",
                     //    data : data,
                         data :formData,
@@ -430,94 +286,23 @@
                         
                         success: function(response){
                       //      console.log(response);
-                            $('[name="e_id_program"]').val(0).trigger('change');
-                            $('[name="e_id_kegiatan"]').val(0).trigger('change');
-                            $('[name="e_id_subkegiatan"]').val(0).trigger('change');
-                            $('[name="e_id_uraian"]').val(0).trigger('change');
-                            $('[name="e_spesifikasi"]').val("");
-                            $('[name="e_sumber_dana"]').val(0).trigger('change');
-                            $('[name="e_prioritas"]').val(0).trigger('change');
-                            $('[name="e_catatan"]').val("");
-                            $('[name="e_nama_barang"]').val("");
-                             $('[name="e_id_tipe_barang"]').val(0).trigger('change');
-                            $('[name="e_id_jenis_barang"]').val(0).trigger('change');
-                           
-                            $('[name="e_kuantitas"]').val("");
-                            $('[name="e_satuan"]').val("");
-                            $('[name="e_catatan"]').val("");
-                            $('[name="e_harga_satuan"]').val("");
-                            $('[name="e_hs"]').val("");
-                            $('[name="e_image"]').val("");
-                            $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
-                            dptable.ajax.reload(null,false);
-                            ptable.ajax.reload(null,false);
-
+                            $('#e_btn_save_status').removeAttr('disabled');
+                            statustable.ajax.reload(null,false);
+                                
                             
-                            
-                            //$('#Modal_Edit').modal('hide');
+                            $('#Modal_Edit').modal('hide');
                         }, 
                         error: function(response){
                             console.log(response);
                         }
                     });
                     edit="";
-                    $('#e_btn_save_brg_pengadaan').html("Tambah Barang");
+                    $('#e_btn_save_status').html("Tambah Barang");
                     return false;
                     
 
-            }else{
-                //tambah
-                // alert("brods");
-            
-                //console.log("tambah")
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url('Modal/save_detail_pengadaan')?>",
-                    // dataType : "JSON",
-                       data :formData,
-                    processData: false,
-                    contentType: false,
-                    
-                    // data : data,
-                    // data : {nama_barang:nama_barang ,
-                    //         tgl_usulan:tgl_usulan , 
-                    //         unit_kerja:unit_kerja, 
-                    //         kuantitas:kuantitas,
-                    //         satuan:satuan,
-                    //         id_pengadaan:id_pengadaan,
-                    //         keterangan:keterangan},
-                    success: function(response){
-                        //console.log('masuk');
-                        // $('[name="e_id_program"]').val(0).trigger('change');
-                            // $('[name="e_id_kegiatan"]').val(0).trigger('change');
-                            // $('[name="e_id_subkegiatan"]').val(0).trigger('change');
-                            $('[name="e_id_uraian"]').val(0).trigger('change');
-                            $('[name="e_spesifikasi"]').val("");
-                            $('[name="e_sumber_dana"]').val(0).trigger('change');
-                            $('[name="e_prioritas"]').val(0).trigger('change');
-                            $('[name="e_catatan"]').val("");
-                            $('[name="e_nama_barang"]').val("");
-                            $('[name="e_kuantitas"]').val("");
-                            $('[name="e_satuan"]').val("");
-                            $('[name="e_catatan"]').val("");
-                            $('[name="e_harga_satuan"]').val("");
-                            $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
-                            
-                        dptable.ajax.reload(null,false);
-                        ptable.ajax.reload(null,false);
-                        
-                        //$('#Modal_Edit').modal('hide');
-                    }, 
-                    error: function(response){
-                        console.log(response);
-                    }
                 });
-                return false;
-                
-            }            
-                
-            })
-
+               
         
         //delete record to database
          $('#btn_hapus').on('click',function(){
@@ -564,6 +349,15 @@
                             $('#s_volume').html(data[0].kuantitas+' '+data[0].satuan);
                             $('#s_spesifikasi').html(data[0].spesifikasi);
                             $('#e_unit_kerja').html((data[0].unit_kerja).toUpperCase());
+                            $('#detail_pengadaan').val(data[0].id_detail_pengadaan);
+                            $('#bidang').val(data[0].unit_kerja);
+                            $('#user').val(data[0].id_user);
+                            $('#id_status').val(data[0].id_status);
+                            $('#tindakan').val(data[0].status);
+                            $('#deskripsi').val(data[0].deskripsi);
+                            $('#volume_status').val(data[0].volume_status);
+                            $('#satuan_status').val(data[0].satuan_status);
+                            $('#prioritas_status').val(data[0].prioritas);
                              
                         }
                     });
@@ -607,12 +401,6 @@
 
                 $('#e_id_tipe_barang').select2({'width': '-webkit-fill-available'});
                 $('#e_id_jenis_barang').select2({'width': '-webkit-fill-available'});
-
-                ambileprogram();
-                ambileuraian();
-                
-                ambiletipebarang();
-                ambilejenisbarang();
 
                 dptable.destroy();
                 dptable = $('#DetailPengadaanTable').DataTable( {
@@ -852,323 +640,7 @@
             $('#id_hapus').val(x);
             $('#Modal_Delete').modal('show');
         }
-
-        function bukakegiatan(id){
-    //    console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_kegiatan')?>',
-                    dataType: 'json',
-                    data : {id:id.value},
-                    
-                    success: function(response){
-                        $('#id_kegiatan').empty();
-
-                        $('#id_kegiatan').append('<option value="0">- Pilih Nama Kegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_kegiatan').append(
-                                    $('<option></option>').val(value['id_kegiatan']).html(value['kodering_kegiatan'] +"-"+ value['nama_kegiatan'])
-                                );
-                        });        
-                        }
-         });
-        }
-         function bukakegiatan(id){
-    //    console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_kegiatan')?>',
-                    dataType: 'json',
-                    data : {id:id.value},
-                    
-                    success: function(response){
-                        $('#id_kegiatan').empty();
-
-                        $('#id_kegiatan').append('<option value="0">- Pilih Nama Kegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_kegiatan').append(
-                                    $('<option></option>').val(value['id_kegiatan']).html(value['kodering_kegiatan'] +"-"+ value['nama_kegiatan'])
-                                );
-                        });        
-                        }
-         });
        
-         
-
-        }
-        function bukasubkegiatan(id){
-             console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_subkegiatan')?>',
-                    dataType: 'json',
-                    data : {id:id.value},
-                    
-                    success: function(response){
-                          $('#id_subkegiatan').empty();
-
-                        $('#id_subkegiatan').append('<option value="0">- Pilih Nama Subkegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_subkegiatan').append(
-                                    $('<option></option>').val(value['id_subkegiatan']).html(value['kodering_subkegiatan'] +"-"+ value['nama_subkegiatan'])
-                                );
-                        });        
-                        }
-         });
-        }
-        function bukakegiatantemp(){
-            //  console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_kegiatantemp')?>',
-                    dataType: 'json',
-                    // data : {id:id.value},
-                    
-                    success: function(response){
-                          $('#id_kegiatan').empty();
-
-                        $('#id_kegiatan').append('<option value="0">- Pilih Nama Kegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_kegiatan').append(
-                                    $('<option></option>').val(value['id_kegiatan']).html(value['kodering_kegiatan'] +"-"+ value['nama_kegiatan'])
-                                );
-                        });        
-                        }
-         });
-        }
-        
-        function bukasubkegiatantemp(){
-            //  console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_subkegiatantemp')?>',
-                    dataType: 'json',
-                    // data : {id:id.value},
-                    
-                    success: function(response){
-                          $('#id_subkegiatan').empty();
-
-                        $('#id_subkegiatan').append('<option value="0">- Pilih Nama Subkegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_subkegiatan').append(
-                                    $('<option></option>').val(value['id_subkegiatan']).html(value['kodering_subkegiatan'] +"-"+ value['nama_subkegiatan'])
-                                );
-                        });        
-                        }
-         });
-
-        }
-
-        function ambilprogram(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_program')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#id_program').append('<option value="0">- Pilih Nama Program -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_program').append(
-                                    $('<option></option>').val(value['id_program']).html(value['kodering_program'] +"-"+ value['nama_program'])
-                                );
-                        });        
-                        }
-            });
-       
-        }
-        function ambiluraian(){
-            var id_jenis_belanja=2;
-            $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_uraian')?>',
-                    dataType: 'json',
-                    data: {id_jenis_belanja:id_jenis_belanja},
-                    
-                    success: function(response){
-                        $('#id_uraian').append('<option value="0">- Pilih Nama Uraian -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_uraian').append(
-                                    $('<option></option>').val(value['id_uraian']).html(value['kodering_uraian'] +"-"+ value['nama_uraian'])
-                                );
-                        });        
-                        }
-             });
-                
-        
-       
-        }
-        
-        function ambileprogram(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_program')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#e_id_program').append('<option value="0">- Pilih Nama Program -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_program').append(
-                                    $('<option></option>').val(value['id_program']).html(value['kodering_program'] +"-"+ value['nama_program'])
-                                );
-                        });        
-                        }
-            });
-       
-        }
-        function ambileuraian(){
-            var id_jenis_belanja = 2;
-            $.ajax ({
-                    // type: 'POST',\
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_uraian')?>',
-                    dataType: 'json',
-                    data: {id_jenis_belanja:id_jenis_belanja},
-                    success: function(response){
-                        $('#e_id_uraian').append('<option value="0">- Pilih Nama Uraian -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_uraian').append(
-                                    $('<option></option>').val(value['id_uraian']).html(value['kodering_uraian'] +"-"+ value['nama_uraian'])
-                                );
-                        });        
-                        }
-             });
-                
-        
-       
-        }
-        
-        function bukaekegiatan(id){
-    //    console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_kegiatan')?>',
-                    dataType: 'json',
-                    data : {id:id.value},
-                    
-                    success: function(response){
-                        $('#e_id_kegiatan').empty();
-
-                        $('#e_id_kegiatan').append('<option value="0">- Pilih Nama Kegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_kegiatan').append(
-                                    $('<option></option>').val(value['id_kegiatan']).html(value['kodering_kegiatan'] +"-"+ value['nama_kegiatan'])
-                                );
-                        });        
-                        }
-         });
-       
-
-
-        }
-        function bukaesubkegiatan(id){
-            //  console.log(id.value);
-             $.ajax ({
-                    type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_subkegiatan')?>',
-                    dataType: 'json',
-                    data : {id:id.value},
-                    
-                    success: function(response){
-                          $('#e_id_subkegiatan').empty();
-
-                        $('#e_id_subkegiatan').append('<option value="0">- Pilih Nama Subkegiatan -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_subkegiatan').append(
-                                    $('<option></option>').val(value['id_subkegiatan']).html(value['kodering_subkegiatan'] +"-"+ value['nama_subkegiatan'])
-                                );
-                        });        
-                        }
-         });
-        }
-
-        function ambiltipebarang(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_tipe_barang').append(
-                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
-                                );
-                        });        
-                        }
-            });
-       }
-        
-       function ambiljenisbarang(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#id_jenis_barang').append(
-                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
-                                );
-                        });        
-                        }
-            });
-       }
-
-        function ambiletipebarang(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_tipe_barang')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#e_id_tipe_barang').append('<option value="0">- Pilih Tipe Barang -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_tipe_barang').append(
-                                    $('<option></option>').val(value['id_tipe_barang']).html(value['nama_tipe_barang'])
-                                );
-                        });        
-                        }
-            });
-       
-        }
-
-        function ambilejenisbarang(){
-            $.ajax ({
-                    // type: 'POST',
-                    url: '<?php echo base_url('Modal/ambil_jenis_barang')?>',
-                    dataType: 'json',
-                    success: function(response){
-                        $('#e_id_jenis_barang').append('<option value="0">- Pilih Jenis Barang -</option>');
-                        
-                        $.each(response.data, function(key,value){
-                                $('#e_id_jenis_barang').append(
-                                    $('<option></option>').val(value['id_jenis_barang']).html(value['nama_jenis_barang'])
-                                );
-                        });        
-                        }
-            });
-       
-        }
-       
-
-
-
-
-
-
-
-
-
 
 
 

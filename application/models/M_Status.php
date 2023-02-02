@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Status extends CI_Model {
 	
-	private $_table = "users";
+	private $_table = "status_usulan";
 
     // public $id_user;
     // public $name;
@@ -115,7 +115,10 @@ class M_Status extends CI_Model {
 		 $post = $this->input->post();
 		 $id = $post['id'];
 		//  var_dump($id);die;
-		 $sql = "SELECT * FROM detail_pengadaan a
+		 $sql = "SELECT a.id_detail_pengadaan, a.nama_barang, a.kuantitas, a.satuan, users.unit_kerja,users.id_user,a.spesifikasi, 
+		 								status_usulan.id_status,status_usulan.prioritas,status_usulan.status,status_usulan.deskripsi,
+										status_usulan.volume_status,status_usulan.satuan_status,status_usulan.id_unit_pengampu
+		 FROM detail_pengadaan a
 				 LEFT JOIN head_pengadaan b on a.id_pengadaan = b.id_pengadaan
 				 LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
 				 LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
@@ -124,6 +127,7 @@ class M_Status extends CI_Model {
 				 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
 				 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
 				 LEFT JOIN users on b.id_user = users.id_user
+				 LEFT JOIN status_usulan on status_usulan.id_detail_pengadaan = a.id_detail_pengadaan
 				 where a.id_detail_pengadaan = ".$id;
  
  
@@ -146,6 +150,7 @@ class M_Status extends CI_Model {
                 LEFT JOIN users on b.id_user = users.id_user
                 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
                 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
+                LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
                 where  b.tahun_anggaran = $tahun and b.id_user in(".$id_user.")";
 
 
@@ -164,12 +169,45 @@ class M_Status extends CI_Model {
                 LEFT JOIN users on b.id_user = users.id_user
                 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
                 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
+                LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
                 where  b.tahun_anggaran = $tahun";
 
 
     	return $this->db->query($sql)->result();
                 
     }
+		function update_status(){
+				$post = $this->input->post();
+				if($post['id_status']==NULL){
+					//insert
+					// var_dump($post);die;
+					$this->id_detail_pengadaan = $post["detail_pengadaan"];
+					$this->id_unit_pengampu = $post["user"];
+					$this->deskripsi = $post["deskripsi"];
+					$this->status = $post["tindakan"];
+					$this->prioritas = $post["prioritas_status"];
+					$this->volume_status = $post["volume_status"];
+					$this->satuan_status = $post["satuan_status"];
+					
+					$this->db->insert($this->_table,$this);
+		
+				}else{
+					//update
+				      $id = $post["id_status"];
+						$this->id_detail_pengadaan = $post["detail_pengadaan"];
+						$this->id_unit_pengampu = $post["user"];
+						$this->deskripsi = $post["deskripsi"];
+						$this->status = $post["tindakan"];
+						$this->prioritas = $post["prioritas_status"];
+						$this->volume_status = $post["volume_status"];
+						$this->satuan_status = $post["satuan_status"];
+						var_dump($post);die;
+						$this->db->where('id_status',$id);
+						$this->db->update($this->_table, $this);
+				
+				}
+				
+		}
 	
 	 public function ubahpassword(){
 		$post = $this->input->post();

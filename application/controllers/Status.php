@@ -111,6 +111,7 @@ class Status extends CI_Controller {
 				echo json_encode($data);
 			
     }
+
     	function save_temp_pengadaan(){
 	// print_r($_POST);
       $config['file_type']           = $_FILES['image']['type'];
@@ -286,6 +287,12 @@ class Status extends CI_Controller {
 				$i++;
 			}
 			echo json_encode($data);
+			
+		}
+		function save_status(){
+			$id_user =  $this->session->userdata('id_user');
+			$data=$this->M_Status->update_status();
+      echo json_encode($data);
 			
 		}
 		

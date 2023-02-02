@@ -67,6 +67,9 @@ margin-top:20% !important;
     color:#28a745;
     
 }
+.none {
+    display: none;
+}
 .modal-lg{
     max-width: 1200px !important;
 }

@@ -42,19 +42,19 @@
                     <?php 
                       $id_user =  $this->session->userdata('id_user');
                       $role =  $this->session->userdata('role'); 
-                      $tahun =  $this->session->userdata('tahun'); 
+                           $tahun =  $this->session->userdata('tahun'); 
+                  // || $id_user ==16
+                      // if($role =='Admin' ){    $tahun =  $this->session->userdata('tahun'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ 
+                       
                         if($tahun==2024){ ?>
 
                 <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i> Tambah Usulan</a></div>
                 <?php
                         }
-                        ?>
-
-                      <?php 
-                      // }
-                    ?>
+                        ?>            
+                         
                     <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
                 </h3>
             </div>
@@ -139,7 +139,8 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan"> <i class="fas fa-save"></i>
+                      <button  type="button" class="btn btn-success" name="btn-save-pengadaan" id="btn-save-pengadaan"> 
+                        <i class="fas fa-save"></i> 
                        Simpan Usulan</button> 
                       <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
@@ -168,11 +169,11 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" Simpan Datahange="bukakegiatan(this);" ></select> 
+                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  Simpan Datahange="bukasubkegiatan(this);" ></select>
+                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  onChange="bukasubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
@@ -356,9 +357,9 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                          <i class="fas fa-times"></i>
+                          <i class="fas fa-save"></i> Simpan Data
                       </button>
                   
                       <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->
