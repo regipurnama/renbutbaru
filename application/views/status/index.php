@@ -35,9 +35,9 @@
                     <?php 
                       $id_user =  $this->session->userdata('id_user');
                       $role =  $this->session->userdata('role'); 
+                      $tahun =  $this->session->userdata('tahun'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ ?>
-                        <input type="text" name="cekbok" id="cekbok" value="">
                         <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary tambah-status" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Status</a></div>
 
                       <?php 
@@ -407,6 +407,24 @@
                                     </div>
                                   </div>
                               </div>
+                              <div class="container">
+                                  <div class="row">
+                                      <label class="col-md-12 form-check-label mini-text"><b>Jika Di Akomodir</b></label>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4 form-check align-center">
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 1"  class="form-check-input" required>Prioritas 1
+                                      
+                                    </div>
+                                    <div class="col-4 form-check align-center">
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 2"  class="form-check-input" required>Prioritas 2
+                                    </div>
+                                    <div class="col-4 form-check align-center">
+                                      <input type="radio" id="prioritas_status" name="prioritas_status" value="Prioritas 3"   class="form-check-input" required>Prioritas 3
+                                    </div>
+                                  </div>
+                              </div>
+                              
                               <div class="col-md-12">
                                 <label class="col-md-12 form-check-label mini-text"><b>Catatan / Deskripsi</b></label>
                                 <textarea name="catatan" id="catatan" class="form-control " required></textarea>
