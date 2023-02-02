@@ -11,6 +11,10 @@
 .dropdown-item.active, .nav-link.active{
     background-color:#ebebeb !important; color:#007BFF !important; border: 0px !important;
 }
+.nav-item.active > .nav-link{
+    background-color:#ebebeb !important; color:#007BFF !important; border: 0px !important;
+
+}
 .dropdown-item{
     color:#6c757d !important;
     /* font-size: 0.8rem !important; */

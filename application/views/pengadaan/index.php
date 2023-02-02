@@ -162,11 +162,11 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" ></select> 
+                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" Simpan Datahange="bukakegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  onChange="bukasubkegiatan(this);" ></select>
+                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  Simpan Datahange="bukasubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
@@ -350,9 +350,9 @@
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Usulan Belanja Barang & Jasa</h5>
                     <div>
-                      <button type="button" class="btn btn-success" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" name="btn-batal-pengadaan" id="btn-batal-pengadaan">
                       <!-- <span aria-hidden="true">&times;</span> -->
-                          <i class="fas fa-save"></i> Simpan Data
+                          <i class="fas fa-times"></i>
                       </button>
                   
                       <!-- <button  type="button" class="btn btn-success" name="btn-e-save-pengadaan" id="btn-e-save-pengadaan">Simpan Usulan</button>  -->

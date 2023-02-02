@@ -59,7 +59,8 @@
                   var hitung = response.data.length;
                     if (hitung>0) {
                       for(var x in response.data){
-                        var button = '<button onClick="Edittemp('+response.data[x].id_temp_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="Deletetemp('+response.data[x].id_temp_pengadaan+')" name="btn_delete" class="btn btn-danger btn-sm btn-flat" title="Hapus Data"><i class="fas fa-trash-alt"></i></button>';
+                        var button = '<button onClick="Editstatus('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
+                        var status = '<span class="badge badge-info">Masih Tahap Usulan</span>';
                         if(!!response.data[x].nama_file){
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
@@ -89,7 +90,7 @@
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
                           'nama_file'            : download,
-                          'status_usulan'              : button,
+                          'status_usulan'              : status,
                           'aksi'              : button,
                           'unit_kerja'              :  response.data[x].unit_kerja,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
@@ -113,10 +114,10 @@
               
             columns : [ 
                {'data':'no'},
-              {'data': 'id_detail_pengadaan','render':
-                  function (data, type, full) {
-                    return "<input type='checkbox' name='id_detail' id='id_detail_pengadaan_"+full.no+"'  value="+full.id_detail_pengadaan+" class='form form-control id_detail_pengadaan_"+full.no+"'>";
-                }},
+            //   {'data': 'id_detail_pengadaan','render':
+            //       function (data, type, full) {
+            //         return "<input type='checkbox' name='id_detail' id='id_detail_pengadaan_"+full.no+"'  value="+full.id_detail_pengadaan+" class='form form-control id_detail_pengadaan_"+full.no+"'>";
+            //     }},
               {'data': 'unit_kerja','render':
                   function (data, type, full) {
                     return "<p> "+full.unit_kerja+"</p>";
@@ -141,11 +142,7 @@
 
                 }
             },
-              {'data': 'total_harga', 'render': 
-                function (data, type, full) {
-                        return full.total_harga;
-                }  
-              },
+              
               {'data': 'prioritas'},
               {'data': 'nama_file'},
               {'data': 'status_usulan'},
@@ -204,7 +201,10 @@
                     );
                 }
                
+        
+               
         } );
+     
         
        
 
@@ -248,7 +248,7 @@
         $('.tambah-status').on('click',function(){
             var cekbok = $('.id_detail_pengadaan');
         });
-        
+
         $('#btn-e-save-pengadaan').on('click',function(){
             //Kondisi Edit 
 
@@ -543,10 +543,11 @@
         
         
         
-        function Edittemp(x){
+        function Editstatus(x){
             var  id_keg, id_subkeg;
             edit="edit";
-           
+        
+            $('#Modal_Edit').modal('show');
             
             // bukakegiatantemp();
             // bukasubkegiatantemp();
@@ -554,38 +555,15 @@
             var id = x;
             $.ajax({
                 type:"POST",
-                url  : "<?php echo base_url('Modal/get_id_temp')?>",
+                url  : "<?php echo base_url('Status/get_id_status')?>",
                 dataType : "JSON",
                 data : {id:id},
                         success: function(data){
-                            //console.log(data);
-                            $('#id_program').focus();
-                           // $('#id_program').val(data[0].id_program).trigger('change');
-                              $('#id_program').append('<option value="'+data[0].id_program+'" selected>'+data[0].kodering_program+'-'+data[0].nama_program+'</option>');
-                              $('#id_kegiatan').append('<option value="'+data[0].id_kegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_kegiatan+'</option>');
-                              $('#id_subkegiatan').append('<option value="'+data[0].id_subkegiatan+'" selected>'+data[0].kodering_kegiatan+'-'+data[0].nama_subkegiatan+'</option>');
-                              $('#id_jenis_barang').append('<option value="'+data[0].id_jenis_barang+'" selected>'+data[0].nama_jenis_barang+'</option>');
-                              $('#id_tipe_barang').append('<option value="'+data[0].id_tipe_barang+'" selected>'+data[0].nama_tipe_barang+'</option>');
-                      
-                           
-                            $('#id_uraian').val(data[0].id_uraian).trigger('change');
-                            $('#sumber_dana').val(data[0].sumber_dana).trigger('change');
-                            $('#prioritas').val(data[0].prioritas).trigger('change');
-                            //console.log($('#id_subkegiatan').val());
-                        
-                            //$('#id_program').val();
-                            $('#nama_barang').val(data[0].nama_barang);
-                            $('#spesifikasi').val(data[0].spesifikasi);
-                            $('#kuantitas').val(data[0].kuantitas);
-                            $('#satuan').val(data[0].satuan);
-                            $('#id_temp').val(data[0].id_temp_pengadaan);
-                            $('#catatan').val(data[0].catatan);
-                            $('#harga_satuan').val(data[0].harga_satuan);
-                            $('#hs').val(data[0].harga_satuan);
-                            $('#keterangan').val(data[0].keterangan);
-                            $('#e_image').val(data[0].nama_file);
-                            $('#btn_save_brg_temp_pengadaan').html("Ubah Barang");
-    //              
+                            console.log(data);
+                            $('#s_nama_barang').html(data[0].nama_barang);
+                            $('#s_volume').html(data[0].kuantitas+' '+data[0].satuan);
+                            $('#s_spesifikasi').html(data[0].spesifikasi);
+                            $('#e_unit_kerja').html((data[0].unit_kerja).toUpperCase());
                              
                         }
                     });

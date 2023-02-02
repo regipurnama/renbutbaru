@@ -110,6 +110,29 @@ class M_Status extends CI_Model {
 		return $return;
 	
  	}
+	 public function get_id_status()
+	 {
+		 $post = $this->input->post();
+		 $id = $post['id'];
+		//  var_dump($id);die;
+		 $sql = "SELECT * FROM detail_pengadaan a
+				 LEFT JOIN head_pengadaan b on a.id_pengadaan = b.id_pengadaan
+				 LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
+				 LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
+				 LEFT  JOIN program on program.id_program = kegiatan.id_program
+				 LEFT JOIN uraian on a.id_uraian = uraian.id_uraian
+				 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
+				 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
+				 LEFT JOIN users on b.id_user = users.id_user
+				 where a.id_detail_pengadaan = ".$id;
+ 
+ 
+		 return $this->db->query($sql)->result();
+		 
+		 
+		 // $this->db->where(["id_temp_pengadaan" => $id]);
+		 // return $this->db->get($this->_table)->result();
+	 }
 
   function data_status_user($id_user){
       $tahun = $_SESSION['tahun'];

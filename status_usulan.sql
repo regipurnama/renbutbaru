@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2023 at 09:06 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
+-- Generation Time: Feb 02, 2023 at 04:21 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,7 +31,8 @@ CREATE TABLE `status_usulan` (
   `id_status` int(11) NOT NULL,
   `id_detail_pengadaan` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
-  `deskripsi` text
+  `deskripsi` text DEFAULT NULL,
+  `id_unit_pengampu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -53,7 +53,8 @@ ALTER TABLE `status_usulan`
 -- AUTO_INCREMENT for table `status_usulan`
 --
 ALTER TABLE `status_usulan`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

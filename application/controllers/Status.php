@@ -148,8 +148,8 @@ class Status extends CI_Controller {
         $data=$this->M_T_Pengadaan->save();
         echo json_encode($data);
     }
-    	function get_id_temp(){
-	      $data=$this->M_T_Pengadaan->get_id_temp();
+    	function get_id_status(){
+	      $data=$this->M_Status->get_id_status();
         echo json_encode($data);
 			
     }
