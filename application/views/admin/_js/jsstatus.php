@@ -246,7 +246,7 @@
         });
 
         $('.tambah-status').on('click',function(){
-            var cekbok = $('.id_detail_pengadaan')
+            var cekbok = $('.id_detail_pengadaan');
         }
         
         $('#btn-e-save-pengadaan').on('click',function(){
