@@ -200,7 +200,7 @@
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
                             }else{
-                                var download ='<span class="badge badge-dark">Tidak ada File Pembanding</span>';
+                                var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
 
                             } row.push({
                           'no'                : i,
@@ -779,7 +779,7 @@
                                 var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
                             }else{
-                                var download ='<span class="badge badge-dark">Tidak ada File Pembanding</span>';
+                                var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
 
                             }
                             row.push({

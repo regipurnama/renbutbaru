@@ -112,9 +112,10 @@
            
               
             columns : [ 
+               {'data':'no'},
               {'data': 'id_detail_pengadaan','render':
                   function (data, type, full) {
-                    return "<input type='checkbox' name='id_detail[]' id='id_detail[]' value="+full.id_detail_pengadaan+" class='form form-control'>";
+                    return "<input type='checkbox' name='id_detail' id='id_detail_pengadaan_"+full.no+"'  value="+full.id_detail_pengadaan+" class='form form-control id_detail_pengadaan_"+full.no+"'>";
                 }},
               {'data': 'unit_kerja','render':
                   function (data, type, full) {
@@ -243,6 +244,11 @@
                 
 
         });
+
+        $('.tambah-status').on('click',function(){
+            var cekbok = $('.id_detail_pengadaan')
+        }
+        
         $('#btn-e-save-pengadaan').on('click',function(){
             //Kondisi Edit 
 
@@ -267,6 +273,8 @@
                 
 
         });
+
+     
          //Save barang temp
             $('#form-tambah-barang').submit(function() {
         //  $('#form-tambah-barang').on("submit", "form", function(event){

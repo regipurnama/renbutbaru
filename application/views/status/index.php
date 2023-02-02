@@ -38,7 +38,8 @@
                       $role =  $this->session->userdata('role'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ ?>
-                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div>
+                        <input type="text" name="cekbok" id="cekbok" value="">
+                        <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary tambah-status" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Status</a></div>
 
                       <?php 
                       // }
@@ -52,6 +53,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th></th>
                         <th>Unit Kerja Pengusul</th>
                         <th>Nama Barang</th>
                         <th>Volume</th>
@@ -581,5 +583,6 @@
 <?php $this->load->view("admin/_partials/js.php") ?>
 <?php $this->load->view("admin/_js/jsstatus.php") ?>
     
+
 </body>
 </html>
