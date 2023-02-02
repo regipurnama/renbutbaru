@@ -229,7 +229,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
-                          'nama_file'              : nama_file,
+                          'nama_file'              : download,
                           'aksi'              : button,
                           'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
                           'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,

@@ -210,12 +210,15 @@ class M_D_Pengadaan extends CI_Model {
             $id_subkegiatan = $post["e_id_subkegiatan"];
         }
         //var_dump($post->nama_barang);die;
-        //ppn = 10%
-        $ppn = 0.1;
-        //inflasi = 10%
+        //ppn = 11%
+        $ppn = 0.11;
+        //inflasi = 2%
         $inflasi= 0.02;
         //keuntungan = 10%
         $keuntungan= 0.1;
+        //biaya transport e-katalog
+        
+        // RUMUS AMBIL TOTAL HARGA 
         
 
         $this->id_pengadaan = $post["e_id_pengadaan"];
