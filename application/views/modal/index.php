@@ -42,6 +42,7 @@
                     <?php 
                       $id_user =  $this->session->userdata('id_user');
                       $role =  $this->session->userdata('role'); 
+                      $tahun =  $this->session->userdata('tahun'); 
                       //|| $id_user ==16
                       // if($role =='Admin' ){ 
                         if($tahun==2024){ ?>

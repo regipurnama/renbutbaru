@@ -185,7 +185,7 @@ class M_Status extends CI_Model {
 					$this->id_unit_pengampu = $post["user"];
 					$this->deskripsi = $post["deskripsi"];
 					$this->status = $post["tindakan"];
-					$this->prioritas = $post["prioritas_status"];
+					$this->prioritas_status = $post["prioritas_status"];
 					$this->volume_status = $post["volume_status"];
 					$this->satuan_status = $post["satuan_status"];
 					
@@ -198,10 +198,10 @@ class M_Status extends CI_Model {
 						$this->id_unit_pengampu = $post["user"];
 						$this->deskripsi = $post["deskripsi"];
 						$this->status = $post["tindakan"];
-						$this->prioritas = $post["prioritas_status"];
+						$this->prioritas_status = $post["prioritas_status"];
 						$this->volume_status = $post["volume_status"];
 						$this->satuan_status = $post["satuan_status"];
-						var_dump($post);die;
+						// var_dump($post);die;
 						$this->db->where('id_status',$id);
 						$this->db->update($this->_table, $this);
 				

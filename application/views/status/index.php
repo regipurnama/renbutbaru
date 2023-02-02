@@ -396,14 +396,14 @@
                                   </div>
                                   <div class="row">
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="diakomodir" class="form-check-input" required>Diakomodir
+                                      <input type="radio" id="tindakan" name="tindakan" value="diakomodir" class="form-check-input tindakan" required>Diakomodir
                                       
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="pending" class="form-check-input" required>Pending
+                                      <input type="radio" id="tindakan" name="tindakan" value="pending" class="form-check-input tindakan" required>Pending
                                     </div>
                                     <div class="col-4 form-check align-center">
-                                      <input type="radio" id="tindakan" name="tindakan" value="tolak"  class="form-check-input" required>Tolak
+                                      <input type="radio" id="tindakan" name="tindakan" value="tolak"  class="form-check-input tindakan" required>Tolak
                                     </div>
                                   </div>
                               </div>

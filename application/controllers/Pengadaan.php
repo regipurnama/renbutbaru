@@ -46,13 +46,15 @@ class Pengadaan extends CI_Controller {
 
       $id_user =  $this->session->userdata('id_user');
       $role =  $this->session->userdata('role');
+			// $data['tahun'] =  $this->session->userdata('tahun');
+			// var_dump($data['tahun']);
       $result =  $this->M_User->getById($id_user);
-    //   $puas =  $this->M_User->getkepuasan();
-	  $jenis_belanja = 1;
+			//   $puas =  $this->M_User->getkepuasan();
+			$jenis_belanja = 1;
       if($role =='Admin'){
-        $data = $this->M_H_Pengadaan->get_pengadaan_admin($jenis_belanja);
+				$data = $this->M_H_Pengadaan->get_pengadaan_admin($jenis_belanja);
       }else{
-        $data = $this->M_H_Pengadaan->get_pengadaan_user($id_user,$jenis_belanja);
+				$data = $this->M_H_Pengadaan->get_pengadaan_user($id_user,$jenis_belanja);
         
       }
       $data['profile'] = $result;

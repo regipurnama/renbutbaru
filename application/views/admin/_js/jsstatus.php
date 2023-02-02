@@ -36,12 +36,18 @@
                  url   : '<?php echo base_url('Status/data_status_pengadaan')?>',
                 dataSrc : function(response){
                   var row = new Array();
-                  //console.log()
+                //   console.log(role);
                   var i = 1;
                   var hitung = response.data.length;
                     if (hitung>0) {
                       for(var x in response.data){
-                        var button = '<button onClick="Editstatus('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
+                        if(role=='user'){
+                            var button = '<button class="btn btn-info btn-sm btn-flat"><i class="fas fa-info"></i></button>';
+                            
+                        }else{
+                            var button = '<button onClick="Editstatus('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
+
+                        }
                         if(!!response.data[x].status){
                             if(response.data[x].status=='diakomodir'){
                                 status = '<span class="badge badge-success">Usulan Diakomodir</span>';
@@ -353,11 +359,11 @@
                             $('#bidang').val(data[0].unit_kerja);
                             $('#user').val(data[0].id_user);
                             $('#id_status').val(data[0].id_status);
-                            $('#tindakan').val(data[0].status);
+                            $('#tindakan:checked').val(data[0].status);
                             $('#deskripsi').val(data[0].deskripsi);
                             $('#volume_status').val(data[0].volume_status);
                             $('#satuan_status').val(data[0].satuan_status);
-                            $('#prioritas_status').val(data[0].prioritas);
+                            $('#prioritas_status:checked').val(data[0].prioritas_status);
                              
                         }
                     });
