@@ -43,11 +43,13 @@
                       $id_user =  $this->session->userdata('id_user');
                       $role =  $this->session->userdata('role'); 
                       //|| $id_user ==16
-                      // if($role =='Admin' ){ ?>
+                      // if($role =='Admin' ){ 
+                        if($tahun==2024){ ?>
+                        
                         <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i>  Tambah Usulan</a></div>
 
                       <!-- <?php 
-                      // }
+                       }
                     ?> -->
                     <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
                 </h3>
