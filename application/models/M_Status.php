@@ -161,7 +161,11 @@ class M_Status extends CI_Model {
     function data_status_admin(){
       $tahun = $_SESSION['tahun'];
         
-        $sql = "SELECT * FROM detail_pengadaan a
+        $sql = "SELECT a.id_detail_pengadaan,a.nama_barang,jenis_barang.nama_jenis_barang,tipe_barang.nama_tipe_barang,a.spesifikasi,
+		a.catatan,a.sumber_dana,a.prioritas,a.kuantitas, a.satuan,a.harga_satuan,a.total_harga,a.nama_file,
+		status_usulan.status,status_usulan.deskripsi,status_usulan.prioritas_status,status_usulan.volume_status,
+		status_usulan.satuan_status,status_usulan.id_unit_pengampu,users.unit_kerja,users.id_user
+		 FROM detail_pengadaan a
                 LEFT JOIN head_pengadaan b on a.id_pengadaan = b.id_pengadaan
                 LEFT JOIN subkegiatan on a.id_subkegiatan = subkegiatan.id_subkegiatan
                 LEFT JOIN kegiatan on subkegiatan.id_kegiatan = kegiatan.id_kegiatan
@@ -170,7 +174,7 @@ class M_Status extends CI_Model {
                 LEFT JOIN users on b.id_user = users.id_user
                 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
                 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
-                -- LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
+                LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
                 where  b.tahun_anggaran = $tahun";
 
 
