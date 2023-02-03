@@ -117,7 +117,7 @@ class M_Status extends CI_Model {
 		 $id = $post['id'];
 		//  var_dump($id);die; 
 		 $sql = "SELECT a.id_detail_pengadaan, a.nama_barang, a.kuantitas, a.satuan, users.unit_kerja,users.id_user,a.spesifikasi, 
-		 								status_usulan.id_status,status_usulan.prioritas,status_usulan.status,status_usulan.deskripsi,
+		 								status_usulan.id_status,status_usulan.prioritas_status,status_usulan.status,status_usulan.deskripsi,
 										status_usulan.volume_status,status_usulan.satuan_status,status_usulan.id_unit_pengampu
 		 FROM detail_pengadaan a
 				 LEFT JOIN head_pengadaan b on a.id_pengadaan = b.id_pengadaan
@@ -170,7 +170,7 @@ class M_Status extends CI_Model {
                 LEFT JOIN users on b.id_user = users.id_user
                 LEFT JOIN jenis_barang on a.jenis_barang = jenis_barang.id_jenis_barang
                 LEFT JOIN tipe_barang on a.tipe_barang = tipe_barang.id_tipe_barang
-                LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
+                -- LEFT JOIN status_usulan on a.id_detail_pengadaan = status_usulan.id_detail_pengadaan
                 where  b.tahun_anggaran = $tahun";
 
 

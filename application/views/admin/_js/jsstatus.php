@@ -342,7 +342,7 @@
             
             // bukakegiatantemp();
             // bukasubkegiatantemp();
-            //console.log(x);die;
+            console.log(x);
             var id = x;
             $.ajax({
                 type:"POST",
@@ -356,8 +356,8 @@
                             $('#s_spesifikasi').html(data[0].spesifikasi);
                             $('#e_unit_kerja').html((data[0].unit_kerja).toUpperCase());
                             $('#detail_pengadaan').val(data[0].id_detail_pengadaan);
-                            $('#bidang').val(data[0].unit_kerja);
-                            $('#user').val(data[0].id_user);
+                            $('#bidang').val(unit_kerja);
+                            $('#user').val(id_user);
                             $('#id_status').val(data[0].id_status);
                             $('#tindakan:checked').val(data[0].status);
                             $('#deskripsi').val(data[0].deskripsi);
