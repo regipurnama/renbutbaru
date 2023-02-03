@@ -74,6 +74,8 @@ class Status extends CI_Controller {
 				$id_user =  $this->session->userdata('id_user');
 				if($role =='Admin'){
 					$baru=$this->M_Status->data_status_admin();
+				}else if($role =='bidang'){
+					$baru=$this->M_Status->data_status_bidang($id_user);
 				}else{
 					$baru=$this->M_Status->data_status_user($id_user);
 				}
