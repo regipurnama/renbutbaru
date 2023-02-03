@@ -113,8 +113,9 @@ class M_Status extends CI_Model {
 	 public function get_id_status()
 	 {
 		 $post = $this->input->post();
+		//  id
 		 $id = $post['id'];
-		//  var_dump($id);die;
+		//  var_dump($id);die; 
 		 $sql = "SELECT a.id_detail_pengadaan, a.nama_barang, a.kuantitas, a.satuan, users.unit_kerja,users.id_user,a.spesifikasi, 
 		 								status_usulan.id_status,status_usulan.prioritas,status_usulan.status,status_usulan.deskripsi,
 										status_usulan.volume_status,status_usulan.satuan_status,status_usulan.id_unit_pengampu

@@ -221,6 +221,7 @@ class Status extends CI_Controller {
 			{
 				// echo"<br/>";
 				// var_dump("kalau ada");
+				// var_dump("kalau ada");
 				
 					$data = array('upload_data' => $this->upload->data());
 					var_dump($data);
