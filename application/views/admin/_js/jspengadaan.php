@@ -3,9 +3,7 @@
     var role = "<?= $profile->role ?>";
     var unit_kerja = "<?= $profile->unit_kerja ?>";
     var id_user = "<?= $profile->id_user ?>";
-    // var tahun = "<?= $tahun->tahun ?>";
-    // console.log(tahun);
-
+   
     var dpttable="",dptable="",ptable="",persetujuantable="";
     var edit="";
     var idpermohonan="";
