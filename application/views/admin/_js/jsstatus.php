@@ -66,17 +66,9 @@
 
                             }else{
                                 var download ='<span class="badge badge-dark">Tidak ada File Pembanding</span>';
-
                             } row.push({
                           'no'                : i,
                           'id_detail_pengadaan'       : response.data[x].id_detail_pengadaan,
-                          'kodering_program'       : response.data[x].kodering_program,
-                          'nama_program'       : response.data[x].nama_program,
-                          'kodering_kegiatan'       : response.data[x].kodering_kegiatan,
-                          'nama_kegiatan'       : response.data[x].nama_kegiatan,
-                          'kodering_subkegiatan'       : response.data[x].kodering_subkegiatan,
-                          'nama_subkegiatan'       : response.data[x].nama_subkegiatan,
-                          'kodering_uraian'       : response.data[x].kodering_uraian,
                           'nama_uraian'       : response.data[x].nama_uraian,
                           'nama_barang'       : response.data[x].nama_barang,
                           'nama_jenis_barang'       : response.data[x].nama_jenis_barang,
@@ -93,10 +85,6 @@
                           'status_usulan'              : status,
                           'aksi'              : button,
                           'unit_kerja'              :  response.data[x].unit_kerja,
-                          'nomen_program'         : response.data[x].kodering_program+' '+ response.data[x].nama_program,
-                          'nomen_kegiatan'        : response.data[x].kodering_kegiatan+' '+ response.data[x].nama_kegiatan,
-                          'nomen_subkegiatan'     : response.data[x].kodering_subkegiatan+' '+ response.data[x].nama_subkegiatan,
-                          'nomen_uraian'         : response.data[x].kodering_uraian+' '+ response.data[x].nama_uraian,
                         });
                         i = i + 1;
                       }
