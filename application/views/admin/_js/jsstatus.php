@@ -562,6 +562,7 @@
                         };
         
                     // Total over all pages
+                    // Total over all pages
                     // console.log(api.column(7).data());
                     total = api
                     .column(7)
