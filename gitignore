@@ -4,6 +4,7 @@
 
 ### CodeIgniter ###
 */config/development
+*/config/database
 */logs/log-*.php
 !*/logs/index.html
 */cache/*

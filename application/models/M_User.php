@@ -125,67 +125,115 @@ class M_User extends CI_Model {
 	 public function totalanggaransemua($id_user,$role){
 		$tahun = $_SESSION['tahun'];
 		$aksi = ' and head_pengadaan.tahun_anggaran = '.$tahun. '';
+		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
 		}
-		$query = "SELECT sum(total_harga) as total, ((sum(total_harga)/188745535841)*100) as persentase FROM 
-		head_pengadaan 
-		join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-		where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0  $aksi";
+		if($tahun < 2024){
+			$query = "SELECT sum(total_harga) as total, ((sum(total_harga)/188745535841)*100) as persentase FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0  $aksi";
+			
+		}else{
+			$query = "SELECT sum(total_harga) as total, ((sum(total_harga)/188745535841)*100) as persentase FROM 
+				head_pengadaan 
+				join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+				where  $aksi2";
+				
+		}
 		return $this->db->query($query)->result();
 	 }
 
 	 public function totalbelanjapegawai($id_user,$role){
 		$tahun = $_SESSION['tahun'];
 		$aksi = ' and head_pengadaan.tahun_anggaran = '.$tahun. '';
+		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
 		}
-		$query = "SELECT sum(total_harga) as total FROM 
-		head_pengadaan 
-		join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-		where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 0 $aksi";
-		return $this->db->query($query)->result();
+		if($tahun < 2024){
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 0 $aksi";
+			return $this->db->query($query)->result();
+		}else{
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where $aksi2";
+			return $this->db->query($query)->result();
+		}
 	 }
 	 
 	 public function totalbelanjabarjas($id_user,$role){
 		$tahun = $_SESSION['tahun'];
 		$aksi = ' and head_pengadaan.tahun_anggaran = '.$tahun. '';
+		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
 		}
-		$query = "SELECT sum(total_harga) as total FROM 
-		head_pengadaan 
-		join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-		where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 1 $aksi";
-		return $this->db->query($query)->result();
+		if($tahun < 2024){
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 1 $aksi";
+			return $this->db->query($query)->result();
+		}else{
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where $aksi2";
+			return $this->db->query($query)->result();
+		}
 	 }
 	 public function totalbelanjamodal($id_user,$role){
 		$tahun = $_SESSION['tahun'];
 		$aksi = ' and head_pengadaan.tahun_anggaran = '.$tahun. '';
+		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
 		}
-		$query = "SELECT sum(total_harga) as total FROM 
-		head_pengadaan 
-		join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-		where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 2 $aksi";
-		return $this->db->query($query)->result();
+		if($tahun < 2024){
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 and head_pengadaan.jenis_belanja = 2 $aksi";
+			return $this->db->query($query)->result();
+		}else{
+			$query = "SELECT sum(total_harga) as total FROM 
+			head_pengadaan 
+			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
+			where $aksi2";
+			return $this->db->query($query)->result();
+		}
 	 }
 	 public function belanjaperunit($id_user,$role){
 		$tahun = $_SESSION['tahun'];
 		$aksi = ' and head_pengadaan.tahun_anggaran = '.$tahun. '';
+		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' AND  head_pengadaan.id_user='.$id_user;
 		}
-		$query = "SELECT users.unit_kerja, if(sum(total_harga) is null,0,sum(total_harga)) as total 
-		FROM users
-		left join head_pengadaan on users.id_user = head_pengadaan.id_user 
-		left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan and detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 
-		WHERE users.id_user != 1
-		$aksi
-		group by users.unit_kerja";
-		return $this->db->query($query)->result();
+		if($tahun < 2024){
+			$query = "SELECT users.unit_kerja, if(sum(total_harga) is null,0,sum(total_harga)) as total 
+			FROM users
+			left join head_pengadaan on users.id_user = head_pengadaan.id_user 
+			left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan and detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 
+			WHERE users.id_user != 1
+			$aksi
+			group by users.unit_kerja";
+			return $this->db->query($query)->result();
+		}else{
+			$query = "SELECT users.unit_kerja, if(sum(total_harga) is null,0,sum(total_harga)) as total 
+			FROM users
+			left join head_pengadaan on users.id_user = head_pengadaan.id_user 
+			left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan and detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 
+			WHERE $aksi2
+			group by users.unit_kerja";
+			return $this->db->query($query)->result();
+		}
 	 }
  	/*setelah login*/
 	

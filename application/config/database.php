@@ -77,8 +77,8 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'simrs12345',
-    // 'password' => '',
+	// 'password' => 'simrs12345',
+    'password' => '',
     
 	'database' => 'db_rkbu',
 	'dbdriver' => 'mysqli',
