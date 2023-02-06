@@ -230,7 +230,7 @@ class M_User extends CI_Model {
 			FROM users
 			left join head_pengadaan on users.id_user = head_pengadaan.id_user 
 			left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan and detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 
-			WHERE $aksi2
+			WHERE users.id_user != 1 $aksi
 			group by users.unit_kerja";
 			return $this->db->query($query)->result();
 		}
