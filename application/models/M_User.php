@@ -229,7 +229,7 @@ class M_User extends CI_Model {
 			$query = "SELECT users.unit_kerja, if(sum(total_harga) is null,0,sum(total_harga)) as total 
 			FROM users
 			left join head_pengadaan on users.id_user = head_pengadaan.id_user 
-			left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan and detail_pengadaan.id_subkegiatan !=0 and detail_pengadaan.id_uraian !=0 
+			left join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan  
 			WHERE users.id_user != 1 $aksi
 			group by users.unit_kerja";
 			return $this->db->query($query)->result();
