@@ -33,7 +33,6 @@
 				$.ajax({
                 type : "POST",
                 url  : "<?php echo site_url('C_Home/ubahpassword')?>",
-                // dataType : "JSON",
                 data : data,
                 success: function(response){
 					// console.log("masuk");
