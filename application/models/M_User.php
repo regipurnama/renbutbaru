@@ -112,6 +112,7 @@ class M_User extends CI_Model {
 
 	 public function ubahpassword(){
 		$post = $this->input->post();
+		// var_dump($post);
 	
 		$this->password = md5($post["pass"]);
 		$id = $post["id_user"];
@@ -162,7 +163,7 @@ class M_User extends CI_Model {
 			$query = "SELECT sum(total_harga) as total FROM 
 			head_pengadaan 
 			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-			where $aksi2";
+			where head_pengadaan.jenis_belanja = 0 $aksi";
 			return $this->db->query($query)->result();
 		}
 	 }
@@ -184,7 +185,7 @@ class M_User extends CI_Model {
 			$query = "SELECT sum(total_harga) as total FROM 
 			head_pengadaan 
 			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-			where $aksi2";
+			where head_pengadaan.jenis_belanja = 1 $aksi";
 			return $this->db->query($query)->result();
 		}
 	 }
@@ -205,7 +206,7 @@ class M_User extends CI_Model {
 			$query = "SELECT sum(total_harga) as total FROM 
 			head_pengadaan 
 			join detail_pengadaan  on head_pengadaan.id_pengadaan = detail_pengadaan.id_pengadaan
-			where $aksi2";
+			where head_pengadaan.jenis_belanja = 2 $aksi";
 			return $this->db->query($query)->result();
 		}
 	 }

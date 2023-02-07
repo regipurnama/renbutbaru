@@ -86,7 +86,13 @@ class C_Home extends CI_Controller {
 				redirect('C_Home/index');
 		}
 	}
-
+	function ubahpassword(){
+		// var_dump("ubah");die;
+		$result = $this->M_User->ubahpassword();
+		
+		// redirect('RKBU/Dashboard');
+		
+	}
 	
 
 	function logout(){
