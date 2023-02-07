@@ -129,6 +129,7 @@ class M_User extends CI_Model {
 		$aksi2 = ' head_pengadaan.tahun_anggaran = '.$tahun. '';
 		if($role == 'user'){
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
+			$aksi2 .= ' and head_pengadaan.id_user='.$id_user;
 		}
 		if($tahun < 2024){
 			$query = "SELECT sum(total_harga) as total, ((sum(total_harga)/188745535841)*100) as persentase FROM 
