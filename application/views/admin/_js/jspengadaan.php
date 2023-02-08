@@ -868,7 +868,7 @@
             // },
               {'data': 'nama_barang','render':
                    function (data, type, full) {
-                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
+                        return "<p><b> "+full.nama_barang +"</b><br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
                }
               
               },

@@ -794,7 +794,7 @@
               {'data': 'nomen_uraian'},
               {'data': 'nama_barang','render':
                         function (data, type, full) {
-                        return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
+                        return "<p><b> "+full.nama_barang +"<b><br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.tipe_barang + "<br> Jenis Barang : "+ full.jenis_barang;
                }
             
               
@@ -817,7 +817,17 @@
                 }  
               },
 
-              {'data': 'prioritas'},
+              {'data': 'prioritas','render': 
+                function (data, type, full) {
+                        if(full.prioritas == 'tinggi'){
+                            return "<span class='badge badge-danger'>"+full.prioritas+"</span>";
+                        }else if(full.prioritas == 'sedang'){
+                            return "<span class='badge badge-warning'>"+full.prioritas+"</span>";
+                        }else{
+                            return "<span class='badge badge-info'>"+full.prioritas+"</span>";                           
+                        }
+                }  
+              },
               {'data': 'catatan'},
               {'data': 'nama_file'},
               {'data': 'aksi'}
