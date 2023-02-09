@@ -440,7 +440,7 @@
                         $('[name="e_id_tipe_barang"]').val(0).trigger('change');
                         $('[name="e_id_jenis_barang"]').val(0).trigger('change');
                         $('[name="prioritas"]').val(0).trigger('change');
-                        $('[name="e_image"]').val("");
+                        $('[name="image"]').val("");
                         $('[name="catatan"]').val("");
                         $('[name="harga_satuan"]').val("");
                         $('[name="hs"]').val("");
@@ -623,6 +623,7 @@
                             $('[name="e_satuan"]').val("");
                             $('[name="e_catatan"]').val("");
                             $('[name="e_harga_satuan"]').val("");
+                            $('[name="e_image"]').val("");
                             $('#e_btn_save_brg_pengadaan').removeAttr('disabled');
                             
                         dptable.ajax.reload(null,false);
