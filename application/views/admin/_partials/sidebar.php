@@ -82,12 +82,12 @@
             <span>Status Usulan</span>
         </a>
     </li>   
-    <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
+    <!-- <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Rkbu/Rekapitulasi'); ?>">
         <i class="far fa-file-alt"></i>
             <span>Rekapitulasi</span>
         </a>
-    </li>   
+    </li>    -->
      <li class="nav-item dropdown <?php if($this->uri->segment(1) == 'Master') { echo 'show';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'show';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'show';} else {echo '';}; ?> ">
         <a class="nav-link <?php if($this->uri->segment(1) == 'Master') { echo 'active';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'active';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'active';} else {echo '';}; ?>  dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
