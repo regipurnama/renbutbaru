@@ -169,24 +169,24 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple" onChange="bukakegiatan(this);" ></select> 
+                                <select name="id_program" id="id_program" class="form-control js-data-example-basic-multiple " style="width: 100%" onChange="bukakegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control "  onChange="bukasubkegiatan(this);" ></select>
+                                <select type="text" name="id_kegiatan" id="id_kegiatan" class="form-control " style="width: 100%"  onChange="bukasubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
-                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control" ></select>
+                                <select type="text" name="id_subkegiatan" id="id_subkegiatan" class="form-control" style="width: 100%" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Uraian</label>
-                                <select type="text" name="id_uraian" id="id_uraian" class="form-control" required></select>
+                                <select type="text" name="id_uraian" id="id_uraian" class="form-control" style="width: 100%" required></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Jenis Sumber Dana</label>
                                 <!-- <input type="text" name="sumber_dana" id="sumber_dana" class="form-control" placeholder="Sumber Dana" required> -->
-                                <select name="sumber_dana" id="sumber_dana" class="form-control" required>
+                                <select name="sumber_dana" id="sumber_dana" class="form-control" style="width: 100%" required>
                                   <option value="">Pilih Sumber Dana</option>
                                   <option value="apbd">APBD</option>
                                   <option value="apbn">APBN</option>
@@ -200,11 +200,11 @@
                               
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
-                                <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" required></select>
+                                <select type="text" name="id_tipe_barang" id="id_tipe_barang" class="form-control" style="width: 100%" required></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
-                                <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" required></select>
+                                <select type="text" name="id_jenis_barang" id="id_jenis_barang" class="form-control" style="width: 100%" required></select>
                               </div>
                             
                               <div class="col-md-4">
@@ -223,7 +223,7 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
                                 <!-- <input type="text" name="prioritas" id="prioritas" class="form-control" placeholder="Prioritas" required> -->
-                                <select name="prioritas" id="prioritas" class="form-control" required>
+                                <select name="prioritas" id="prioritas" class="form-control" style="width: 100%" required>
                                   <option value="">Pilih Prioritas</option>
                                   <option value="tinggi">Tinggi</option>
                                   <option value="sedang">Sedang</option>
@@ -396,24 +396,24 @@
                                 <input type="hidden" name="jenis_belanja" id="jenis_belanja" value="1" class="form-control" >
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Program</label>
-                                <select name="e_id_program" id="e_id_program" class="form-control js-data-example-basic-multiple" onChange="bukaekegiatan(this);" ></select> 
+                                <select name="e_id_program" id="e_id_program" class="form-control js-data-example-basic-multiple" style="width: 100%" onChange="bukaekegiatan(this);" ></select> 
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama Kegiatan</label>
-                                <select type="text" name="e_id_kegiatan" id="e_id_kegiatan" class="form-control "  onChange="bukaesubkegiatan(this);" ></select>
+                                <select type="text" name="e_id_kegiatan" id="e_id_kegiatan" class="form-control " style="width: 100%" onChange="bukaesubkegiatan(this);" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Nama SubKegiatan</label>
-                                <select type="text" name="e_id_subkegiatan" id="e_id_subkegiatan" class="form-control" ></select>
+                                <select type="text" name="e_id_subkegiatan" id="e_id_subkegiatan" class="form-control" style="width: 100%" ></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Uraian</label>
-                                <select type="text" name="e_id_uraian" id="e_id_uraian" class="form-control" required></select>
+                                <select type="text" name="e_id_uraian" id="e_id_uraian" class="form-control"  style="width: 100%" required></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Jenis Sumber Dana</label>
                                 <!-- <input type="text" name="sumber_dana" id="sumber_dana" class="form-control" placeholder="Sumber Dana" required> -->
-                                <select name="e_sumber_dana" id="e_sumber_dana" class="form-control" required>
+                                <select name="e_sumber_dana" id="e_sumber_dana" class="form-control" style="width: 100%" required>
                                   <option value="">Pilih Sumber Dana</option>
                                   <option value="apbd">APBD</option>
                                   <option value="apbn">APBN</option>
@@ -426,11 +426,11 @@
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Tipe Barang</label>
-                                <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" required></select>
+                                <select type="text" name="e_id_tipe_barang" id="e_id_tipe_barang" class="form-control" style="width: 100%" required></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Jenis Barang</label>
-                                <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" required></select>
+                                <select type="text" name="e_id_jenis_barang" id="e_id_jenis_barang" class="form-control" style="width: 100%" required></select>
                               </div>
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Kuantitas</label>
@@ -452,7 +452,7 @@
                               <div class="col-md-4">
                                 <label class="col-md-12 col-form-label mini-text">Skala Prioritas</label>
                                 <!-- <input type="text" name="prioritas" id="prioritas" class="form-control" placeholder="Prioritas" required> -->
-                                <select name="e_prioritas" id="e_prioritas" class="form-control" required>
+                                <select name="e_prioritas" id="e_prioritas" class="form-control" style="width: 100%" required>
                                   <option value="">Pilih Prioritas</option>
                                   <option value="tinggi">Tinggi</option>
                                   <option value="sedang">Sedang</option>
@@ -524,7 +524,7 @@
         
        <!--MODAL DELETE-->
           <form>
-            <div class="modal fade" id="Modal_Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="Modal_Delete"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">

@@ -21,16 +21,16 @@
 
 
         //$('#id_program').select2({tags: true, 'width': 50%});
-        $('#id_program').select2({'width': '-webkit-fill-available'});
-        $('#id_kegiatan').select2({'width': '-webkit-fill-available'});
-        $('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
-        $('#id_uraian').select2({'width': '-webkit-fill-available'});
-        $('#sumber_dana').select2({'width': '-webkit-fill-available'});
-        $('#prioritas').select2({'width': '-webkit-fill-available'});
+        $('#id_program').select2({dropdownParent: $('#Modal_Add')});
+        $('#id_kegiatan').select2({dropdownParent: $('#Modal_Add')});
+        $('#id_subkegiatan').select2({dropdownParent: $('#Modal_Add')});
+        $('#id_uraian').select2({dropdownParent: $('#Modal_Add')});
+        $('#sumber_dana').select2({dropdownParent:$('#Modal_Add')});
+        $('#prioritas').select2({dropdownParent: $('#Modal_Add')});
 
               
-        $('#id_tipe_barang').select2({'width': '-webkit-fill-available'});
-        $('#id_jenis_barang').select2({'width': '-webkit-fill-available'});
+        $('#id_tipe_barang').select2({dropdownParent: $('#Modal_Add')});
+        $('#id_jenis_barang').select2({dropdownParent: $('#Modal_Add')});
         
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
         //$('#id_subkegiatan').select2({'width': '-webkit-fill-available'});
@@ -702,15 +702,18 @@
                 });
                 var id = x;
                 //dptable.ajax.reload(null,false);
-                $('#e_id_program').select2({'width': '-webkit-fill-available'});
-                $('#e_id_kegiatan').select2({'width': '-webkit-fill-available'});
-                $('#e_id_subkegiatan').select2({'width': '-webkit-fill-available'});
-                $('#e_id_uraian').select2({'width': '-webkit-fill-available'});
-                $('#e_sumber_dana').select2({'width': '-webkit-fill-available'});
-                $('#e_prioritas').select2({'width': '-webkit-fill-available'});
-                
-                $('#e_id_tipe_barang').select2({'width': '-webkit-fill-available'});
-                $('#e_id_jenis_barang').select2({'width': '-webkit-fill-available'});
+                // $('#e_sumber_dana').select2({'});
+                $('#e_id_program').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_kegiatan').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_subkegiatan').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_uraian').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_sumber_dana').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_uraian').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_prioritas').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_tipe_barang').select2({dropdownParent: $('#Modal_Edit')});
+                $('#e_id_jenis_barang').select2({dropdownParent: $('#Modal_Edit')});
+
+               
 
                 ambileprogram();
                 ambileuraian();

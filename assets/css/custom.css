@@ -1,6 +1,9 @@
 .dropdown-bl-mode{
     background-color:#ebebeb !important; color:#6c757d !important; border: 0px !important;
 }
+.w-100{
+    width: 100% !important;
+}
 
 .dropdown-bl-mode:hover{
     background-color:#ebebeb !important; color:#6c757d !important; border: 0px !important;
