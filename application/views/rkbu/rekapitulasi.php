@@ -135,7 +135,7 @@
 				</a>
 			</div>
 		</div> -->
-				<h5>Rekapitulasi Laporan RKBU - <?php echo $profile->unit_kerja;?></h5>
+				<h5>Cetak Laporan Rekapitulasi Usulan Renbut - <span class="badge badge-info"><?php echo $profile->unit_kerja;?></span></h5>
 			<hr>
 			<table class="table table-striped" id="BelanjaperunitTable">
 			<thead>
@@ -148,7 +148,7 @@
 			<tbody>   
 				<tr>
 					<td>1</td>
-					<td>Cetak Semua Belanja (<?php echo $profile->unit_kerja;?>)</td>
+					<td>Cetak Semua Usulan Belanja </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaUser');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaUser');?> " class="btn btn-success" title="Unduh Data (.xls)" ><i class="fas fa-download"></i></a>
@@ -156,7 +156,7 @@
 				</tr>                   
 				<tr>
 					<td>2</td>
-					<td>Cetak Belanja Barang Jasa (<?php echo $profile->unit_kerja;?>)</td>
+					<td>Cetak Usulan Belanja Barang Jasa</td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaBarjasUser');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaBarjasUser');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -164,7 +164,7 @@
 				</tr>                   
 				<tr>
 					<td>3</td>
-					<td>Cetak Belanja Pegawai (<?php echo $profile->unit_kerja;?>)</td>
+					<td>Cetak Usulan Belanja Pegawai</td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaPegawaiUser');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaPegawaiUser');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -172,7 +172,7 @@
 				</tr>                   
 				<tr>
 					<td>4</td>
-					<td>Cetak Belanja Modal (<?php echo $profile->unit_kerja;?>)</td>
+					<td>Cetak Usulan Belanja Modal </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaModalUser');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaModalUser');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -180,7 +180,7 @@
 				</tr>                   
 				<tr>
 					<td>5</td>
-					<td>Cetak Berdasarkan Barang dan Spesifikasi (<?php echo $profile->unit_kerja;?>)</td>
+					<td>Cetak Usulan Berdasarkan Barang dan Spesifikasi</td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewsemuabarangdanspesifikasiUser');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetaksemuabarangdanspesifikasiUser');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -189,7 +189,7 @@
 				<?php if($role == 'Admin'){ ?>
 				<tr>
 					<td>6</td>
-					<td><b><span class="badge badge-warning">Khusus Admin</span></b> Cetak Semua Belanja</td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Semua Belanja</td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemua');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemua');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -197,7 +197,7 @@
 				</tr>                   
 				<tr>
 					<td>7</td>
-					<td><b><span class="badge badge-warning">Khusus Admin</span></b> Cetak Belanja Barang Jasa </td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Belanja Barang Jasa </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaBarjas');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaBarjas');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -205,7 +205,7 @@
 				</tr>                   
 				<tr>
 					<td>8</td>
-					<td><b><span class="badge badge-warning">Khusus Admin</span></b> Cetak Belanja Pegawai </td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Belanja Pegawai </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaPegawai');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaPegawai');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -213,7 +213,7 @@
 				</tr>                   
 				<tr>
 					<td>9</td>
-					<td><b><span class="badge badge-warning">Khusus Admin</span></b> Cetak Belanja Modal </td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Belanja Modal </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/PreviewSemuaModal');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/CetakSemuaModal');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -221,13 +221,55 @@
 				</tr>                   
 				<tr>
 					<td>10</td>
-					<td><b><span class="badge badge-warning">Khusus Admin</span></b> Cetak Berdasarkan Barang dan Spesifikasi </td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Berdasarkan Barang dan Spesifikasi </td>
 					<td>
 						<a href="<?php echo base_url('RKBU/Previewsemuabarangdanspesifikasi');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
 						<a href="<?php echo base_url('RKBU/Cetaksemuabarangdanspesifikasi');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
 					</td>
 				</tr>        
-				<?php } ?>           
+				<?php } ?>  
+				<?php if($role == 'Bidang'){ ?>
+				<tr>
+					<td>6</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Semua Belanja</td>
+					<td>
+						<a href="<?php echo base_url('RKBU/PreviewSemua');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
+						<a href="<?php echo base_url('RKBU/CetakSemua');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
+					</td>
+				</tr>                   
+				<tr>
+					<td>7</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Belanja Barang Jasa </td>
+					<td>
+						<a href="<?php echo base_url('RKBU/PreviewSemuaBarjas');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
+						<a href="<?php echo base_url('RKBU/CetakSemuaBarjas');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
+					</td>
+				</tr>                   
+				<tr>
+					<td>8</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Belanja Pegawai </td>
+					<td>
+						<a href="<?php echo base_url('RKBU/PreviewSemuaPegawai');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
+						<a href="<?php echo base_url('RKBU/CetakSemuaPegawai');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
+					</td>
+				</tr>                   
+				<tr>
+					<td>9</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Belanja Modal </td>
+					<td>
+						<a href="<?php echo base_url('RKBU/PreviewSemuaModal');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
+						<a href="<?php echo base_url('RKBU/CetakSemuaModal');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
+					</td>
+				</tr>                   
+				<tr>
+					<td>10</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Berdasarkan Barang dan Spesifikasi </td>
+					<td>
+						<a href="<?php echo base_url('RKBU/Previewsemuabarangdanspesifikasi');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a>
+						<a href="<?php echo base_url('RKBU/Cetaksemuabarangdanspesifikasi');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
+					</td>
+				</tr>        
+				<?php } ?>                
 				                   
 				                   
 			</tbody>
