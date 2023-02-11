@@ -25,7 +25,7 @@
 		<h4>Dashboard</h4>
 		<div class="row">
 			<div class="col-6">
-			<i class="fa-solid fa-money-bill" style="font-size:48px;color:#1E5631"></i>
+			<i class="fa-solid fa-rupiah-sign" style="font-size:48px;color:#1E5631"></i>
 				<h5><b>Rp. <?= number_format($totalanggaran[0]->total,0,',','.'); ?></b></h5>
 				<div class="text-muted small"><p>Total Usulan Anggaran </p></div>	
 			</div>
