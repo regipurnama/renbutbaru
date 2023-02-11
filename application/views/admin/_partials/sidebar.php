@@ -78,21 +78,21 @@
     </li> 
     <li class="nav-item <?php echo $this->uri->segment(1) == 'Status' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Status/Index'); ?>">
-        <i class="far fa-file-alt"></i>
-            <span> Status Usulan</span>
+        <i class="fa-solid fa-list"></i>
+             <span> Status Usulan</span>
         </a>
     </li>   
-    <!-- <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
+    <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Rkbu/Rekapitulasi'); ?>">
-        <i class="far fa-file-alt"></i>
+        <i class="fa-solid fa-print"></i>
             <span> Cetak Rekapitulasi</span>
         </a>
-    </li>    -->
+    </li>  
      <li class="nav-item dropdown <?php if($this->uri->segment(1) == 'Master') { echo 'show';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'show';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'show';} else {echo '';}; ?> ">
         <a class="nav-link <?php if($this->uri->segment(1) == 'Master') { echo 'active';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'active';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'active';} else {echo '';}; ?>  dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Data Pendukung</span>
+            <i class="fa-solid fa-table"></i>
+               <span>Data Pendukung</span>
         </a>
         <div class="dropdown-menu <?php if($this->uri->segment(1) == 'Master') { echo 'show';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'show';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'show';} else {echo '';}; ?>" aria-labelledby="pagesDropdown" style="background-color:#ebebeb !important;border: 0px;">
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(2) == 'Program' ? 'active': '' ?>" href="<?php echo base_url('Master/Program') ?>"><i class="far fa-file-alt"></i> <span>Program</span></a>
@@ -119,8 +119,8 @@
     <li class="nav-item dropdown <?php if($this->uri->segment(1) == 'Master') { echo 'show';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'show';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'show';} else {echo '';}; ?> ">
         <a class="nav-link <?php if($this->uri->segment(1) == 'Master') { echo 'active';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'active';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'active';} else {echo '';}; ?>  dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Master</span>
+            <i class="fa-solid fa-gears"></i>
+             <span>Master</span>
         </a>
         <div class="dropdown-menu <?php if($this->uri->segment(1) == 'Master') { echo 'show';} elseif($this->uri->segment(1) == 'Barjasrtp'){ echo 'show';} elseif($this->uri->segment(1) == 'Modalrtp'){ echo 'show';} else {echo '';}; ?>" aria-labelledby="pagesDropdown" style="background-color:#ebebeb !important;border: 0px;">
             <a class="dropdown-item dropdown-bl-mode <?php echo $this->uri->segment(2) == 'Pengguna' ? 'active': '' ?>" href="<?php echo base_url('Master/Pengguna') ?>"><i class="far fa-user"></i> <span>Pengguna</span></a>
