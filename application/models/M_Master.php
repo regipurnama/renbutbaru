@@ -223,10 +223,10 @@ class M_Master extends CI_Model {
 		return $return;
 	
  	}
-     public function get_cetak_semua($id){
+     public function get_cetak_semua_2024($id){
         // $post = $this->input->post();
         //trim($id);
-        //var_dump($id);die;
+        // var_dump($id);die;
         if($id){
             $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
             CASE WHEN head_pengadaan.jenis_belanja =0 
@@ -247,12 +247,12 @@ class M_Master extends CI_Model {
                     FROM head_pengadaan 
                     JOIN users on head_pengadaan.id_user = users.id_user
                     JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
-                        JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
-                        join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
-                        join program on program.id_program = kegiatan.id_program
-                        join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                    LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                        LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                        LEFT join program on program.id_program = kegiatan.id_program
+                        LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                                 
-                    where  detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0 and head_pengadaan.id_user = $id
+                    where   head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.id_user = $id
                     GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                     ,users.unit_kerja, 
                                 program.kodering_program, program.nama_program,
@@ -287,12 +287,12 @@ class M_Master extends CI_Model {
                         FROM head_pengadaan 
                         JOIN users on head_pengadaan.id_user = users.id_user
                         JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
-                            JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
-                            join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
-                            join program on program.id_program = kegiatan.id_program
-                            join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                        LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                        LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                        LEFT join program on program.id_program = kegiatan.id_program
+                        LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                                     
-                        where  detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0
+                        where  head_pengadaan.tahun_anggaran = 2024
                         GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                         ,users.unit_kerja, 
                                     program.kodering_program, program.nama_program,
@@ -309,6 +309,92 @@ class M_Master extends CI_Model {
         
         }
          }
+         public function get_cetak_semua($id){
+            // $post = $this->input->post();
+            //trim($id);
+            //var_dump($id);die;
+            if($id){
+                $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+                CASE WHEN head_pengadaan.jenis_belanja =0 
+                THEN 'Belanja Pegawai' 
+                WHEN head_pengadaan.jenis_belanja =1 
+                THEN 'Belanja Barang Dan Jasa'
+                ELSE 'Belanja Modal'
+                END as jenis_belanja, 
+                
+                head_pengadaan.id_user
+                        ,users.unit_kerja, 
+                                    program.kodering_program, program.nama_program,
+                                    kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                    subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                    uraian.kodering_uraian,uraian.nama_uraian,					
+                                    detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                        UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                        FROM head_pengadaan 
+                        JOIN users on head_pengadaan.id_user = users.id_user
+                        JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                            JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                            join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                            join program on program.id_program = kegiatan.id_program
+                            join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                                    
+                        where  detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0 and head_pengadaan.id_user = $id
+                        GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                        ,users.unit_kerja, 
+                                    program.kodering_program, program.nama_program,
+                                    kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                    subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                    uraian.kodering_uraian,uraian.nama_uraian,
+                                    
+                                    detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                        detail_pengadaan.sumber_dana
+                                    order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                        detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                        program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+                    return $this->db->query($query)->result();                 
+            
+            }else{
+                $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+                    CASE WHEN head_pengadaan.jenis_belanja =0 
+                    THEN 'Belanja Pegawai' 
+                    WHEN head_pengadaan.jenis_belanja =1 
+                    THEN 'Belanja Barang Dan Jasa'
+                    ELSE 'Belanja Modal'
+                    END as jenis_belanja, 
+                    
+                    head_pengadaan.id_user
+                            ,users.unit_kerja, 
+                                        program.kodering_program, program.nama_program,
+                                        kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                        subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                        uraian.kodering_uraian,uraian.nama_uraian,					
+                                        detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                            FROM head_pengadaan 
+                            JOIN users on head_pengadaan.id_user = users.id_user
+                            JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                                JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                                join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                                join program on program.id_program = kegiatan.id_program
+                                join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                                        
+                            where  detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0
+                            GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                            ,users.unit_kerja, 
+                                        program.kodering_program, program.nama_program,
+                                        kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                        subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                        uraian.kodering_uraian,uraian.nama_uraian,
+                                        
+                                        detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            detail_pengadaan.sumber_dana
+                                        order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                            detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                            program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+                        return $this->db->query($query)->result();                 
+            
+            }
+             }
      public function get_cetak_pegawai($id){
         // $post = $this->input->post();
         //trim($id);
@@ -384,7 +470,82 @@ class M_Master extends CI_Model {
         }
          
     }
-     public function get_cetak_modal($id){
+    public function get_cetak_pegawai_2024($id){
+        // $post = $this->input->post();
+        //trim($id);
+        //var_dump($id);die;
+        if($id){
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+        head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,					
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                            
+        
+                  FROM head_pengadaan 
+                  JOIN users on head_pengadaan.id_user = users.id_user
+                  JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                    LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                    LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                    LEFT join program on program.id_program = kegiatan.id_program
+                    LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                            
+                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 0 and head_pengadaan.id_user = $id
+                  GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,
+                            detail_pengadaan.sumber_dana,
+                            
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                            order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                            detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                            program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+            return $this->db->query($query)->result();                
+        }else{
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+        head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,					
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                            
+        
+                  FROM head_pengadaan 
+                  JOIN users on head_pengadaan.id_user = users.id_user
+                  JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                  LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                    LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                    LEFT join program on program.id_program = kegiatan.id_program
+                    LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                            
+                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 0
+                  GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,
+                            detail_pengadaan.sumber_dana,
+                            
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                            order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                            detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                            program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+            return $this->db->query($query)->result();                
+        }
+         
+    } 
+    public function get_cetak_modal($id){
         // $post = $this->input->post();
         //trim($id);
         //var_dump($id);die;
@@ -443,6 +604,81 @@ class M_Master extends CI_Model {
                         join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                                 
                       where  detail_pengadaan.id_subkegiatan != 0 and detail_pengadaan.id_uraian != 0 and head_pengadaan.jenis_belanja = 2
+                      GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                      ,users.unit_kerja, 
+                                program.kodering_program, program.nama_program,
+                                kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                uraian.kodering_uraian,uraian.nama_uraian,
+                                detail_pengadaan.sumber_dana,
+                                
+                                detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                                order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                                detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                                program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+                return $this->db->query($query)->result();  
+        }
+                      
+    }
+    public function get_cetak_modal_2024($id){
+        // $post = $this->input->post();
+        //trim($id);
+        //var_dump($id);die;
+        if($id){
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+            head_pengadaan.id_user
+                      ,users.unit_kerja, 
+                                program.kodering_program, program.nama_program,
+                                kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                uraian.kodering_uraian,uraian.nama_uraian,					
+                                detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                                UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                                
+            
+                      FROM head_pengadaan 
+                      JOIN users on head_pengadaan.id_user = users.id_user
+                      JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                      LEFT  JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                        LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                       LEFT join program on program.id_program = kegiatan.id_program
+                        LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                                
+                      where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 2 and head_pengadaan.id_user = $id
+                      GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                      ,users.unit_kerja, 
+                                program.kodering_program, program.nama_program,
+                                kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                uraian.kodering_uraian,uraian.nama_uraian,
+                                detail_pengadaan.sumber_dana,
+                                
+                                detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                                order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                                detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                                program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+                return $this->db->query($query)->result();  
+        }else{
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+            head_pengadaan.id_user
+                      ,users.unit_kerja, 
+                                program.kodering_program, program.nama_program,
+                                kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                                subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                                uraian.kodering_uraian,uraian.nama_uraian,					
+                                detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                                UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                                
+            
+                      FROM head_pengadaan 
+                      JOIN users on head_pengadaan.id_user = users.id_user
+                      JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                        LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                        LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                        LEFT join program on program.id_program = kegiatan.id_program
+                        LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                                
+                      where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 2
                       GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                       ,users.unit_kerja, 
                                 program.kodering_program, program.nama_program,
@@ -534,6 +770,82 @@ class M_Master extends CI_Model {
         }
                          
     }
+    public function get_cetak_barjas_2024($id){
+        // $post = $this->input->post();
+        //trim($id);
+        //var_dump($id);die;
+        if($id){
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+        head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,					
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                            
+        
+                  FROM head_pengadaan 
+                  JOIN users on head_pengadaan.id_user = users.id_user
+                  JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                    LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                    LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                    LEFT join program on program.id_program = kegiatan.id_program
+                    LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                            
+                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 1 and head_pengadaan.id_user = $id
+                  GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,
+                            detail_pengadaan.sumber_dana,
+                            
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                            order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                            detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                            program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+            return $this->db->query($query)->result();
+        }else{
+            $query="SELECT head_pengadaan.tgl_usulan,head_pengadaan.status,
+        head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,					
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+                            UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                            
+        
+                  FROM head_pengadaan 
+                  JOIN users on head_pengadaan.id_user = users.id_user
+                  JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+                    LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+                    LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+                    LEFT join program on program.id_program = kegiatan.id_program
+                    LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                            
+                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 1
+                  GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
+                  ,users.unit_kerja, 
+                            program.kodering_program, program.nama_program,
+                            kegiatan.kodering_kegiatan,kegiatan.nama_kegiatan,
+                            subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
+                            uraian.kodering_uraian,uraian.nama_uraian,
+                            detail_pengadaan.sumber_dana,
+                            
+                            detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan
+                            order by users.unit_kerja,head_pengadaan.jenis_belanja, 
+                            detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
+                            program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
+            return $this->db->query($query)->result();
+        }
+                         
+    }
+    
      public function get_cetak_barangdanspesifikasi($id){
         // $post = $this->input->post();
         //trim($id);
@@ -580,7 +892,54 @@ class M_Master extends CI_Model {
             return $this->db->query($query)->result();                
         }
          
+    }public function get_cetak_barangdanspesifikasi_2024($id){
+        // $post = $this->input->post();
+        //trim($id);
+        //var_dump($id);die;
+        if($id){
+            $query="SELECT head_pengadaan.id_user
+        ,users.unit_kerja, 
+                  trim(detail_pengadaan.nama_barang) as nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+        UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+        FROM head_pengadaan 
+        JOIN users on head_pengadaan.id_user = users.id_user
+        JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+          LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+          LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+          LEFT join program on program.id_program = kegiatan.id_program
+          LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                  
+        where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.id_user = $id
+        GROUP BY  head_pengadaan.id_user
+        ,users.unit_kerja, 
+                  trim(detail_pengadaan.nama_barang),detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+        detail_pengadaan.sumber_dana
+             order by trim(detail_pengadaan.nama_barang), users.unit_kerja";
+            return $this->db->query($query)->result();                
+        }else{
+            $query="SELECT head_pengadaan.id_user
+        ,users.unit_kerja, 
+                  trim(detail_pengadaan.nama_barang) as nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+        UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+        FROM head_pengadaan 
+        JOIN users on head_pengadaan.id_user = users.id_user
+        JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
+          LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
+          LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
+          LEFT join program on program.id_program = kegiatan.id_program
+          LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
+                  
+        where  head_pengadaan.tahun_anggaran = 2024
+        GROUP BY  head_pengadaan.id_user
+        ,users.unit_kerja, 
+                  trim(detail_pengadaan.nama_barang),detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
+        detail_pengadaan.sumber_dana
+             order by trim(detail_pengadaan.nama_barang), users.unit_kerja";
+            return $this->db->query($query)->result();                
+        }
+         
     }
+
 
     public function save_pengguna()
     {

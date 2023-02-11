@@ -29,19 +29,21 @@
 
 	<?php
 	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Pegawai - Admin.xls");
+	header("Content-Disposition: attachment; filename=Usulan Belanja Semua $profile.xls");
 	?>
 
 	<center>
-		<h3>Rencana Kebutuhan Barang Unit <br/> 
-		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
-        Belanja Pegawai
+		<h3>Rencana Kebutuhan Barang Unit<br/> 
+		Rumah Sakit Jiwa Provinsi Jawa Barat <br/>
+        Nama Unit : <?= $profile; ?> 
+        Tahun Usulan : <?= $tahun; ?> </h3>
 	</center>
 
 	<table border="1">
 		<tr>
 			<th rowspan="2">No</th>
 			<th rowspan="2">Unit Kerja</th>
+			<th rowspan="2">Jenis Belanja</th>
 			<th colspan="2">Program</th>
 			<th colspan="2">Kegiatan</th>
 			<th colspan="2">Subkegiatan</th>
@@ -77,6 +79,7 @@
 		<tr>
 		 <td><?php echo $no++; ?></td>
 		 <td><?php echo $row->unit_kerja; ?></td>
+		 <td><?php echo $row->jenis_belanja; ?></td>
 		 <td><?php echo $row->kodering_program; ?></td>
 		 <td><?php echo $row->nama_program; ?></td>
 		 <td><?php echo $row->kodering_kegiatan; ?></td>
@@ -102,15 +105,15 @@
 		}
 		?>
 		<tr>
-		<th colspan="16"><b>GRAND TOTAL</b></th>
+		<th colspan="17"><b>GRAND TOTAL</b></th>
 		<th> 
 			<?php echo $grandtotal; ?>
 		</th>
-		<th colspan="2"></th>
+        <th colspan="2"></th>
 		</tr>
 		<tr>
 			<?php ini_set('date.timezone', 'Asia/Jakarta');?>
-			<td colspan="19">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
+			<td colspan="20">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
 		</tr>
 	</table>
 </body>

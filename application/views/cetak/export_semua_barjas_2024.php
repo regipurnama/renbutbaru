@@ -29,13 +29,13 @@
 
 	<?php
 	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Pegawai - Admin.xls");
+	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Barang & Jasa - Admin.xls");
 	?>
 
 	<center>
 		<h3>Rencana Kebutuhan Barang Unit <br/> 
 		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
-        Belanja Pegawai
+        Belanja Barang dan Jasa
 	</center>
 
 	<table border="1">
@@ -112,6 +112,7 @@
 			<?php ini_set('date.timezone', 'Asia/Jakarta');?>
 			<td colspan="19">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
 		</tr>
+		
 	</table>
 </body>
 </html>
