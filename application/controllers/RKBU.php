@@ -33,6 +33,7 @@ class RKBU extends CI_Controller {
 		$this->session_check();
 		$id_user =  $this->session->userdata('id_user');
 		$data['role'] =  $this->session->userdata('role');
+		$data['tahun'] =  $this->session->userdata('tahun');
 		$result =  $this->M_User->getById($id_user);
 		$data['totalanggaran'] =  $this->M_User->totalanggaransemua($id_user,$data['role']);
 		$data['belanjapegawai'] =  $this->M_User->totalbelanjapegawai($id_user,$data['role']);
