@@ -13,7 +13,7 @@
             </form>
         </a>
     </li> -->
-    <li class="nav-item <?php echo $this->uri->segment(1) == 'Dashboard' ? 'active': '' ?>">
+    <li class="nav-item <?php echo $this->uri->segment(2) == 'Dashboard' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Rkbu/Dashboard'); ?>">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Halaman Depan</span>
@@ -82,7 +82,7 @@
              <span> Status Usulan</span>
         </a>
     </li>   
-    <li class="nav-item <?php echo $this->uri->segment(1) == 'Rekapitulasi' ? 'active': '' ?>">
+    <li class="nav-item <?php echo $this->uri->segment(2) == 'Rekapitulasi' ? 'active': '' ?>">
         <a class="nav-link" href="<?php echo base_url('Rkbu/Rekapitulasi'); ?>">
         <i class="fa-solid fa-print"></i>
             <span> Cetak Rekapitulasi</span>

@@ -28,8 +28,15 @@
 	</style>
 
 	<?php
-	header("Content-type: application/vnd-ms-excel");
+    if($role == 'admin'){
+        header("Content-type: application/vnd-ms-excel");
 	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Modal - Admin.xls");
+	
+    }else{
+        header("Content-type: application/vnd-ms-excel");
+	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Modal dari $profile.xls");
+	
+    }
 	?>
 
 	<center>
