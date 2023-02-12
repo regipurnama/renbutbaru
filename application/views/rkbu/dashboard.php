@@ -34,22 +34,22 @@
 		<br/>
 <div class="row">
 			
-			<div class="col-6 col-sm-12">
+			<div class="col-xl-6 col-md-6 col-sm-12">
 			<i class="fa-solid fa-rupiah-sign" style="font-size:48px;color:#1E5631"></i>
 				<h5><b>Rp. <?= number_format($totalanggaran[0]->total,0,',','.'); ?></b></h5>
 				<div class="text-muted small"><p>Total Usulan Anggaran </p></div>	
 			</div>
-			<div class="col-2 col-sm-12">
+			<div class="col-xl-2 col-md-6 col-sm-12">
 				<i class="fa-solid fa-user" style="font-size:48px;color:#12af81"></i>
 				<h5><b>Rp. <?= number_format($belanjapegawai[0]->total,0,',','.'); ?></b></h5>
 				<div class="text-muted small"><p>Total Usulan Belanja Pegawai </p></div>
 			</div>
-			<div class="col-2 col-sm-12">
+			<div class="col-xl-2 col-md-6 col-sm-12">
 				<i class="fa-solid fa-building" style="font-size:48px;color:#44456d"></i>
 				<h5><b>Rp. <?= number_format($belanjabarjas[0]->total,0,',','.'); ?></b></h5>
 				<div class="text-muted small"><p>Total Usulan Belanja Barang Jasa </p></div>
 			</div>
-			<div class="col-2 col-sm-12">
+			<div class="col-xl-2 col-md-6 col-sm-12">
 			<i class="fa-solid fa-box" style="font-size:48px;color:#c0884c"></i>
 				<h5><b>Rp. <?= number_format($belanjamodal[0]->total,0,',','.'); ?></b></h5>
 				<div class="text-muted small"><p>Total Usulan Belanja Modal </p></div>
