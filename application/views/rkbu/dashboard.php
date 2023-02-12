@@ -23,7 +23,13 @@
 
 		<!-- Icon Cards-->
 		<h4>Dashboard</h4>
-		<div class="row">
+			<span class='badge-info'><i class="fa-solid fa-circle-info"></i> [UPDATE] <br/>
+			- Cetak per unit/bidang sudah bisa diakses, <br/>
+			- Tampilan dashboard untuk bidang sudah disesuaikan.
+		</span>
+		<br/>
+<div class="row">
+			
 			<div class="col-6">
 			<i class="fa-solid fa-rupiah-sign" style="font-size:48px;color:#1E5631"></i>
 				<h5><b>Rp. <?= number_format($totalanggaran[0]->total,0,',','.'); ?></b></h5>
