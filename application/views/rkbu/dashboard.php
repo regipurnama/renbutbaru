@@ -23,10 +23,14 @@
 
 		<!-- Icon Cards-->
 		<h4>Dashboard</h4>
-			<span class='badge-info'><i class="fa-solid fa-circle-info"></i> [UPDATE] <br/>
-			- Cetak per unit/bidang sudah bisa diakses, <br/>
-			- Tampilan dashboard untuk bidang sudah disesuaikan.
-		</span>
+		<div class="alert alert-info alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<strong>Info!</strong>
+			<br/>
+					- Cetak per unit/bidang sudah bisa diakses, <br/>
+					- Tampilan dashboard untuk bidang sudah disesuaikan.
+		</div>
+			
 		<br/>
 <div class="row">
 			
