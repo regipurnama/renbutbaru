@@ -278,7 +278,7 @@ class RKBU extends CI_Controller {
 			$data['belanja'] = $this->M_Master->get_cetak_barangdanspesifikasi($id);
 		
 		$this->load->view("Cetak/export_semua_barangdanspesifikasi_user",$data);
-						
+		}		
 	
 	}
 		
