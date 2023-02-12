@@ -50,7 +50,7 @@
                        
                         if($tahun==2024){ ?>
 
-                <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i> Tambah Usulan</a></div>
+                <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div>
                 <?php
                         }
                         ?>            
@@ -250,7 +250,7 @@
                               </div>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                                <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary"> <i class="fas fa-add"></i> Tambah Usulan</button>
                               </div>
                               
                             </div>
@@ -480,7 +480,7 @@
                               </div>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                                <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                               </div>
                           
                               

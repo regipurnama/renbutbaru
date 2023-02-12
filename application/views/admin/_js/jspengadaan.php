@@ -445,6 +445,10 @@
                     contentType: false,
                     success: function(response){
                         //console.log('masuk');
+                        tata.success('Sukses', 'Usulan Berhasil diupdate', 
+                        {
+                            duration: 3000
+                        })
                         
                         $('[name="id_program"]').val(0).trigger('change');
                         $('[name="id_kegiatan"]').val(0).trigger('change');
@@ -470,6 +474,10 @@
                     }, 
                     error: function(response){
                         console.log(response);
+                        tata.danger('Error', response, 
+                        {
+                            duration: 3000
+                        })
                     }
                 });
                 edit="";
@@ -488,6 +496,10 @@
                     processData: false,
                     contentType: false,
                     success: function(response){
+                        tata.success('Sukses', 'Usulan Berhasil diupdate', 
+                        {
+                            duration: 3000
+                        })
                        //console.log(response.data);
                         // $('[name="id_program"]').val(0).trigger('change');
                         // $('[name="id_kegiatan"]').val(0).trigger('change');
@@ -512,6 +524,10 @@
                     }, 
                     error: function(response){
                         console.log(response);
+                        tata.danger('Error', response, 
+                        {
+                            duration: 3000
+                        })
                     }
                    
             
@@ -544,6 +560,10 @@
                      
                         success: function(response){
                       //      console.log(response);
+                      tata.success('Sukses', 'Usulan Berhasil diupdate', 
+                        {
+                            duration: 3000
+                        })
                             $('[name="e_id_program"]').val(0).trigger('change');
                             $('[name="e_id_kegiatan"]').val(0).trigger('change');
                             $('[name="e_id_subkegiatan"]').val(0).trigger('change');
@@ -573,6 +593,10 @@
                         }, 
                         error: function(response){
                             console.log(response);
+                            tata.danger('Error', response, 
+                        {
+                            duration: 3000
+                        })
                         }
                     });
                     edit="";
@@ -661,6 +685,10 @@
                 data : {id:id},
                 success: function(data){
                     $('[name="id_hapus"]').val("");
+                    tata.success('Sukses', 'Usulan Berhasil dihapus', 
+                        {
+                            duration: 3000
+                        })
                     
                 }
             });

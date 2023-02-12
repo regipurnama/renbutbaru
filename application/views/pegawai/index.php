@@ -199,7 +199,7 @@
                               </div>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                                <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                               </div>
                               
                             </div>
@@ -368,7 +368,7 @@
                               </div>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                                <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary">Tambah Barang</button>
+                                <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                               </div>
                           
                               
@@ -472,7 +472,7 @@
                             </div>
                             <div class="col-md-2">
                               <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                              <button type="button" type="submit" id="btn_save_brg_pengadaan" class="btn btn-primary">Tambah Barang</button>
+                              <button type="button" type="submit" id="btn_save_brg_pengadaan" class="btn btn-primary">Tambah Usulan</button>
                             </div>
                             
                           </div>

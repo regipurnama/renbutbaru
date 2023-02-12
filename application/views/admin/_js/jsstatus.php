@@ -282,12 +282,20 @@
                       //      console.log(response);
                             $('#e_btn_save_status').removeAttr('disabled');
                             statustable.ajax.reload(null,false);
+                            tata.success('Sukses', 'Status Berhasil diupdate..', 
+                            {
+                                duration: 3000
+                            })
                                 
                             
                             $('#Modal_Edit').modal('hide');
                         }, 
                         error: function(response){
                             console.log(response);
+                            tata.danger('Error', response, 
+                            {
+                                duration: 3000
+                            })
                         }
                     });
                     edit="";
@@ -310,7 +318,10 @@
                 data : {id:id},
                 success: function(data){
                     $('[name="id_hapus"]').val("");
-                    
+                    tata.success('Sukses', 'Status Berhasil dihapus', 
+                        {
+                            duration: 3000
+                        })
                 }
             });
             $('#Modal_Delete').modal('hide');
