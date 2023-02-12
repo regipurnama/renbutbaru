@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Export Data Belanja Renbut RSJ</title>
+	<title>Export Data Belanja Renbut Baru RSJ</title>
 </head>
 <body>
 	<style type="text/css">
@@ -29,20 +29,22 @@
 
 	<?php
 	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Usulan Belanja Semua - Admin.xls");
+	header("Content-Disposition: attachment; filename=Usulan Semua Belanja Modal - $profile.xls");
 	?>
 
 	<center>
 		<h3>Rencana Kebutuhan Barang Unit <br/> 
-		Rumah Sakit Jiwa Provinsi Jawa Barat
-		Tahun Usulan : <?= $tahun; ?> </h3>
+		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
+        Belanja Modal	<br/>
+        Nama Unit : <?= $profile; ?> <br/>
+        Tahun : <?= $tahun; ?> <br/>
+		</h3>
 	</center>
 
 	<table border="1">
 		<tr>
 			<th rowspan="2">No</th>
 			<th rowspan="2">Unit Kerja</th>
-			<th rowspan="2">Jenis Belanja</th>
 			<th colspan="2">Program</th>
 			<th colspan="2">Kegiatan</th>
 			<th colspan="2">Subkegiatan</th>
@@ -78,7 +80,6 @@
 		<tr>
 		 <td><?php echo $no++; ?></td>
 		 <td><?php echo $row->unit_kerja; ?></td>
-		 <td><?php echo $row->jenis_belanja; ?></td>
 		 <td><?php echo $row->kodering_program; ?></td>
 		 <td><?php echo $row->nama_program; ?></td>
 		 <td><?php echo $row->kodering_kegiatan; ?></td>
@@ -93,7 +94,7 @@
 		 <td><?php echo $row->satuan; ?></td>
 		 <td><?php echo $row->sumber_dana; ?></td>
 		 <td><?php echo $row->harga_satuan; ?></td>
-		 <td><?php echo number_format($row->total_harga,0,",",".");?></td>
+		 <td><?php echo $row->total_harga; ?></td>
 		 <td><?php echo $row->prioritas; ?></td>
 		 <td><?php echo $row->catatan; ?></td>
 		
@@ -104,19 +105,16 @@
 		}
 		?>
 		<tr>
-		<th colspan="17"><b>GRAND TOTAL</b></th>
+		<th colspan="16"><b>GRAND TOTAL</b></th>
 		<th> 
-			<?php echo  number_format($grandtotal,0,",","."); ?>
+			<?php echo $grandtotal; ?>
 		</th>
-		<th colspan="2"></th>
+        <th colspan="2"></th>
 		</tr>
 		<tr>
 			<?php ini_set('date.timezone', 'Asia/Jakarta');?>
-			<td colspan="20">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
+			<td colspan="19">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
 		</tr>
 	</table>
 </body>
 </html>
-<script type="text/javascript">
-      window.print()
-    </script>

@@ -36,6 +36,7 @@
 		<h3>Rencana Kebutuhan Barang Unit <br/> 
 		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
         Belanja Pegawai
+        Tahun Usulan : <?= $tahun; ?> </h3>
 	</center>
 
 	<table border="1">

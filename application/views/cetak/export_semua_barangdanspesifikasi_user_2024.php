@@ -29,15 +29,17 @@
 
 	<?php
 	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Usulan Berdasarkan Barang - Admin.xls");
+	header("Content-Disposition: attachment; filename=Usulan Berdasarkan Barang - $profile.xls");
 	?>
 
 	<center>
 		<h3>Rencana Kebutuhan Barang Unit <br/> 
 		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
-        Berdasarkan Barang Dan Spesifikasi
-        Tahun Usulan : <?= $tahun; ?> </h3>
-    </center>
+        Berdasarkan Barang Dan Spesifikasi<br/>
+        Nama Unit : <?= $profile; ?> <br/>
+        Tahun : <?= $tahun; ?> <br/>
+		 </h3>
+	</center>
 
 	<table border="1">
 		<tr>
@@ -86,13 +88,12 @@
 		<th> 
 			<?php echo $grandtotal; ?>
 		</th>
-		<th colspan="3"></th>
+        <th colspan="3"></th>
 		</tr>
 		<tr>
 			<?php ini_set('date.timezone', 'Asia/Jakarta');?>
 			<td colspan="11">Printed By RKBU RSJ : <?php echo date('Y-m-d H:i');?></td>
 		</tr>
-		
 	</table>
 </body>
 </html>

@@ -35,8 +35,8 @@
 	<center>
 		<h3>Rencana Kebutuhan Barang Unit <br/> 
 		Rumah Sakit Jiwa Provinsi Jawa Barat<br/>
-        Belanja Modal
-	</center>
+        Tahun Usulan : <?= $tahun; ?> </h3>
+    </center>
 
 	<table border="1">
 		<tr>

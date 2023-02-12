@@ -195,43 +195,68 @@ class RKBU extends CI_Controller {
 		$this->session_check();
 		$id =  $this->session->userdata('id_user');
 		$unit_kerja =  $this->session->userdata('unit_kerja');
-		$data['belanja'] = $this->M_Master->get_cetak_barjas($id);
+		$data['tahun'] =  $this->session->userdata('tahun');
+		$data['profile'] = $unit_kerja;
 		$data['jenis_belanja'] = $data['belanja'][0]->jenis_belanja;
-
+		if($data['tahun']>2023){
+			$data['belanja'] = $this->M_Master->get_cetak_barjas_2024($id);
+			
+			// var_dump($data['tahun']);die;
+			$this->load->view("Cetak/export_semua_barjas_user_2024",$data);
+			
+		}else{
+			$data['belanja'] = $this->M_Master->get_cetak_barjas($id);
+		
 		
 		
 		//var_dump($unit_kerja);die;
-		$data['profile'] = $unit_kerja;
 		$this->load->view("Cetak/export_semua_barjas_user",$data);
-						
+		}			
 	
 	}
 	function CetakSemuaPegawaiUser(){
 		$this->session_check();
 		$id =  $this->session->userdata('id_user');
 		$unit_kerja =  $this->session->userdata('unit_kerja');
-		$data['belanja'] = $this->M_Master->get_cetak_pegawai($id);
+		$data['tahun'] =  $this->session->userdata('tahun');
 		$data['jenis_belanja'] = $data['belanja'][0]->jenis_belanja;
+		$data['profile'] = $unit_kerja;
+		if($data['tahun']>2023){
+			$data['belanja'] = $this->M_Master->get_cetak_pegawai_2024($id);
+			
+			// var_dump($data['tahun']);die;
+			$this->load->view("Cetak/export_semua_pegawai_user_2024",$data);
+			
+		}else{
+			$data['belanja'] = $this->M_Master->get_cetak_pegawai($id);
+		
 
 
 		//var_dump($unit_kerja);die;
-		$data['profile'] = $unit_kerja;
 		$this->load->view("Cetak/export_semua_pegawai_user",$data);
-						
+		}				
 	
 	}
 	function CetakSemuaModalUser(){
 		$this->session_check();
 		$id =  $this->session->userdata('id_user');
 		$unit_kerja =  $this->session->userdata('unit_kerja');
-		$data['belanja'] = $this->M_Master->get_cetak_modal($id);
 		$data['jenis_belanja'] = $data['belanja'][0]->jenis_belanja;
-
+		$data['profile'] = $unit_kerja;
+		$data['tahun'] =  $this->session->userdata('tahun');
+		if($data['tahun']>2023){
+			$data['belanja'] = $this->M_Master->get_cetak_modal_2024($id);
+			
+			// var_dump($data['tahun']);die;
+			$this->load->view("Cetak/export_semua_modal_user_2024",$data);
+			
+		}else{
+			$data['belanja'] = $this->M_Master->get_cetak_modal($id);
+		
 				
 		//var_dump($unit_kerja);die;
-		$data['profile'] = $unit_kerja;
 		$this->load->view("Cetak/export_semua_modal_user",$data);
-						
+		}				
 	
 	}
 	function CetaksemuabarangdanspesifikasiUser(){
@@ -239,10 +264,19 @@ class RKBU extends CI_Controller {
 		$id =  $this->session->userdata('id_user');
 		// var_dump($id);die;
 		$unit_kerja =  $this->session->userdata('unit_kerja');
-		$data['belanja'] = $this->M_Master->get_cetak_barangdanspesifikasi($id);
 		$data['jenis_belanja'] = $data['belanja'][0]->jenis_belanja;
 		//var_dump($unit_kerja);die;
 		$data['profile'] = $unit_kerja;
+		$data['tahun'] =  $this->session->userdata('tahun');
+		if($data['tahun']>2023){
+			$data['belanja'] = $this->M_Master->get_cetak_barangdanspesifikasi_2024($id);
+			
+			// var_dump($data['tahun']);die;
+			$this->load->view("Cetak/export_semua_barangdanspesifikasi_user_2024",$data);
+			
+		}else{
+			$data['belanja'] = $this->M_Master->get_cetak_barangdanspesifikasi($id);
+		
 		$this->load->view("Cetak/export_semua_barangdanspesifikasi_user",$data);
 						
 	
