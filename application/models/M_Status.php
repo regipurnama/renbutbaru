@@ -116,7 +116,7 @@ class M_Status extends CI_Model {
 		//  id
 		 $id = $post['id'];
 		//  var_dump($id);die; 
-		 $sql = "SELECT a.id_detail_pengadaan, a.nama_barang, a.kuantitas, a.satuan, users.unit_kerja,users.id_user,a.spesifikasi, 
+		 $sql = "SELECT a.id_detail_pengadaan, a.nama_barang, a.kuantitas, a.satuan, users.unit_kerja,users.id_user,a.spesifikasi, a.catatan,
 		 								status_usulan.id_status,status_usulan.prioritas_status,status_usulan.status,status_usulan.deskripsi,
 										status_usulan.volume_status,status_usulan.satuan_status,status_usulan.id_unit_pengampu
 		 FROM detail_pengadaan a
@@ -162,7 +162,7 @@ class M_Status extends CI_Model {
 		$tahun = $_SESSION['tahun'];
 		  
 		  $sql = "SELECT a.id_detail_pengadaan,a.nama_barang,jenis_barang.nama_jenis_barang,tipe_barang.nama_tipe_barang,a.spesifikasi,
-		  a.catatan,a.sumber_dana,a.prioritas,a.kuantitas, a.satuan,a.harga_satuan,a.total_harga,a.nama_file,
+		  a.catatan,a.sumber_dana,a.prioritas,a.kuantitas, a.satuan,a.harga_satuan,a.total_harga,a.nama_file,a.catatan,
 		  status_usulan.status,status_usulan.deskripsi,status_usulan.prioritas_status,status_usulan.volume_status,
 		  status_usulan.satuan_status,status_usulan.id_unit_pengampu,users.unit_kerja,users.id_user FROM detail_pengadaan a
 				  LEFT JOIN head_pengadaan b on a.id_pengadaan = b.id_pengadaan
@@ -184,7 +184,7 @@ class M_Status extends CI_Model {
       $tahun = $_SESSION['tahun'];
         
         $sql = "SELECT a.id_detail_pengadaan,a.nama_barang,jenis_barang.nama_jenis_barang,tipe_barang.nama_tipe_barang,a.spesifikasi,
-		a.catatan,a.sumber_dana,a.prioritas,a.kuantitas, a.satuan,a.harga_satuan,a.total_harga,a.nama_file,
+		a.catatan,a.sumber_dana,a.prioritas,a.kuantitas, a.satuan,a.harga_satuan,a.total_harga,a.nama_file,a.catatan,
 		status_usulan.status,status_usulan.deskripsi,status_usulan.prioritas_status,status_usulan.volume_status,
 		status_usulan.satuan_status,status_usulan.id_unit_pengampu,users.unit_kerja,users.id_user
 		 FROM detail_pengadaan a

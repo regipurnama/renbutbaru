@@ -81,6 +81,7 @@
                           'satuan'            : response.data[x].satuan,
                           'harga_satuan'            : response.data[x].harga_satuan,
                           'total_harga'            : response.data[x].total_harga,
+                          'catatan'            : response.data[x].catatan,
                           'nama_file'            : download,
                           'status_usulan'              : status,
                           'aksi'              : button,
@@ -114,7 +115,7 @@
               },
               {'data': 'nama_barang','render':
                   function (data, type, full) {
-                    return "<p> "+full.nama_barang +"<br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
+                    return "<p><b> "+full.nama_barang +"</b><br> Spesifikasi : "+ full.spesifikasi+"<br> Tipe Barang : "+ full.nama_tipe_barang + "<br> Jenis Barang : "+ full.nama_jenis_barang;
                 }
               
               },
@@ -131,7 +132,18 @@
                 }
             },
               
-              {'data': 'prioritas'},
+              {'data': 'prioritas','render': 
+                function (data, type, full) {
+                        if(full.prioritas == 'tinggi'){
+                            return "<span class='badge badge-danger'>"+full.prioritas+"</span>";
+                        }else if(full.prioritas == 'sedang'){
+                            return "<span class='badge badge-warning'>"+full.prioritas+"</span>";
+                        }else{
+                            return "<span class='badge badge-info'>"+full.prioritas+"</span>";                           
+                        }
+                },
+                },
+              {'data': 'catatan'},
               {'data': 'nama_file'},
               {'data': 'status_usulan'},
               {'data': 'aksi'}
@@ -149,8 +161,9 @@
                     {  targets: 3, width: '5%' }, 
                     {  targets: 4, width: '18%' }, 
                     {  targets: 5, width: '12%' }, 
-                    {  targets: 6, width: '15%' }, 
-                    {  targets: 7, width: '15%' } 
+                    {  targets: 6, width: '10%' }, 
+                    {  targets: 7, width: '10%' }, 
+                    {  targets: 8, width: '15%' } 
                 
                  ] ,
                  footerCallback: function ( row, data, start, end, display ) {

@@ -58,6 +58,7 @@
                         <th>Volume</th>
                         <th>Harga Satuan</th>
                         <th>Prioritas</th>
+                        <th>Catatan</th>
                         <th>Dokumen Pendukung</th>
                         <th>Status Usulan</th>
                         
