@@ -21,6 +21,9 @@
         -->
 		<?php //$this->load->view("admin/_partials/breadcrumb.php") ?>
 
+		<div class="spinner-border text-info" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
 		<!-- Icon Cards-->
 		<h4>Dashboard</h4>
 		<div class="alert alert-info alert-dismissible">

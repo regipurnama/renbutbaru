@@ -45,6 +45,12 @@ class RKBU extends CI_Controller {
 		//$data['posts'] = $posts;
 		$this->load->view('Rkbu/Dashboard',$data);
 	}
+	public function tes()
+	{
+		$this->session_check();
+	
+		$this->load->view('Rkbu/tes');
+	}
 	public function belanjaperunit(){
 		$this->session_check();
 		$id_user =  $this->session->userdata('id_user');
@@ -180,7 +186,7 @@ class RKBU extends CI_Controller {
 			$data['belanja'] = $this->M_Master->get_cetak_barangdanspesifikasi_2024($id,$role,$bidang);
 			
 			// var_dump($data['tahun']);die;
-			$this->load->view("Cetak/export_semua_modaexport_semua_barangdanspesifikasi_2024",$data);
+			$this->load->view("Cetak/export_semua_barangdanspesifikasi_2024",$data);
 			
 		}else{
 			
