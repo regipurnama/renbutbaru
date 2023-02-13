@@ -42,7 +42,7 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         if(role=='user'){
-                            var button = '<button class="btn btn-info btn-sm btn-flat"><i class="fas fa-info"></i></button>';
+                            var button = '<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Di Isi oleh Bidang Bagian Masing-masing"><i class="fas fa-info"></i></button>';
                             
                         }else{
                             var button = '<button onClick="Editstatus('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-sm btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button>';
@@ -135,11 +135,11 @@
               {'data': 'prioritas','render': 
                 function (data, type, full) {
                         if(full.prioritas == 'tinggi'){
-                            return "<span class='badge badge-danger'>"+full.prioritas+"</span>";
+                            return "<span class='badge badge-danger text-center'>"+full.prioritas+"</span>";
                         }else if(full.prioritas == 'sedang'){
-                            return "<span class='badge badge-warning'>"+full.prioritas+"</span>";
+                            return "<span class='badge badge-warning text-center'>"+full.prioritas+"</span>";
                         }else{
-                            return "<span class='badge badge-info'>"+full.prioritas+"</span>";                           
+                            return "<span class='badge badge-info text-center'>"+full.prioritas+"</span>";                           
                         }
                 },
                 },
@@ -160,10 +160,10 @@
                     {  targets: 2, width: '30%' }, 
                     {  targets: 3, width: '5%' }, 
                     {  targets: 4, width: '18%' }, 
-                    {  targets: 5, width: '12%' }, 
-                    {  targets: 6, width: '10%' }, 
-                    {  targets: 7, width: '10%' }, 
-                    {  targets: 8, width: '15%' } 
+                    {  targets: 5, width: '5%' }, 
+                    {  targets: 6, width: '15%' }, 
+                    {  targets: 7, width: '15%' }, 
+                    {  targets: 8, width: '10%' } 
                 
                  ] ,
                  footerCallback: function ( row, data, start, end, display ) {
