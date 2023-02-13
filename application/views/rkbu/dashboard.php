@@ -30,6 +30,7 @@
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<strong>Info!</strong>
 			<br/>
+					<marquee>"PASTIKAN USULAN YANG DIINPUTKAN MASUK KE CETAK DAN TERAKUMULASI DI DASHBOARD :D"</marquee>
 					- Status Usulan ditambah catatan, <br/>
 					- Cetak per unit/bidang sudah bisa diakses, <br/>
 					- Tampilan dashboard untuk bidang sudah disesuaikan.
