@@ -190,7 +190,7 @@ class M_User extends CI_Model {
 			$aksi .= ' and head_pengadaan.id_user='.$id_user;
 		}
 		if($role == 'bidang'){
-			$aksi2 .= ' and users.bidang='.$bidang;
+			$aksi .= ' and users.bidang='.$bidang;
 		}
 		if($tahun < 2024){
 			$query = "SELECT sum(total_harga) as total FROM 
