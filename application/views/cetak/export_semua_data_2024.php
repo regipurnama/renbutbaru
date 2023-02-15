@@ -62,6 +62,9 @@
 			<th rowspan="2">Harga Satuan</th>
 			<th rowspan="2">Total Harga Usulan</th>
 			<th rowspan="2">Prioritas</th>
+			<th rowspan="2">Tipe Barang</th>
+			<th rowspan="2">Jenis Barang</th>
+			<th rowspan="2">Dokumen Pendukung</th>
 			<th rowspan="2">Catatan</th>
 		</tr>
 		<tr>
@@ -102,6 +105,9 @@
 		 <td><?php echo $row->harga_satuan; ?></td>
 		 <td><?php echo number_format($row->total_harga,0,",",".");?></td>
 		 <td><?php echo $row->prioritas; ?></td>
+		 <td><?php echo $row->nama_tipe_barang; ?></td>
+		 <td><?php echo $row->nama_jenis_barang; ?></td>
+		 <td><?php echo "<a href = 'http://192.168.7.89:8056/renbutbaru/uploadfile/$row->nama_file'>".$row->nama_file."</a>"; ?></td>
 		 <td><?php echo $row->catatan; ?></td>
 		
 		

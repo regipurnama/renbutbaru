@@ -250,15 +250,17 @@ class M_Master extends CI_Model {
                                 subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
                                 uraian.kodering_uraian,uraian.nama_uraian,					
                                 detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
-                    UPPER(detail_pengadaan.sumber_dana) as sumber_dana
-                    FROM head_pengadaan 
+                    UPPER(detail_pengadaan.sumber_dana) as sumber_dana,
+                    jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, detail_pengadaan.nama_file
+                      FROM head_pengadaan 
                     JOIN users on head_pengadaan.id_user = users.id_user
                     JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
                     LEFT JOIN subkegiatan on subkegiatan.id_subkegiatan = detail_pengadaan.id_subkegiatan
                         LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
                         LEFT join program on program.id_program = kegiatan.id_program
                         LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
-                                
+                        LEFT JOIN tipe_barang on     detail_pengadaan.tipe_barang = tipe_barang.id_tipe_barang    
+                        LEFT JOIN jenis_barang on      detail_pengadaan.jenis_barang = jenis_barang.id_jenis_barang   
                     where   head_pengadaan.tahun_anggaran = 2024  $aksi 
                     GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                     ,users.unit_kerja, 
@@ -268,7 +270,9 @@ class M_Master extends CI_Model {
                                 uraian.kodering_uraian,uraian.nama_uraian,
                                 
                                 detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
-                    detail_pengadaan.sumber_dana
+                    detail_pengadaan.sumber_dana,
+                    jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, , detail_pengadaan.nama_file
+                      
                                 order by users.unit_kerja,head_pengadaan.jenis_belanja, 
                     detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
                     program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
@@ -292,7 +296,9 @@ class M_Master extends CI_Model {
                                     subkegiatan.kodering_subkegiatan,subkegiatan.nama_subkegiatan,
                                     uraian.kodering_uraian,uraian.nama_uraian,					
                                     detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
-                        UPPER(detail_pengadaan.sumber_dana) as sumber_dana
+                        UPPER(detail_pengadaan.sumber_dana) as sumber_dana,
+                        jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, detail_pengadaan.nama_file
+                    
                         FROM head_pengadaan 
                         JOIN users on head_pengadaan.id_user = users.id_user
                         JOIN  detail_pengadaan on detail_pengadaan.id_pengadaan = head_pengadaan.id_pengadaan
@@ -300,7 +306,9 @@ class M_Master extends CI_Model {
                         LEFT join kegiatan on kegiatan.id_kegiatan = subkegiatan.id_kegiatan
                         LEFT join program on program.id_program = kegiatan.id_program
                         LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
-                                    
+                        LEFT JOIN tipe_barang on     detail_pengadaan.tipe_barang = tipe_barang.id_tipe_barang    
+                        LEFT JOIN jenis_barang on      detail_pengadaan.jenis_barang = jenis_barang.id_jenis_barang   
+                     
                         where  head_pengadaan.tahun_anggaran = 2024
                         GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                         ,users.unit_kerja, 
@@ -310,7 +318,9 @@ class M_Master extends CI_Model {
                                     uraian.kodering_uraian,uraian.nama_uraian,
                                     
                                     detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
-                        detail_pengadaan.sumber_dana
+                        detail_pengadaan.sumber_dana,
+                        jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, detail_pengadaan.nama_file
+                   
                                     order by users.unit_kerja,head_pengadaan.jenis_belanja, 
                         detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 
                         program.kodering_program,kegiatan.kodering_kegiatan,subkegiatan.kodering_subkegiatan,uraian.kodering_uraian";
