@@ -27,7 +27,7 @@
       statustable = $('#StatusTable').DataTable( {
             'processing'	: true,
             'sScrollX'      : '100%',
-            //'serverSide'	: true,
+            'stateSave'	: true,
             select: {
              style: 'multi'
             },
@@ -156,14 +156,15 @@
                     // {  targets: 1, width: '20%' }, 
                     // {  targets: 2, width: '20%' }, 
                     // {  targets: 3, width: '20%' },                
-                    {  targets: 1, width: '10%' }, 
+                    // {  targets: 0, width: '5%' }, 
+                    {  targets: 1, width: '5%' }, 
                     {  targets: 2, width: '30%' }, 
                     {  targets: 3, width: '5%' }, 
-                    {  targets: 4, width: '18%' }, 
+                    {  targets: 4, width: '10%' }, 
                     {  targets: 5, width: '5%' }, 
                     {  targets: 6, width: '15%' }, 
-                    {  targets: 7, width: '15%' }, 
-                    {  targets: 8, width: '10%' } 
+                    {  targets: 7, width: '10%' }, 
+                    {  targets: 8, width: '5%' }
                 
                  ] ,
                  footerCallback: function ( row, data, start, end, display ) {

@@ -189,7 +189,7 @@
 				<?php if($role == 'Admin'){ ?>
 				<tr>
 					<td>6</td>
-					<td><b><span class="badge badge-warning">Role Khusus Admin</span></b> Cetak Semua Belanja</td>
+					<td><b><span class="badge badge-warning">Role Khusus Admin</span> <span class="badge badge-primary">Baru</span></b> Cetak Semua Belanja</td>
 					<td>
 						<!-- <a href="<?php echo base_url('RKBU/PreviewSemua');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a> -->
 						<a href="<?php echo base_url('RKBU/CetakSemua');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>
@@ -231,7 +231,7 @@
 				<?php if($role == 'bidang'){ ?>
 				<tr>
 					<td>6</td>
-					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span></b> Cetak Semua Belanja</td>
+					<td><b><span class="badge badge-warning">Sebagai Bidang/Bagian</span><span class="badge badge-primary">Baru</span></b> Cetak Semua Belanja</td>
 					<td>
 						<!-- <a href="<?php echo base_url('RKBU/PreviewSemua');?> " class="btn btn-primary" title="Lihat Data" target="_blank"><i class="fas fa-eye"></i></a> -->
 						<a href="<?php echo base_url('RKBU/CetakSemua');?> " class="btn btn-success" title="Unduh Data (.xls)"><i class="fas fa-download"></i></a>

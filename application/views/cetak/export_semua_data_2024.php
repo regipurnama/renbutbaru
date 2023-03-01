@@ -66,6 +66,11 @@
 			<th rowspan="2">Jenis Barang</th>
 			<th rowspan="2">Dokumen Pendukung</th>
 			<th rowspan="2">Catatan</th>
+			<th rowspan="2">Status Usulan (Hapus yang tidak perlu)</th>
+			<th rowspan="2">Prioritas Usulan</th>
+			<th rowspan="2">Volume yang di ACC</th>
+			<th rowspan="2">Satuan yang di ACC</th>
+			<th rowspan="2">Catatan Bidang</th>
 		</tr>
 		<tr>
 			<th>Kodering</th>	
@@ -109,6 +114,11 @@
 		 <td><?php echo $row->nama_jenis_barang; ?></td>
 		 <td><?php echo "<a href = 'http://192.168.7.89:8056/renbutbaru/uploadfile/$row->nama_file'>".$row->nama_file."</a>"; ?></td>
 		 <td><?php echo $row->catatan; ?></td>
+		 <td><?php echo "Akomodir | Pending | Tolak "; ?></td>
+		 <td><?php echo ""; ?></td>
+		 <td><?php echo ""; ?></td>
+		 <td><?php echo ""; ?></td>
+		 <td><?php echo ""; ?></td>
 		
 		
 		</tr>
