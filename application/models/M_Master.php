@@ -271,7 +271,7 @@ class M_Master extends CI_Model {
                                 
                                 detail_pengadaan.nama_barang,detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
                     detail_pengadaan.sumber_dana,
-                    jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, , detail_pengadaan.nama_file
+                    jenis_barang.nama_jenis_barang, tipe_barang.nama_tipe_barang, detail_pengadaan.nama_file
                       
                                 order by users.unit_kerja,head_pengadaan.jenis_belanja, 
                     detail_pengadaan.prioritas desc,detail_pengadaan.sumber_dana, 

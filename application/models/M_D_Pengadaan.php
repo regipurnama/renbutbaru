@@ -108,7 +108,7 @@ class M_D_Pengadaan extends CI_Model {
         $this->isdeleted = 0;
         $this->modified_at = date('Y-m-d H:i:s');
         $this->last_user_edited = $this->session->userdata('id_user');
-        
+        $this->is_tombol  = 1;
         $this->db->where('id_detail_pengadaan',$id);
         $this->db->update($this->_table, $this);
     }
@@ -132,6 +132,7 @@ class M_D_Pengadaan extends CI_Model {
         $this->last_user_edited = $this->session->userdata('id_user');
         // $this->session_id = $this->session->session_id();
         // //$this->datetime = $date->format('Y-m-d H:i:s');
+        $this->is_tombol  = 1;
         $result = $this->db->insert($this->_table, $this);
         return $result;
         
@@ -181,7 +182,7 @@ class M_D_Pengadaan extends CI_Model {
         $this->tipe_barang = $data->tipe_barang;
         
         $this->last_user_edited = $this->session->userdata('id_user');
-        
+        $this->is_tombol  = 1;
     	 $this->db->insert($this->_table, $this);
     }
 
@@ -244,7 +245,7 @@ class M_D_Pengadaan extends CI_Model {
         $this->status_realisasi = 0;
         $this->isdeleted = 0;
         $this->last_user_edited = $this->session->userdata('id_user');
-        
+        $this->is_tombol  = 1;
     	 $this->db->insert($this->_table, $this);
     }
     

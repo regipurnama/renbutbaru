@@ -820,15 +820,20 @@
                         var hitung = response.data.length;
                         if (hitung>0) {
                             for(var x in response.data){
-                            var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-                            if(!!response.data[x].nama_file){
-                                var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+                                if(response.data[x].is_tombol == 1){
+                              
+                                    var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                                    if(!!response.data[x].nama_file){
+                                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
 
-                            }else{
-                                var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
+                                    }else{
+                                        var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
 
-                            }
-                        
+                                    }
+                                }else{
+                                    var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
+                                    
+                                }
                             row.push({
                                 'no'                    : i,
                                 'id_pengadaan'          : response.data[x].id_pengadaan,
@@ -1038,8 +1043,13 @@
                         var hitung = response.data.length;
                         if (hitung>0) {
                             for(var x in response.data){
-                            var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
-
+                                if(response.data[x].is_tombol == 1){
+                              
+                                    var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fas fa-pencil-alt"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                                }else{
+                                    var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
+                             
+                                }
                             row.push({
                                 'no'                    : i,
                                 'id_pengadaan'          : response.data[x].id_pengadaan,

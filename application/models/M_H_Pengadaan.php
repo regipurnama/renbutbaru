@@ -122,6 +122,7 @@ class M_H_Pengadaan extends CI_Model {
         $this->status = 1;
         $this->jenis_belanja = $jenis_belanja;
         $this->tahun_anggaran = $tahun;
+        $this->is_tombol  = 1;
     	$this->db->insert($this->_table, $this);
     }
     public function delete($id)
