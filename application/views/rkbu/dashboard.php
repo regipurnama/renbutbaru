@@ -33,7 +33,10 @@
 			<strong>Info!</strong>
 			<br/>
 					<marquee>"PASTIKAN USULAN YANG DIINPUTKAN MASUK KE CETAK DAN TERAKUMULASI DI DASHBOARD :D"</marquee>
-					- [Khusus Akun Bidang] Cetak Semua Usulan sudah ditambah fitur status usulan
+					- [Khusus Akun Unit/Instlasi/Ruangan] Cetak Semua Usulan ada kolom file pendukung<br/>
+					- [Khusus Akun Bidang] Cetak Semua Usulan sudah ditambah fitur status usulan<br/>
+					- Usulan telah <b>DIKUNCI</b>, TERIMA KASIH Telah menginput Renbut Baru 2024<br/>
+					
 			</div>
 		<?php } ?>
 			

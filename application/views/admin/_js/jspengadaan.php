@@ -831,6 +831,13 @@
 
                                     }
                                 }else{
+                                    if(!!response.data[x].nama_file){
+                                        var download = response.data[x].nama_file +'<a href="../uploadfile/'+response.data[x].nama_file+'" name="btn_download" class="btn btn-primary btn-xs btn-flat" title="Download Dokumen" target="_blank">Download Dokumen <i class="fa fa-download"></i></a>';
+
+                                    }else{
+                                        var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
+
+                                    }
                                     var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
                                     
                                 }
