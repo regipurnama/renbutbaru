@@ -28,11 +28,15 @@
 		<h4><span class="badge badge-info"> <?php echo "Dashboard - Tahun Usulan ". $tahun; ?></span> </h4>
 		 
 		<?php if($tahun == '2024'){?>
+			<div class="alert alert-warning alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<marquee>"PASTIKAN USULAN YANG DIINPUTKAN MASUK KE CETAK DAN TERAKUMULASI DI DASHBOARD :D"</marquee>
+			</div>
+				
 			<div class="alert alert-info alert-dismissible">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			<strong>Info!</strong>
 			<br/>
-					<marquee>"PASTIKAN USULAN YANG DIINPUTKAN MASUK KE CETAK DAN TERAKUMULASI DI DASHBOARD :D"</marquee>
 					- [Khusus Akun Unit/Instlasi/Ruangan] Cetak Semua Usulan ada kolom file pendukung<br/>
 					- [Khusus Akun Bidang] Cetak Semua Usulan sudah ditambah fitur status usulan<br/>
 					- Usulan telah <b>DIKUNCI</b>, TERIMA KASIH Telah menginput Renbut Baru 2024<br/>
