@@ -46,7 +46,7 @@
                       //|| $id_user ==16
                       // if($role =='Admin' ){ 
                         // NAKES LAIN
-                          if($id_user == 61 && $tahun == 2024){?>
+                          if( $tahun == 2000){?>
                           <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i>  Tambah Usulan</a></div>
                         <?php } 
                       
@@ -192,7 +192,7 @@
                                 <textarea name="catatan" id="catatan" cols="40" rows="3" class="form-control"></textarea>
                                 
                               </div>
-                              <?php  if($id_user == 61 && $tahun == 2024){?>
+                              <?php  if( $tahun == 2000){?>
                                 <div class="col-md-2">
                                   <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                   <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i>  Tambah Usulan</button>
@@ -363,7 +363,7 @@
                                 <textarea name="e_catatan" id="e_catatan" cols="40" rows="3" class="form-control"></textarea>
                                 
                               </div>
-                              <?php  if($id_user == 61 && $tahun == 2024){?>
+                              <?php  if( $tahun == 2000){?>
                                 <div class="col-md-2">
                                   <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                   <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
@@ -476,7 +476,7 @@
                               <label class="col-md-12 col-form-label mini-text">Keterangan</label>
                               <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Keterangan" required>
                             </div>
-                            <?php  if($id_user == 61 && $tahun == 2024){?>
+                            <?php  if($tahun == 2000){?>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text"> </label>
                                 <button type="button" type="submit" id="btn_save_brg_pengadaan" class="btn btn-primary">Tambah Usulan</button>
