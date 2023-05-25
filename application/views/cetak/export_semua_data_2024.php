@@ -112,7 +112,7 @@
 		 <td><?php echo $row->prioritas; ?></td>
 		 <td><?php echo $row->nama_tipe_barang; ?></td>
 		 <td><?php echo $row->nama_jenis_barang; ?></td>
-		 <td><?php echo "<a href = 'http://192.168.7.89:8056/renbutbaru/uploadfile/$row->nama_file'>".$row->nama_file."</a>"; ?></td>
+		 <td><?php echo "<a href = 'http://103.147.222.122:89/renbutbaru/uploadfile/$row->nama_file'>".$row->nama_file."</a>"; ?></td>
 		 <td><?php echo $row->catatan; ?></td>
 		 <td><?php echo "Akomodir | Pending | Tolak "; ?></td>
 		 <td><?php echo ""; ?></td>
