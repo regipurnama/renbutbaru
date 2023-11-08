@@ -47,10 +47,12 @@
                       // if($role =='Admin' ){    $tahun =  $this->session->userdata('tahun'); 
                       // || $id_user ==16
                       // if($role =='Admin' ){ 
-                       if( $tahun == 2024 && ($id_user == 11 ||$id_user == 15 )){?>
+                        //&& (($id_user >= 61 && $id_user <= 78) ) || $id_user == 23 || $id_user == 22
+                        //|| $id_user == 76 RMP
+                       if( $tahun == 2024 && $role =='Admin' ){?>
                         <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div>
                        <?php }
-                        if($tahun > 2024){ ?>
+                        if($tahun > 2024 && $role =='Admin'){ ?>
 
                       <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div>
                       <?php
@@ -251,12 +253,7 @@
                                 
                               </div>
                               <!-- KHUSUS NAKES LAIN -->
-                              <?php if($id_user == 61){ ?>
-                              <div class="col-md-2">
-                                <label class="col-md-12 col-form-label mini-text mt-03"> </label>
-                                <button type="submit" type="submit" id="btn_save_brg_temp_pengadaan" class="btn btn-primary"> <i class="fas fa-add"></i> Tambah Usulan</button>
-                              </div>
-                              <?php } ?>
+                              
                               <?php if($tahun > 2024){ ?>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
@@ -489,14 +486,15 @@
                                 
                               </div>
                               <!-- KHUSUS KOMITE MEDIK DAN KOMITE MUTU  -->
-                              <?php if($tahun == 2024 && ($id_user == 11 ||$id_user == 15 )){ ?>
+                              <!-- && (($id_user >= 61 && $id_user <= 78 || $id_user == 23 || $id_user == 22)) -->
+                              <?php if($tahun == 2024 && $role =='Admin'){ ?>
                                 <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                 <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                               </div>
                               <?php } ?>
                           
-                              <?php if($tahun > 2024){?>
+                              <?php if($tahun > 2024 && $role =='Admin'){?>
                               <div class="col-md-2">
                                 <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                 <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>

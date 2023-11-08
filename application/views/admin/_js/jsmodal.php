@@ -828,11 +828,14 @@
 
                                     }else{
                                         var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
-
+                                        
                                     }
+                                    // if(id_user >= 61 && id_user <= 78 || id_user == 23 || id_user == 22){
+                                    // var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                                // }else{
                                     var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
-                                    
-                                }
+                                // }
+                            }
                             row.push({
                                 'no'                    : i,
                                 'id_pengadaan'          : response.data[x].id_pengadaan,

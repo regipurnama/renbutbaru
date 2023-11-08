@@ -45,8 +45,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/logo.png') ?>">
 </head>
-
-
+<?php 
+$data = $this->session->flashdata('data'); 
+// var_dump($data['status']);
+// $data = [];
+	
+?>
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -54,14 +58,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				
 					<div class="w-full text-center">
 					<?php
-						$data = $this->session->flashdata('data'); 
-
+						
 						if($data['status'] == true){
 							// echo "<div class='alert alert-danger text-center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$data['message']."</div>";
 							echo "<span class='alert-danger text-center'>".$data['message']."<span>";
 					
+						}else if($data['status'] == NULL || $data['message'] == NULL ){
+							$data['message']='&nbsp';
+							echo $data['message'];
 						}else{
-							echo "&nbsp";
+							echo '&nbsp';
 						}
 					?>
 						
