@@ -58,7 +58,7 @@
                     if (hitung>0) {
                       for(var x in response.data){
                         //<button onClick="DeletePengadaan('+response.data[x].id_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>
-                        if(response.data[x].status == 1){
+                        if(response.data[x].status == 1 ){
                             // <button onClick="KirimPersetujuan('+response.data[x].id_pengadaan+')" name="btn_validasi" class="btn btn-info btn-xs btn-flat" title="Kirim Ke RTP"><i class="fa fa-share-square" aria-hidden="true"></i></button> <button onClick="CetakUsulan('+response.data[x].id_pengadaan+')" name="btn_cetak" class="btn btn-success btn-xs btn-flat"  title="Cetak Data"><i class="fas fa-print"></i></button>
                             var link = response.data[x].id_pengadaan;
                             //|| id_user ==16
@@ -838,8 +838,13 @@
                                         var download ='<span class="badge badge-dark">Tidak ada Dokumen Pendukung</span>';
 
                                     }
-                                    var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
-                                    
+                                    //|| id_user == 76 RMP
+                                //    if(id_user >= 61 && id_user <= 78 || id_user == 23 || id_user == 22){
+                                    //    var button = '<button onClick="EditPengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_edit" class="btn btn-warning btn-xs btn-flat" title="Edit Data"><i class="fa fa-edit"></i></button> <button onClick="DeletePengadaan('+response.data[x].id_detail_pengadaan+')" name="btn_delete" class="btn btn-danger btn-xs btn-flat" title="Hapus Data"><i class="fa fa-trash"></i></button>';
+                                    // }else{
+
+                                        var button = '<button class="btn btn-primary"><i class="fa-solid fa-lock"></i></button>';
+                                    // }
                                 }
                             row.push({
                                 'no'                    : i,

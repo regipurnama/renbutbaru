@@ -41,7 +41,7 @@
                     $('#flashmessage').html('<span class=alert-success text-center>Password Anda Sudah Berubah, Harap diingat yaa :D<span>');
                 },
 				error: function(response){
-					console.log("keluar");
+					// console.log("keluar");
 					// console.log(response);
 					$('#flashmessage').html('<span class=alert-danger text-center>Ubah Password Gagal <span>');
                     

@@ -1,4 +1,7 @@
 <!-- Sticky Footer -->
+<?php
+date_default_timezone_set('Asia/Jakarta');
+?>
 <footer class="sticky-footer" style='z-index:-999 !important'>
   <div class="container my-auto">
     <div class="copyright text-center my-auto">

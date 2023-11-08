@@ -45,8 +45,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/logo.png') ?>">
 </head>
-
-
+<?php 
+$data = $this->session->flashdata('data'); 
+// var_dump($data['status']);
+// $data = [];
+	
+?>
 <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
