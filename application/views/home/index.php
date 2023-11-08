@@ -55,14 +55,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="w-full text-center">
 					<?php
 						$data = $this->session->flashdata('data'); 
-
-						if($data['status'] == true){
-							// echo "<div class='alert alert-danger text-center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$data['message']."</div>";
-							echo "<span class='alert-danger text-center'>".$data['message']."<span>";
-					
+						// print_r($data);
+						if($data == null){
+							echo "";
 						}else{
-							echo "&nbsp";
+							if($data['status'] == true){
+								echo "<div class='alert alert-danger text-center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$data['message']."</div>";
+								echo "<span class='alert-danger text-center'>".$data['message']."<span>";
+						
+							}
 						}
+						
 					?>
 						
 						</div>
