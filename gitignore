@@ -23,6 +23,7 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 /uploadfile/
+application/config/database.php
 
 ### CodeIgniter Patch ###
 
