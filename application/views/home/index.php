@@ -78,7 +78,8 @@ $data = $this->session->flashdata('data');
 					</span>
 					<select name="tahun" id="tahun" class="form-control">
 						<option>- Pilih Tahun Anggaran -</option>
-						<option selected>2024</option>
+						<option selected>2025</option>
+						<option >2024</option>
 						<option>2023</option>
 						<option>2022</option>
 					</select>
