@@ -47,14 +47,13 @@
                       // if($role =='Admin' ){ 
                         // NAKES LAIN
                         // && (($id_user >= 61 && $id_user <= 78) ) || $id_user == 23 || $id_user == 22
-                          if( $tahun == 2024 && $role=="Admin"){?>
+                          if( $tahun == 2025){?>
                           <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i>  Tambah Usulan</a></div>
-                        <?php } 
+                        <?php } ?>
                       
-                      if( $tahun > 2024 && $role=="Admin" ){?>
+                      <!-- // if( $tahun > 202 && $role=="Admin" ){ -->
                         
-                          <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i>  Tambah Usulan</a></div>
-                        <?php } ?> 
+                          <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-plus"></i>  Tambah Usulan</a></div> -->
                     <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
                 </h3>
             </div>
