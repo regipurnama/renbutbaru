@@ -49,15 +49,14 @@
                       // if($role =='Admin' ){ 
                         //&& (($id_user >= 61 && $id_user <= 78) ) || $id_user == 23 || $id_user == 22
                         //|| $id_user == 76 RMP
-                       if( $tahun == 2024 && $role =='Admin' ){?>
+                      //  if( $tahun == 2025 && $role =='Admin' ){
+                       if( $tahun == 2025  ){?>
                         <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div>
                        <?php }
-                        if($tahun > 2024 && $role =='Admin'){ ?>
+                        // if($tahun > 2024 && $role =='Admin'){ ?>
 
-                      <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div>
-                      <?php
-                        }
-                        ?>            
+                          <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><i class="fas fa-add"></i> Tambah Usulan</a></div> -->
+                             
                          
                     <!-- <div class="float-right"><a href="javascript:void(0);" class="btn btn-primary" data-toggle="modal" data-target="#Modal_Add"><span class="fa fa-plus"></span> Tambah Usulan</a></div> -->
                 </h3>
