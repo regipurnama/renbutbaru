@@ -365,19 +365,18 @@
                                 
                               </div>
                               <?php // && (($id_user >= 61 && $id_user <= 78) ) || $id_user == 23 || $id_user == 22
-                               if( $tahun == 2024 ){?>
+                               if( $tahun == 2025 ){?>
                                 <div class="col-md-2">
                                   <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                   <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                                 </div>
                               <?php }?>
-                              <?php if($tahun > 2024){?>
-                           
+                              <!-- 
                                 <div class="col-md-2">
                                   <label class="col-md-12 col-form-label mini-text mt-03"> </label>
                                   <button type="submit" type="submit" id="e_btn_save_brg_pengadaan" class="btn btn-primary"><i class="fas fa-add"></i> Tambah Usulan</button>
                                 </div>
-                              <?php }?>
+                               -->
                            
                               
                             </div>
