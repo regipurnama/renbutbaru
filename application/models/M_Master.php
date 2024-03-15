@@ -223,15 +223,15 @@ class M_Master extends CI_Model {
 		return $return;
 	
  	}
-     public function get_cetak_semua_2024($id,$role,$bidang){
+     public function get_cetak_semua_2024($id,$role,$bidang,$tahun){
         // $post = $this->input->post();
         //trim($id);
-        //  var_dump($role);die;
+        //  var_dump($tahun);die;
         if($role == 'user' || $role=='only'){
-            $aksi .= "and head_pengadaan.id_user = ".$id;
+            $aksi .= "head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.id_user = ".$id;
         }
     if($role == 'bidang'){
-            $aksi .= "and users.bidang = ".$bidang ;
+            $aksi .= "head_pengadaan.tahun_anggaran = ".$tahun." and users.bidang = ".$bidang ;
 
         }
         if($role == 'user' || $role == 'bidang' || $role=='only'){
@@ -261,7 +261,7 @@ class M_Master extends CI_Model {
                         LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                         LEFT JOIN tipe_barang on     detail_pengadaan.tipe_barang = tipe_barang.id_tipe_barang    
                         LEFT JOIN jenis_barang on      detail_pengadaan.jenis_barang = jenis_barang.id_jenis_barang   
-                    where   head_pengadaan.tahun_anggaran = 2024  $aksi 
+                    where     $aksi 
                     GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                     ,users.unit_kerja, 
                                 program.kodering_program, program.nama_program,
@@ -309,7 +309,7 @@ class M_Master extends CI_Model {
                         LEFT JOIN tipe_barang on     detail_pengadaan.tipe_barang = tipe_barang.id_tipe_barang    
                         LEFT JOIN jenis_barang on      detail_pengadaan.jenis_barang = jenis_barang.id_jenis_barang   
                      
-                        where  head_pengadaan.tahun_anggaran = 2024
+                        where  head_pengadaan.tahun_anggaran = ".$tahun."
                         GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                         ,users.unit_kerja, 
                                     program.kodering_program, program.nama_program,
@@ -489,15 +489,15 @@ class M_Master extends CI_Model {
         }
          
     }
-    public function get_cetak_pegawai_2024($id,$role,$bidang){
+    public function get_cetak_pegawai_2024($id,$role,$bidang,$tahun){
         // $post = $this->input->post();
         //trim($id);
         //var_dump($id);die;
         if($role == 'user' || $role=='only'){
-            $aksi .= "and head_pengadaan.id_user = ".$id;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.id_user = ".$id;
         }
         if($role == 'bidang'){
-            $aksi .= "and users.bidang = ".$bidang ;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and users.bidang = ".$bidang ;
 
         }
         if($role == 'user' || $role == 'bidang' || $role=='only'){
@@ -521,7 +521,7 @@ class M_Master extends CI_Model {
                     LEFT join program on program.id_program = kegiatan.id_program
                     LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                             
-                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 0  $aksi
+                  where   head_pengadaan.jenis_belanja = 0  $aksi
                   GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                   ,users.unit_kerja, 
                             program.kodering_program, program.nama_program,
@@ -555,7 +555,7 @@ class M_Master extends CI_Model {
                     LEFT join program on program.id_program = kegiatan.id_program
                     LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                             
-                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 0
+                  where  head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.jenis_belanja = 0
                   GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                   ,users.unit_kerja, 
                             program.kodering_program, program.nama_program,
@@ -647,15 +647,15 @@ class M_Master extends CI_Model {
         }
                       
     }
-    public function get_cetak_modal_2024($id,$role,$bidang){
+    public function get_cetak_modal_2024($id,$role,$bidang,$tahun){
         // $post = $this->input->post();
         //trim($id);
         //var_dump($id);die;
         if($role == 'user' || $role=='only'){
-            $aksi .= "and head_pengadaan.id_user = ".$id;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.id_user = ".$id;
         }
         if($role == 'bidang'){
-            $aksi .= "and users.bidang = ".$bidang ;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and users.bidang = ".$bidang ;
 
         }
         if($role == 'user' || $role == 'bidang' || $role=='only'){
@@ -678,7 +678,7 @@ class M_Master extends CI_Model {
                        LEFT join program on program.id_program = kegiatan.id_program
                         LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                                 
-                      where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 2 $aksi
+                      where   head_pengadaan.jenis_belanja = 2 $aksi
                       GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                       ,users.unit_kerja, 
                                 program.kodering_program, program.nama_program,
@@ -712,7 +712,7 @@ class M_Master extends CI_Model {
                         LEFT join program on program.id_program = kegiatan.id_program
                         LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                                 
-                      where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 2
+                      where  head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.jenis_belanja = 2
                       GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                       ,users.unit_kerja, 
                                 program.kodering_program, program.nama_program,
@@ -804,15 +804,15 @@ class M_Master extends CI_Model {
         }
                          
     }
-    public function get_cetak_barjas_2024($id,$role,$bidang){
+    public function get_cetak_barjas_2024($id,$role,$bidang,$tahun){ 
         // $post = $this->input->post();
         //trim($id);
         
         if($role == 'user' || $role=='only'){
-            $aksi .= "and head_pengadaan.id_user = ".$id;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.id_user = ".$id;
         }
         if($role == 'bidang'){
-            $aksi .= "and users.bidang = ".$bidang ;
+            $aksi .= "and head_pengadaan.tahun_anggaran = ".$tahun." and users.bidang = ".$bidang ;
 
         }
         if($role == 'user' || $role == 'bidang' || $role=='only'){
@@ -835,7 +835,7 @@ class M_Master extends CI_Model {
                     LEFT join program on program.id_program = kegiatan.id_program
                     LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                             
-                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 1 $aksi
+                  where   head_pengadaan.jenis_belanja = 1 $aksi
                   GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                   ,users.unit_kerja, 
                             program.kodering_program, program.nama_program,
@@ -869,7 +869,7 @@ class M_Master extends CI_Model {
                     LEFT join program on program.id_program = kegiatan.id_program
                     LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                             
-                  where  head_pengadaan.tahun_anggaran = 2024 and head_pengadaan.jenis_belanja = 1
+                  where  head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.jenis_belanja = 1
                   GROUP BY  head_pengadaan.tgl_usulan,head_pengadaan.status,head_pengadaan.jenis_belanja,head_pengadaan.id_user
                   ,users.unit_kerja, 
                             program.kodering_program, program.nama_program,
@@ -933,15 +933,15 @@ class M_Master extends CI_Model {
             return $this->db->query($query)->result();                
         }
          
-    }public function get_cetak_barangdanspesifikasi_2024($id,$role,$bidang){
+    }public function get_cetak_barangdanspesifikasi_2024($id,$role,$bidang,$tahun){
         // $post = $this->input->post();
         //trim($id);
         //var_dump($id);die;
         if($role == 'user' || $role=='only'){
-            $aksi .= "and head_pengadaan.id_user = ".$id;
+            $aksi .= " head_pengadaan.tahun_anggaran = ".$tahun." and head_pengadaan.id_user = ".$id;
         }
         if($role == 'bidang'){
-            $aksi .= "and users.bidang = ".$bidang ;
+            $aksi .= " head_pengadaan.tahun_anggaran = ".$tahun." and users.bidang = ".$bidang ;
 
         }
         if($role == 'user' || $role == 'bidang' || $role=='only'){
@@ -957,7 +957,7 @@ class M_Master extends CI_Model {
           LEFT join program on program.id_program = kegiatan.id_program
           LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                   
-        where  head_pengadaan.tahun_anggaran = 2024 $aksi
+        where   $aksi
         GROUP BY  head_pengadaan.id_user
         ,users.unit_kerja, 
                   trim(detail_pengadaan.nama_barang),detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
@@ -977,7 +977,7 @@ class M_Master extends CI_Model {
           LEFT join program on program.id_program = kegiatan.id_program
           LEFT join uraian on uraian.id_uraian = detail_pengadaan.id_uraian
                   
-        where  head_pengadaan.tahun_anggaran = 2024
+        where  head_pengadaan.tahun_anggaran = ".$tahun."
         GROUP BY  head_pengadaan.id_user
         ,users.unit_kerja, 
                   trim(detail_pengadaan.nama_barang),detail_pengadaan.spesifikasi,detail_pengadaan.kuantitas,detail_pengadaan.satuan,detail_pengadaan.harga_satuan,detail_pengadaan.total_harga,detail_pengadaan.prioritas,detail_pengadaan.catatan,
